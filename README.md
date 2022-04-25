@@ -25,13 +25,13 @@
 
 #### Relatórios
 ```
-• Em Campo -> Quantidade que o campo recebeu naquele mês e ano 
-• Em Campo -> Quantidade de peladas ocorridas naquele mês e ano
-• Em Jogador -> quantidade de peladas batidas, mostrá também:
+• Em Campo - Quantidade que o campo recebeu naquele mês e ano 
+• Em Campo - Quantidade de peladas ocorridas naquele mês e ano
+• Em Jogador - quantidade de peladas batidas, mostrá também:
     • Quantidade de gols
     • Assistências 
     • Advertências tomadas naquele periodo de dias
-• Em Jogador -> Rank onde mostrá e qual posição o determinado jogador está no mês atual
+• Em Jogador - Rank onde mostrá e qual posição o determinado jogador está no mês atual
 • Listar campos disponíveis
 • Listar peladeiros de um grupo de peladas
 ```
