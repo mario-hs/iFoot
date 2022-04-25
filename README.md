@@ -9,11 +9,9 @@
 ```
 • Jogador
 • Campo
-• UF
+• Posição do jogador
 • Cidade
-• Bairro
-• Avaliação
-• Carteira
+• UF
 ```
 
 #### Processos de Negócio
@@ -21,12 +19,19 @@
 1. Reserva em grupo da pelada
 2. Reserva individualmente da pelada
 3. Avaliação dos jogadores
-4. Transferência de dinheiro de uma carteira para outra
-5. Multa
+4. Transferência de dinheiro de uma jogador para outro
+5. Punição no sistemas de cartões por tomar denúnicas de má conduta de outros jogadores
 ```
 
 #### Relatórios
 ```
+• Em Campo -> Quantidade que o campo recebeu naquele mês e ano 
+• Em Campo -> Quantidade de peladas ocorridas naquele mês e ano
+• Em Jogador -> quantidade de peladas batidas, mostrá também:
+    • Quantidade de gols
+    • Assistências 
+    • Advertências tomadas naquele periodo de dias
+• Em Jogador -> Rank onde mostrá e qual posição o determinado jogador está no mês atual
 • Listar campos disponíveis
 • Listar peladeiros de um grupo de peladas
 ```
