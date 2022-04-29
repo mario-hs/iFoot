@@ -32,8 +32,7 @@
     • Assistências 
     • Advertências tomadas naquele periodo de dias
 • Em Jogador - Rank onde mostrá e qual posição o determinado jogador está no mês atual
-• Listar campos disponíveis
-• Listar peladeiros de um grupo de peladas
+• Em Arena - Listar campos disponíveis com filtro do tipo de campo e a quantidade
 ```
 #### :link: Links <a name="-links"></a>
 - [Google drive](https://docs.google.com/document/d/1Zp3wqDyCAjAS_Q1leXmR_2X-H4f-EaZGSwrlZLrSQ1E/edit)
