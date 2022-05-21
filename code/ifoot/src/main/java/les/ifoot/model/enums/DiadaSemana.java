@@ -1,4 +1,4 @@
-package ifoot.demo.model.enums;
+package les.ifoot.model.enums;
 
 public enum DiadaSemana {
 	SEGUNDA(0, "Segunda-feira"),

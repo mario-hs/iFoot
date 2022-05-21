@@ -22,11 +22,13 @@ public class Jogador implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    private Date dataNascimentoDate;
+    private String nome;
 
-    private Integer cpf;
+    private String cpf;
 
     private String emailJogador;
+
+    private Date dataNascimento;
 
     private String senhaJogador;
 
@@ -34,10 +36,10 @@ public class Jogador implements Serializable {
 
     private String bairro;
 
-    private Float carteira;
+    // private Float carteira;
 
-    @ManyToOne
-    @JoinColumn(name = "posicao_id")
-    private Posicao posicao;
+    // @ManyToOne
+    // @JoinColumn(name = "posicao_id")
+    // private Posicao posicao;
 
 }
