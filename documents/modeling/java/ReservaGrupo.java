@@ -1,13 +1,32 @@
-package java;
+package les.ifoot.model;
 
-import java.util.Collection;
+import java.io.Serializable;
 
-public class ReservaGrupo {
+import javax.persistence.*;
 
+import les.ifoot.model.CampoHorarioPK;
+import lombok.*;
+
+import java.util.*;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@EqualsAndHashCode(of = { "id" })
+@Entity
+
+public class ReservaGrupo implements Serializable {
+	private static final long serialVersionUID = 1L;
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
-	private Collection<Jogador> jogador;
+	// private Collection<Jogador> jogador;
 
-	private CampoHorario campoHorario;
+	// Tem que mudar para CampoHorario sem PK
+	@ManyToOne
+	@JoinColumn(name = "campoHorario_id")
+	private CampoHorarioPK campoHorario;
 
 }

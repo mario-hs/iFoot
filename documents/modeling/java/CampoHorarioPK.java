@@ -1,4 +1,4 @@
-package ifoot.demo.model;
+package les.ifoot.model;
 
 import java.io.Serializable;
 
