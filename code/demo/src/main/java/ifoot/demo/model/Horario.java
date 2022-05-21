@@ -2,12 +2,11 @@ package ifoot.demo.model;
 
 import java.io.Serializable;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 import lombok.*;
+
+import ifoot.demo.model.enums.DiadaSemana;
 
 @Data
 @AllArgsConstructor
@@ -15,7 +14,7 @@ import lombok.*;
 @EqualsAndHashCode(of = { "id" })
 @Entity
 
-public class Horario implements Serializable{
+public class Horario implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 

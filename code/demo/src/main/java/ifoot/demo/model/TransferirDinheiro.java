@@ -1,24 +1,20 @@
 package ifoot.demo.model;
 
-import java.util.Date;
-
 import java.io.Serializable;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 import lombok.*;
+
+import java.util.*;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(of = { "id" })
 @Entity
-public class TransferirDinheiro implements Serializable{
+
+public class TransferirDinheiro implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -30,11 +26,11 @@ public class TransferirDinheiro implements Serializable{
 	private Integer valor;
 
 	@ManyToOne
-	@JoinColumn(name = "JogadorRemetente-id")
+	@JoinColumn(name = "jogadorRemetente_id")
 	private Jogador jogadorRemetente;
 
 	@ManyToOne
-	@JoinColumn(name = "JogadorDestinatario-id")
+	@JoinColumn(name = "jogadorDestinatario_id")
 	private Jogador jogadorDestinatario;
 
 }

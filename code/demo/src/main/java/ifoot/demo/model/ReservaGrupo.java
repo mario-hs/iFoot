@@ -1,23 +1,20 @@
 package ifoot.demo.model;
 
-import java.util.Collection;
 import java.io.Serializable;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 import lombok.*;
+
+import java.util.*;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(of = { "id" })
 @Entity
-public class ReservaGrupo implements Serializable{
+
+public class ReservaGrupo implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -26,8 +23,9 @@ public class ReservaGrupo implements Serializable{
 
 	// private Collection<Jogador> jogador;
 
+	// Tem que mudar para CampoHorario sem PK
 	@ManyToOne
-	@JoinColumn(name = "CampoHorario-id")
-	private CampoHorario campoHorario;
+	@JoinColumn(name = "campoHorario_id")
+	private CampoHorarioPK campoHorario;
 
 }

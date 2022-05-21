@@ -2,12 +2,7 @@ package ifoot.demo.model;
 
 import java.io.Serializable;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 import lombok.*;
 
@@ -16,7 +11,8 @@ import lombok.*;
 @NoArgsConstructor
 @EqualsAndHashCode(of = { "id" })
 @Entity
-public class ReservaIndividual implements Serializable{
+
+public class ReservaIndividual implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -25,11 +21,11 @@ public class ReservaIndividual implements Serializable{
 	private Integer id;
 
 	@ManyToOne
-	@JoinColumn(name = "Pelada-id")
+	@JoinColumn(name = "pelada_id")
 	private Pelada pelada;
-	
+
 	@ManyToOne
-	@JoinColumn(name = "Jogador-id")
+	@JoinColumn(name = "jogador_id")
 	private Jogador jogador;
 
 }

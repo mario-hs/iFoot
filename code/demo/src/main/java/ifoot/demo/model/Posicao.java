@@ -2,12 +2,7 @@ package ifoot.demo.model;
 
 import java.io.Serializable;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 import lombok.*;
 
@@ -16,7 +11,8 @@ import lombok.*;
 @NoArgsConstructor
 @EqualsAndHashCode(of = { "id" })
 @Entity
-public class Posicao implements Serializable{
+
+public class Posicao implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -30,6 +26,5 @@ public class Posicao implements Serializable{
 	private String caracteristica;
 
 	private String descricao;
-
 
 }

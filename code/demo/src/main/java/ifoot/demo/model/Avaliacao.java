@@ -2,12 +2,7 @@ package ifoot.demo.model;
 
 import java.io.Serializable;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 import lombok.*;
 
@@ -16,6 +11,7 @@ import lombok.*;
 @NoArgsConstructor
 @EqualsAndHashCode(of = { "id" })
 @Entity
+
 public class Avaliacao implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -27,11 +23,19 @@ public class Avaliacao implements Serializable {
 	private Float nota;
 
 	@ManyToOne
-	@JoinColumn(name = "Participacao_id")
-	private Participacao participacao;
+	@JoinColumn(name = "participacao_id")
+	private ParticipacaoPK participacao;
 
 	@ManyToOne
-	@JoinColumn(name = "Jogador_id")
+	@JoinColumn(name = "jogador_id")
 	private Jogador jogador;
+
+	// VER COM OS MENINOS SOBRE
+	// @OneToOne
+	// @JoinColumns({
+	// @JoinColumn(name = "PARTICIPAO_ID", referencedColumnName = "PARTICIPAO_ID"),
+	// @JoinColumn(name = "JOGADOR_ID", referencedColumnName = "JOGADOR_ID")
+	// })
+	// private Avaliacao avaliacao = new Avaliacao();
 
 }
