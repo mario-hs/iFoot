@@ -1,5 +1,5 @@
 package java;
 
-public class ADMdoSistema{
+public class ADMdoSistema12347{
 
 }
