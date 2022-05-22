@@ -8,19 +8,35 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import les.ifoot.model.Campo;
+import les.ifoot.model.Espaco;
+import les.ifoot.model.Jogador;
 import les.ifoot.model.Advertencia;
 import les.ifoot.model.Avaliacao;
-import les.ifoot.model.Espaco;
 import les.ifoot.model.Horario;
-import les.ifoot.model.Jogador;
 import les.ifoot.model.Penalidade;
+import les.ifoot.model.ReservaIndividual;
+import les.ifoot.model.Pelada;
+import les.ifoot.model.ReservaGrupo;
+import les.ifoot.model.Posicao;
+import les.ifoot.model.TransferirDinheiro;
+import les.ifoot.model.TransferenciaDinheiroEspaco;
+
 import les.ifoot.model.enums.DiadaSemana;
+
 import les.ifoot.repositories.AdvertenciaRepository;
 import les.ifoot.repositories.AvaliacaoRepository;
 import les.ifoot.repositories.EspacoRepository;
 import les.ifoot.repositories.HorarioRepository;
 import les.ifoot.repositories.JogadorRepository;
 import les.ifoot.repositories.PenalidadeRepository;
+import les.ifoot.repositories.ReservaIndividualRepository;
+import les.ifoot.repositories.PeladaRepository;
+import les.ifoot.repositories.ReservaGrupoRepository;
+import les.ifoot.repositories.CampoRepository;
+import les.ifoot.repositories.PosicaoRepository;
+import les.ifoot.repositories.TransferirDinheiroRepository;
+import les.ifoot.repositories.TransferenciaDinheiroEspacoRepository;
 
 @SpringBootApplication
 public class IfootApplication implements CommandLineRunner {
@@ -43,30 +59,94 @@ public class IfootApplication implements CommandLineRunner {
 	@Autowired
 	private AdvertenciaRepository advertenciaRepository;
 
+	@Autowired
+	private ReservaIndividualRepository reservaIndividualRepository;
+
+	@Autowired
+	private PeladaRepository peladaRepository;
+
+	@Autowired
+	private CampoRepository campoRepository;
+
+	@Autowired
+	private ReservaGrupoRepository reservaGrupoRepository;
+
+	@Autowired
+	private PosicaoRepository posicaoRepository;
+
+	@Autowired
+	private TransferirDinheiroRepository transferirDinheiroRepository;
+
+	@Autowired
+	private TransferenciaDinheiroEspacoRepository transferenciaDineheiroEspacoRepository;
+
 	public static void main(String[] args) {
 		SpringApplication.run(IfootApplication.class, args);
 	}
 
 	@Override
 	public void run(String... arg0) throws Exception {
+		// JOGADOR
 		Jogador jogador = new Jogador(null, "Mario", "03714076050", "mr.prince@hotmail.com", new Date(97, 7, 21),
 				"123", 0, "Alto Monte Cristo", new Float(35.00));
 		jogadorRepository.saveAll(Arrays.asList(jogador));
 
+		// ESPACO
 		Espaco espaco = new Espaco(null, "Hangar", "84667172000103", "Linha Vermelha", "hangar@gmail.com", "123");
 		espacoRepository.saveAll(Arrays.asList(espaco));
 
+		// PENAIDADE
 		Penalidade penalidade = new Penalidade(null, 1, 0, new Date(122, 4, 21));
 		penalidadeRepository.saveAll(Arrays.asList(penalidade));
 
+		// HORARIO
 		Horario horario = new Horario(null, "19:00", DiadaSemana.toEnum(1));
 		horarioRepository.saveAll(Arrays.asList(horario));
 
+		// AVALIACAO
 		Avaliacao avaliacao = new Avaliacao(null, new Float(7.8));
 		avaliacaoRepository.saveAll(Arrays.asList(avaliacao));
 
+		// ADVERTENCIA
 		Advertencia advertencia = new Advertencia(null);
 		advertenciaRepository.saveAll(Arrays.asList(advertencia));
+
+		// RESERVA INDIVIDUAL
+		ReservaIndividual reservaIndividual1 = new ReservaIndividual(null);
+		reservaIndividualRepository.saveAll(Arrays.asList(reservaIndividual1));
+		ReservaIndividual reservaIndividual2 = new ReservaIndividual(null);
+		reservaIndividualRepository.saveAll(Arrays.asList(reservaIndividual2));
+
+		// PELADA
+		Pelada pelada1 = new Pelada(null, new Date(122, 5, 10, 21, 00, 00));
+		peladaRepository.saveAll(Arrays.asList(pelada1));
+		Pelada pelada2 = new Pelada(null, new Date(122, 5, 17, 21, 00, 00));
+		peladaRepository.saveAll(Arrays.asList(pelada2));
+
+		// CAMPO
+		Campo campo1 = new Campo(null, "Bom Gosto Society 1", new Float(80.00), new Float(280.00));
+		campoRepository.saveAll(Arrays.asList(campo1));
+		Campo campo2 = new Campo(null, "Bom Gosto Society 2", new Float(85.00), new Float(290.00));
+		campoRepository.saveAll(Arrays.asList(campo2));
+
+		// RESERVA EM GRUPO
+		ReservaGrupo reservaGrupo1 = new ReservaGrupo(null);
+		reservaGrupoRepository.saveAll(Arrays.asList(reservaGrupo1));
+		ReservaGrupo reservaGrupo2 = new ReservaGrupo(null);
+		reservaGrupoRepository.saveAll(Arrays.asList(reservaGrupo2));
+
+		// POSIÇÃO
+		Posicao p1 = new Posicao(null, "Zagueiro", "ZG", "Rapido", "Muito Ruim");
+		posicaoRepository.saveAll(Arrays.asList(p1));
+
+		// TRANSFERENCIA DE DINHEIRO
+		TransferirDinheiro td1 = new TransferirDinheiro(null, new Date(122, 05, 21), new Float(250.00));
+		transferirDinheiroRepository.saveAll(Arrays.asList(td1));
+
+		// TRANSFERENCIA DE DINHEIRO
+		TransferenciaDinheiroEspaco tde1 = new TransferenciaDinheiroEspaco(null, new Date(122, 05, 22),
+				new Float(350.00));
+		transferenciaDineheiroEspacoRepository.saveAll(Arrays.asList(tde1));
 
 	}
 
