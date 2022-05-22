@@ -21,18 +21,18 @@ public class TransferenciaDinheiroEspaco implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 
-	// @ManyToOne
-	// @JoinColumn(name = "jogador_id")
-	// private Jogador jogador;
-
 	private Integer id;
 
 	private Date dataTransferenciaEspaco;
 
 	private Float valor;
 
-	// @ManyToOne
-	// @JoinColumn(name = "espaco_id")
-	// private Espaco espaco;
+	@ManyToOne
+	@JoinColumn(name = "jogador_id")
+	private Jogador jogador;
+
+	@ManyToOne
+	@JoinColumn(name = "espaco_id")
+	private Espaco espaco;
 
 }

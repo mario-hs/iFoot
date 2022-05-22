@@ -31,15 +31,16 @@ public class Campo implements Serializable {
 	// "campo_id"), inverseJoinColumns = @JoinColumn(name = "horario_id"))
 	// private Horario horario;
 
-	// @ManyToOne
-	// @JoinColumn(name = "espaco_id")
-	// private Espaco espaco;
 
 	private String nomeCampo;
 
 	private Float valorUnit;
 
 	private Float valorMes;
+
+	@ManyToOne
+	@JoinColumn(name = "espaco_id")
+	private Espaco espaco;
 
 	// private Collection<Horario> campoHorario;
 

@@ -20,12 +20,12 @@ public class ReservaIndividual implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
-	// @ManyToOne
-	// @JoinColumn(name = "pelada_id")
-	// private Pelada pelada;
+	@ManyToOne
+	@JoinColumn(name = "pelada_id")
+	private Pelada pelada;
 
-	// @ManyToOne
-	// @JoinColumn(name = "jogador_id")
-	// private Jogador jogador;
+	@ManyToOne
+	@JoinColumn(name = "jogador_id")
+	private Jogador jogador;
 
 }

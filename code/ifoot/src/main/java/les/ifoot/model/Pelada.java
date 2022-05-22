@@ -25,8 +25,8 @@ public class Pelada implements Serializable {
 
 	// private Collection<Jogador> participacao;
 
-	// @ManyToOne
-	// @JoinColumn(name = "reservaGrupo_id")
-	// private ReservaGrupo reservaGrupo;
+	@ManyToOne
+	@JoinColumn(name = "reservaGrupo_id")
+	private ReservaGrupo reservaGrupo;
 
 }

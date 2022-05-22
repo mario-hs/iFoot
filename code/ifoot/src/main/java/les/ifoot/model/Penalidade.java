@@ -27,8 +27,8 @@ public class Penalidade implements Serializable {
 
 	private Date dataPenalidade;
 
-	// @ManyToOne
-	// @JoinColumn(name = "jogador_id")
-	// private Jogador jogador;
+	@ManyToOne
+	@JoinColumn(name = "jogador_id")
+	private Jogador jogador;
 
 }

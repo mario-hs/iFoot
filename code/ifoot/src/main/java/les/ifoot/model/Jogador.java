@@ -38,8 +38,8 @@ public class Jogador implements Serializable {
 
     private Float carteira;
 
-    // @ManyToOne
-    // @JoinColumn(name = "posicao_id")
-    // private Posicao posicao;
+    @ManyToOne
+    @JoinColumn(name = "posicao_id")
+    private Posicao posicao;
 
 }

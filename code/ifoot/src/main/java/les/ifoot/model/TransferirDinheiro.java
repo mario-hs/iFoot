@@ -25,12 +25,12 @@ public class TransferirDinheiro implements Serializable {
 
 	private Float valor;
 
-	// @ManyToOne
-	// @JoinColumn(name = "jogadorRemetente_id")
-	// private Jogador jogadorRemetente;
+	@ManyToOne
+	@JoinColumn(name = "jogadorRemetente_id")
+	private Jogador jogadorRemetente;
 
-	// @ManyToOne
-	// @JoinColumn(name = "jogadorDestinatario_id")
-	// private Jogador jogadorDestinatario;
+	@ManyToOne
+	@JoinColumn(name = "jogadorDestinatario_id")
+	private Jogador jogadorDestinatario;
 
 }
