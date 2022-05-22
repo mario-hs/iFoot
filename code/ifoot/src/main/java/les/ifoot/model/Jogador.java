@@ -36,7 +36,7 @@ public class Jogador implements Serializable {
 
     private String bairro;
 
-    // private Float carteira;
+    private Float carteira;
 
     // @ManyToOne
     // @JoinColumn(name = "posicao_id")

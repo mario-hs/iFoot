@@ -3,27 +3,27 @@ package les.ifoot.services;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import les.ifoot.model.Espaco;
-import les.ifoot.repositories.EspacoRepository;
+import les.ifoot.model.Horario;
+import les.ifoot.repositories.HorarioRepository;
 
 @Service
-public class EspacoService {
+public class HorarioService {
     @Autowired
-    private EspacoRepository repository;
+    private HorarioRepository repository;
 
-    public Espaco findById(Integer id) {
+    public Horario findById(Integer id) {
         return repository.findById(id).get();
     }
 
-    public List<Espaco> findAll() {
+    public List<Horario> findAll() {
         return repository.findAll();
     }
 
-    public Espaco insert(Espaco obj) {
+    public Horario insert(Horario obj) {
         return repository.save(obj);
     }
 
-    public Espaco update(Espaco obj) {
+    public Horario update(Horario obj) {
         findById(obj.getId());
         return repository.save(obj);
     }

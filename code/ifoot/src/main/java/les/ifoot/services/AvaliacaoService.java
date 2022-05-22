@@ -3,27 +3,27 @@ package les.ifoot.services;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import les.ifoot.model.Espaco;
-import les.ifoot.repositories.EspacoRepository;
+import les.ifoot.model.Avaliacao;
+import les.ifoot.repositories.AvaliacaoRepository;
 
 @Service
-public class EspacoService {
+public class AvaliacaoService {
     @Autowired
-    private EspacoRepository repository;
+    private AvaliacaoRepository repository;
 
-    public Espaco findById(Integer id) {
+    public Avaliacao findById(Integer id) {
         return repository.findById(id).get();
     }
 
-    public List<Espaco> findAll() {
+    public List<Avaliacao> findAll() {
         return repository.findAll();
     }
 
-    public Espaco insert(Espaco obj) {
+    public Avaliacao insert(Avaliacao obj) {
         return repository.save(obj);
     }
 
-    public Espaco update(Espaco obj) {
+    public Avaliacao update(Avaliacao obj) {
         findById(obj.getId());
         return repository.save(obj);
     }
