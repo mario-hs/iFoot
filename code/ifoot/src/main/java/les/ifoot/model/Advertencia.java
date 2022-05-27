@@ -23,7 +23,7 @@ public class Advertencia implements Serializable {
 	private Integer id;
 
 	// @ManyToOne
-	@JoinColumn(name = "participacao_id")
+	// @JoinColumn(name = "participacao_id")
 	// private ParticipacaoPK participacao;
 
 	@ManyToOne
