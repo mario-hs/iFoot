@@ -33,8 +33,8 @@ public class Advertencia implements Serializable {
 	// VER COM OS MENINOS SOBRE
 	// @OneToOne
 	// @JoinColumns({
-	// @JoinColumn(name = "PARTICIPAO_ID", referencedColumnName = "PARTICIPAO_ID"),
-	// @JoinColumn(name = "JOGADOR_ID", referencedColumnName = "JOGADOR_ID")
+	@JoinColumn(name = "PARTICIPAO_ID", referencedColumnName = "PARTICIPAO_ID"),
+	@JoinColumn(name = "JOGADOR_ID", referencedColumnName = "JOGADOR_ID")
 	// })
 	// private Avaliacao avaliacao = new Avaliacao();
 
