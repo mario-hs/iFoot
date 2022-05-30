@@ -1,6 +1,9 @@
 package les.ifoot.services;
 
 import java.util.List;
+import java.util.NoSuchElementException;
+
+import org.hibernate.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import les.ifoot.model.Advertencia;
@@ -12,7 +15,12 @@ public class AdvertenciaService {
     private AdvertenciaRepository repository;
 
     public Advertencia findById(Integer id) {
-        return repository.findById(id).get();
+        try {
+            Advertencia obj = repository.findById(id).get();
+            return obj;
+        } catch (NoSuchElementException e) {
+            throw new ObjectNotFoundException("Objeto não encontrado" + id, ", tipo: " + Advertencia.class);
+        }
     }
 
     public List<Advertencia> findAll() {

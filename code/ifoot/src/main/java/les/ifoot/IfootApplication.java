@@ -3,8 +3,6 @@ package les.ifoot;
 import java.util.Arrays;
 import java.util.Date;
 
-import com.fasterxml.jackson.annotation.JsonTypeInfo.Id;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -95,14 +93,13 @@ public class IfootApplication implements CommandLineRunner {
 		Posicao p2 = new Posicao(null, "Atacante", "ATA", "Forte", "Muito Bom");
 		posicaoRepository.saveAll(Arrays.asList(p2));
 
-
 		// JOGADOR
 		Jogador jogador = new Jogador(null, "Mario", "03714076050", "mr.prince@hotmail.com", new Date(97, 7, 21),
-				"123", 0, "Alto Monte Cristo", new Float(35.00),p1);
+				"123", 0, "Alto Monte Cristo", new Float(35.00), p1);
 		jogadorRepository.saveAll(Arrays.asList(jogador));
 
 		Jogador jogador1 = new Jogador(null, "Vicenzo", "03814076050", "vivi.prince@hotmail.com", new Date(99, 3, 11),
-				"123", 0, "Alto Monte Cristo", new Float(35.00),p2);
+				"123", 0, "Alto Monte Cristo", new Float(35.00), p2);
 		jogadorRepository.saveAll(Arrays.asList(jogador1));
 
 		// ESPACO
@@ -112,7 +109,7 @@ public class IfootApplication implements CommandLineRunner {
 		espacoRepository.saveAll(Arrays.asList(espaco1));
 
 		// PENAIDADE
-		Penalidade penalidade = new Penalidade(null, 1, 0, new Date(122, 4, 21) , jogador);
+		Penalidade penalidade = new Penalidade(null, 1, 0, new Date(122, 4, 21), jogador);
 		penalidadeRepository.saveAll(Arrays.asList(penalidade));
 		Penalidade penalidade1 = new Penalidade(null, 0, 1, new Date(122, 4, 28), jogador1);
 		penalidadeRepository.saveAll(Arrays.asList(penalidade1));
@@ -148,18 +145,19 @@ public class IfootApplication implements CommandLineRunner {
 		reservaIndividualRepository.saveAll(Arrays.asList(reservaIndividual2));
 
 		// CAMPO
-		Campo campo1 = new Campo(null, "Bom Gosto Society 1", new Float(80.00), new Float(280.00),espaco);
+		Campo campo1 = new Campo(null, "Bom Gosto Society 1", new Float(80.00), new Float(280.00), espaco);
 		campoRepository.saveAll(Arrays.asList(campo1));
 		Campo campo2 = new Campo(null, "Hangar Society 1", new Float(85.00), new Float(290.00), espaco1);
 		campoRepository.saveAll(Arrays.asList(campo2));
 
 		// TRANSFERENCIA DE DINHEIRO
-		TransferirDinheiro td1 = new TransferirDinheiro(null, new Date(122, 05, 21), new Float(250.00), jogador1, jogador);
+		TransferirDinheiro td1 = new TransferirDinheiro(null, new Date(122, 05, 21), new Float(250.00), jogador1,
+				jogador);
 		transferirDinheiroRepository.saveAll(Arrays.asList(td1));
 
 		// TRANSFERENCIA DE DINHEIRO
 		TransferenciaDinheiroEspaco tde1 = new TransferenciaDinheiroEspaco(null, new Date(122, 05, 22),
-				new Float(350.00),jogador,espaco);
+				new Float(350.00), jogador, espaco);
 		transferenciaDineheiroEspacoRepository.saveAll(Arrays.asList(tde1));
 
 	}

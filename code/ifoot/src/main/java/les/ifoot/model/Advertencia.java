@@ -26,9 +26,9 @@ public class Advertencia implements Serializable {
 	// @JoinColumn(name = "participacao_id")
 	// private ParticipacaoPK participacao;
 
-	@ManyToOne
-	@JoinColumn(name = "jogador_id")
-	private Jogador jogador;
+	// @ManyToOne
+	// @JoinColumn(name = "jogador_id")
+	// private Jogador jogador;
 
 	// VER COM OS MENINOS SOBRE
 	// @OneToOne
