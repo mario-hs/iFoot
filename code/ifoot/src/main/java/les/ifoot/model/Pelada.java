@@ -4,6 +4,10 @@ import java.io.Serializable;
 
 import javax.persistence.*;
 
+import javax.validation.constraints.*;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import lombok.*;
 
 import java.util.*;
@@ -21,10 +25,13 @@ public class Pelada implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
+	@NotNull(message = "A data da pelada deve ser preenchida")
+	@JsonFormat(pattern = "yyyy-MM-dd")
 	private Date dataPelada;
 
 	// private Collection<Jogador> participacao;
 
+	@NotNull(message = "A reservaGrupo em pelada deve ser preenchida")
 	@ManyToOne
 	@JoinColumn(name = "reservaGrupo_id")
 	private ReservaGrupo reservaGrupo;

@@ -2,6 +2,8 @@ package les.ifoot.model;
 
 // import org.springframework.boot.autoconfigure.domain.EntityScan;
 
+import javax.validation.constraints.*;
+
 import java.io.Serializable;
 
 import javax.persistence.*;
@@ -26,6 +28,7 @@ public class Advertencia implements Serializable {
 	// @JoinColumn(name = "participacao_id")
 	// private ParticipacaoPK participacao;
 
+	@NotNull(message = "O jogador em advertencia deve ser preenchido")
 	@ManyToOne
 	@JoinColumn(name = "jogador_id")
 	private Jogador jogador;
