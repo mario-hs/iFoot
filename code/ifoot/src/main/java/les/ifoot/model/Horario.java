@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.sql.Date;
 
 import javax.persistence.*;
-
+// import javax.swing.plaf.DimensionUIResource;
 import javax.validation.constraints.*;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -36,6 +36,23 @@ public class Horario implements Serializable {
 	@JsonFormat(pattern = "yyyy-MM-dd-hh-mm-ss")
 	private Date hora;
 
-	private DiadaSemana diaSemana;
+	@Digits(integer = 1, fraction = 0, message = "Dia da semana nao foi especificado")
+	private Integer diaSemana;
+
+	@Builder 
+	public Horario(Integer id, Date hora, DiadaSemana diaSemana){
+		this.id =id;
+		this.diaSemana = diaSemana.getCod();
+		this.hora = hora;
+	}
+
+	public DiadaSemana getdiaSemana(){
+		return DiadaSemana.toEnum(diaSemana);
+	}
+
+	public void setdiaSemana(DiadaSemana diaSemana){
+		this.diaSemana = diaSemana.getCod();
+	}
+	
 
 }

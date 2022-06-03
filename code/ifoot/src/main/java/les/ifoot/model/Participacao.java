@@ -31,8 +31,17 @@ public class Participacao implements Serializable {
 		return id.getPelada();
 	}
 
+	public void setPelada(Pelada pelada) {
+		id.setPelada(pelada);
+	}
+
 	public Jogador getJogador() {
 		return id.getJogador();
 	}
+
+	public void setJogador(Jogador jogador) {
+		id.setJogador(jogador);
+	}
+
 	
 }

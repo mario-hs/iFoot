@@ -35,8 +35,17 @@ public class CampoHorario implements Serializable {
 		return id.getCampo();
 	}
 
+	public void setCampo(Campo campo){
+		id.setCampo(campo);
+	}
+
 	public Horario getHorario() {
 		return id.getHorario();
 	}
+
+	public void setHorario(Horario horario) {
+		id.setHorario(horario);
+	}
+
 
 }
