@@ -6,12 +6,10 @@ import javax.persistence.*;
 
 import lombok.*;
 
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
-@EqualsAndHashCode(of = { "horario", "campo" })
-@Entity
 
+@Embeddable
+@Data
+@EqualsAndHashCode(of = { "horario", "campo" })
 public class CampoHorarioPK implements Serializable {
 	private static final long serialVersionUID = 1L;
 

@@ -80,11 +80,11 @@ public class _DBService {
         private TransferenciaDinheiroEspacoRepository transferenciaDineheiroEspacoRepository;
 
         public void handleDataBaseTest() throws ParseException, IOException {
-                // // POSIÇÃO
-                // Posicao p1 = new Posicao(null, "Zagueiro", "ZG", "Rapido", "Muito Ruim");
-                // posicaoRepository.saveAll(Arrays.asList(p1));
-                // Posicao p2 = new Posicao(null, "Atacante", "ATA", "Forte", "Muito Bom");
-                // posicaoRepository.saveAll(Arrays.asList(p2));
+                // POSIÇÃO
+                Posicao p1 = new Posicao(null, "Zagueiro", "ZG", "Rapido", "Muito Ruim");
+                posicaoRepository.saveAll(Arrays.asList(p1));
+                Posicao p2 = new Posicao(null, "Atacante", "ATA", "Forte", "Muito Bom");
+                posicaoRepository.saveAll(Arrays.asList(p2));
 
                 // // JOGADOR
                 // Jogador jogador = new Jogador(null, "Mario", "03714076050", "mr.prince@hotmail.com",
