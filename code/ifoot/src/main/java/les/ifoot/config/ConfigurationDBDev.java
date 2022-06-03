@@ -13,7 +13,6 @@ import les.ifoot.services._DBService;
 
 @Configuration
 @Profile("dev")
-
 public class ConfigurationDBDev {
     @Autowired
     private _DBService dbService;
