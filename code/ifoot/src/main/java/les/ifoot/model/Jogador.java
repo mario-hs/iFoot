@@ -61,7 +61,7 @@ public class Jogador implements Serializable {
     @Min(value = 1, message = "Valor da carteira do jogador deve ser maior que zero")
     @NotNull(message = "Valor da carteira do jogador deve ser preenchido")
     @Digits(integer = 6, fraction = 2, message = "Valor da carteira do jogador deve ser preenchido com dígitos")
-    private Float carteira;
+    private Double carteira;
 
     @NotNull(message = "A posição em jogador deve ser preenchida")
     @ManyToOne

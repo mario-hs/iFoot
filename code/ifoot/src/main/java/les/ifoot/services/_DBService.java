@@ -86,97 +86,109 @@ public class _DBService {
         @Autowired
         private TransferenciaDinheiroEspacoRepository transferenciaDineheiroEspacoRepository;
 
-        // SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
-        // String dataFake = "19:00";
-        // Date d = sdf.parse("19:00");
-        // DateFormat formatador = new SimpleDateFormat("HH:mm");
-
         public void handleDataBaseTest() throws ParseException, IOException {
+                SimpleDateFormat dateHora = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+                SimpleDateFormat date = new SimpleDateFormat("dd/MM/yyyy");
+                // SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
+                // String dataFake = "19:00";
+                // Date d = sdf.parse("19:00");
+                // DateFormat formatador = new SimpleDateFormat("HH:mm");
+
                 // POSIÇÃO
                 Posicao p1 = new Posicao(null, "Zagueiro", "ZG", "Rapido", "Muito Ruim");
-                posicaoRepository.saveAll(Arrays.asList(p1));
                 Posicao p2 = new Posicao(null, "Atacante", "ATA", "Forte", "Muito Bom");
-                posicaoRepository.saveAll(Arrays.asList(p2));
 
                 // JOGADOR
+                // Jogador jogador = new Jogador(null, "Mario", "03714076050",
+                // "mr.prince@hotmail.com", new Date(97, 7, 21), "1234567", 0, "Alto Monte
+                // Cristo", new Float(35.00), p1);
+                // Jogador jogador1 = new Jogador(null, "Vicenzo", "03814076050",
+                // "vivi.prince@hotmail.com", new Date(99, 3, 11), "1234567", 0, "Alto Monte
+                // Cristo", new Float(35.00), p2);
                 Jogador jogador = new Jogador(null, "Mario", "03714076050", "mr.prince@hotmail.com",
-                                new Date(97, 7, 21),
-                                "1234567", 0, "Alto Monte Cristo", new Float(35.00), p1);
-                jogadorRepository.saveAll(Arrays.asList(jogador));
-
-                Jogador jogador1 = new Jogador(null, "Vicenzo", "03814076050", "vivi.prince@hotmail.com",
-                                new Date(99, 3, 11),
-                                "1234567", 0, "Alto Monte Cristo", new Float(35.00), p2);
-                jogadorRepository.saveAll(Arrays.asList(jogador1));
+                                date.parse("21/07/1997"), "1234567", 0, "Alto Monte Cristo", 35.00, p1);
+                Jogador jogador1 = new Jogador(null, "Vicenzo", "03814076050", "vivi@hotmail.com",
+                                date.parse("11/03/1998"), "1234567", 0, "Maria Ortiz", 35.00, p2);
 
                 // ESPACO
                 Espaco espaco = new Espaco(null, "Hangar", "84667172000103", "Linha Vermelha", "hangar@gmail.com",
                                 "1234567");
-                espacoRepository.saveAll(Arrays.asList(espaco));
                 Espaco espaco1 = new Espaco(null, "Bom Gosto", "94767172000103", "Linha Amarela", "bomgosto@gmail.com",
                                 "1234567");
-                espacoRepository.saveAll(Arrays.asList(espaco1));
 
                 // PENAIDADE
-                Penalidade penalidade = new Penalidade(null, 1, 0, new Date(122, 4, 21),
-                                jogador);
-                penalidadeRepository.saveAll(Arrays.asList(penalidade));
-                Penalidade penalidade1 = new Penalidade(null, 0, 1, new Date(122, 4, 28),
-                                jogador1);
-                penalidadeRepository.saveAll(Arrays.asList(penalidade1));
-
-                // HORARIO
-                // Horario horario = new Horario(null, formatador.parse("19:00"), 1);
-                Horario horario = new Horario(null, "19:00", 1);
-                // Horario horario = new Horario(null, new Date("19:00:00"), 1);
-                horarioRepository.saveAll(Arrays.asList(horario));
+                Penalidade penalidade = new Penalidade(null, 1, 0, date.parse("21/06/2022"), jogador);
+                Penalidade penalidade1 = new Penalidade(null, 0, 1, date.parse("26/06/2022"), jogador1);
 
                 // AVALIACAO
-                Avaliacao avaliacao = new Avaliacao(null, new Float(7.8), jogador);
-                avaliacaoRepository.saveAll(Arrays.asList(avaliacao));
+                Avaliacao avaliacao = new Avaliacao(null, 7.8, jogador);
 
                 // ADVERTENCIA
                 Advertencia advertencia = new Advertencia(null, jogador);
-                advertenciaRepository.saveAll(Arrays.asList(advertencia));
+
+                // HORARIO
+                Horario horario = new Horario(null, "19:00", 1);
+                // Horario horario = new Horario(null, "19:00", 1);
+                // Horario horario = new Horario(null, new Date("19:00:00"), 1);
 
                 // CAMPO
-                Campo campo1 = new Campo(null, "Bom Gosto Society 1", new Float(80.00), new Float(280.00), espaco);
-                campoRepository.saveAll(Arrays.asList(campo1));
-                Campo campo2 = new Campo(null, "Hangar Society 1", new Float(85.00), new Float(290.00), espaco1);
-                campoRepository.saveAll(Arrays.asList(campo2));
+                Campo campo1 = new Campo(null, "Bom Gosto Society 1", 80.00, 280.00, espaco);
+                Campo campo2 = new Campo(null, "Hangar Society 1", 85.00, 290.00, espaco1);
 
-                CampoHorario campoHorario1 = new CampoHorario(campo1, horario);
+                CampoHorario campoHorario = new CampoHorario(campo1, horario);
 
                 // RESERVA EM GRUPO - [ ERROR ]
-                ReservaGrupo reservaGrupo1 = new ReservaGrupo(campoHorario1);
-                // reservaGrupoRepository.saveAll(Arrays.asList(reservaGrupo1));
+                ReservaGrupo reservaGrupo1 = new ReservaGrupo(campoHorario);
                 // ReservaGrupo reservaGrupo2 = new ReservaGrupo(null);
                 // reservaGrupoRepository.saveAll(Arrays.asList(reservaGrupo2));
 
                 // PELADA
-                Pelada pelada1 = new Pelada(null, new Date(122, 5, 10, 21, 00, 00));
-                peladaRepository.saveAll(Arrays.asList(pelada1));
-                Pelada pelada2 = new Pelada(null, new Date(122, 5, 17, 21, 00, 00));
-                peladaRepository.saveAll(Arrays.asList(pelada2));
+                Pelada pelada1 = new Pelada(null, dateHora.parse("21/10/2022 19:00"));
+                Pelada pelada2 = new Pelada(null, dateHora.parse("11/10/2022 21:00"));
 
                 // RESERVA INDIVIDUAL
-                ReservaIndividual reservaIndividual1 = new ReservaIndividual(null, pelada1,
+                ReservaIndividual reservaIndividual1 = new ReservaIndividual(null, pelada1, jogador);
+                ReservaIndividual reservaIndividual2 = new ReservaIndividual(null, pelada2, jogador1);
+
+                // // TRANSFERENCIA DE DINHEIRO
+                TransferirDinheiro td1 = new TransferirDinheiro(null, date.parse("22/06/2022"), 250.00, jogador1,
                                 jogador);
+
+                // // TRANSFERENCIA DE DINHEIRO
+                TransferenciaDinheiroEspaco tde1 = new TransferenciaDinheiroEspaco(null, date.parse("22/06/2022"),
+                                350.00, jogador, espaco);
+
+                posicaoRepository.saveAll(Arrays.asList(p2));
+                posicaoRepository.saveAll(Arrays.asList(p1));
+
+                jogadorRepository.saveAll(Arrays.asList(jogador));
+                jogadorRepository.saveAll(Arrays.asList(jogador1));
+
+                espacoRepository.saveAll(Arrays.asList(espaco));
+                espacoRepository.saveAll(Arrays.asList(espaco1));
+
+                penalidadeRepository.saveAll(Arrays.asList(penalidade));
+                penalidadeRepository.saveAll(Arrays.asList(penalidade1));
+
+                avaliacaoRepository.saveAll(Arrays.asList(avaliacao));
+
+                advertenciaRepository.saveAll(Arrays.asList(advertencia));
+
+                horarioRepository.saveAll(Arrays.asList(horario));
+
+                campoRepository.saveAll(Arrays.asList(campo1));
+                campoRepository.saveAll(Arrays.asList(campo2));
+
+                peladaRepository.saveAll(Arrays.asList(pelada1));
+                peladaRepository.saveAll(Arrays.asList(pelada2));
+
+                reservaGrupoRepository.saveAll(Arrays.asList(reservaGrupo1));
+
                 reservaIndividualRepository.saveAll(Arrays.asList(reservaIndividual1));
-                ReservaIndividual reservaIndividual2 = new ReservaIndividual(null, pelada2,
-                                jogador1);
                 reservaIndividualRepository.saveAll(Arrays.asList(reservaIndividual2));
 
-                // // TRANSFERENCIA DE DINHEIRO
-                TransferirDinheiro td1 = new TransferirDinheiro(null, new Date(122, 05, 21),
-                                new Float(250.00),
-                                jogador1,
-                                jogador);
                 transferirDinheiroRepository.saveAll(Arrays.asList(td1));
-
-                // // TRANSFERENCIA DE DINHEIRO
-                TransferenciaDinheiroEspaco tde1 = new TransferenciaDinheiroEspaco(null, new Date(122, 05, 22),
-                                new Float(350.00), jogador, espaco);
                 transferenciaDineheiroEspacoRepository.saveAll(Arrays.asList(tde1));
+
         }
 }

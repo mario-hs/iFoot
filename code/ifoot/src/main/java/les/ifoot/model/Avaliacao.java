@@ -25,7 +25,7 @@ public class Avaliacao implements Serializable {
 	@Min(value = 1, message = "Valor da nota da avaliação deve ser maior que zero")
 	@NotNull(message = "Valor da nota da avaliação deve ser preenchido")
 	@Digits(integer = 2, fraction = 1, message = "Valor da nota da avaliação deve ser preenchido com dígitos")
-	private Float nota;
+	private Double nota;
 
 	// @ManyToOne
 	// @JoinColumn(name = "participacao_id")

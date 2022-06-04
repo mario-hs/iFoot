@@ -41,12 +41,12 @@ public class Campo implements Serializable {
 	@Min(value = 1, message = "Valor unitário do campo deve ser maior que zero")
 	@NotNull(message = "Valor unitário do campo deve ser preenchido")
 	@Digits(integer = 6, fraction = 2, message = "Valor unitário do campo deve ser preenchido com dígitos")
-	private Float valorUnit;
+	private Double valorUnit;
 
 	@Min(value = 1, message = "Valor mensal do campo deve ser maior que zero")
 	@NotNull(message = "Valor mensal do campo deve ser preenchido")
 	@Digits(integer = 6, fraction = 2, message = "Valor mensal do campo deve ser preenchido com dígitos")
-	private Float valorMes;
+	private Double valorMes;
 
 	@NotNull(message = "O espaço em campo deve ser preenchido")
 	@ManyToOne

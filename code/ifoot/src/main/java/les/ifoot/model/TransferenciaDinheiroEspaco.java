@@ -33,7 +33,7 @@ public class TransferenciaDinheiroEspaco implements Serializable {
 	@Min(value = 1, message = "Valor da transferencia do espaço deve ser maior que zero")
 	@NotNull(message = "Valor da transferencia do espaço deve ser preenchido")
 	@Digits(integer = 6, fraction = 2, message = "Valor da transferencia do espaço deve ser preenchido com dígitos")
-	private Float valor;
+	private Double valor;
 
 	@NotNull(message = "O jogador em transferencia de dinheiro espaço deve ser preenchido")
 	@ManyToOne

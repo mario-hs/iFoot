@@ -16,13 +16,12 @@ import lombok.*;
 public class ReservaGrupoPK implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	
 	@ManyToOne
 	@JoinColumns({
-		@JoinColumn(name="HORARIO_ID",referencedColumnName = "HORARIO_ID"),
-		@JoinColumn(name = "CAMPO_ID",referencedColumnName = "CAMPO_ID")
+			@JoinColumn(name = "HORARIO_ID", referencedColumnName = "HORARIO_ID"),
+			@JoinColumn(name = "CAMPO_ID", referencedColumnName = "CAMPO_ID")
 	})
-	
+
 	private CampoHorario campoHorario = new CampoHorario();
 
 }

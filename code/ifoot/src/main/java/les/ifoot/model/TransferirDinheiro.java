@@ -32,7 +32,7 @@ public class TransferirDinheiro implements Serializable {
 	@Min(value = 1, message = "Valor da transferencia do jogador deve ser maior que zero")
 	@NotNull(message = "Valor da transferencia do jogador deve ser preenchido")
 	@Digits(integer = 6, fraction = 2, message = "Valor da transferencia do jogador deve ser preenchido com dígitos")
-	private Float valor;
+	private Double valor;
 
 	@NotNull(message = "O jogador remetente em transferencia de dinheiro deve ser preenchido")
 	@ManyToOne

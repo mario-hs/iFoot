@@ -10,11 +10,10 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.*;
 
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@EqualsAndHashCode(of = {"id"})
+@EqualsAndHashCode(of = { "id" })
 @Entity
 
 public class CampoHorario implements Serializable {
@@ -25,17 +24,17 @@ public class CampoHorario implements Serializable {
 	private CampoHorarioPK id = new CampoHorarioPK();
 
 	@Builder
-	public CampoHorario(Campo campo, Horario horario){
+	public CampoHorario(Campo campo, Horario horario) {
 		this.id.setCampo(campo);
 		this.id.setHorario(horario);
 	}
 
 	@JsonIgnore
-	public Campo getCampo(){
+	public Campo getCampo() {
 		return id.getCampo();
 	}
 
-	public void setCampo(Campo campo){
+	public void setCampo(Campo campo) {
 		id.setCampo(campo);
 	}
 
@@ -46,6 +45,5 @@ public class CampoHorario implements Serializable {
 	public void setHorario(Horario horario) {
 		id.setHorario(horario);
 	}
-
 
 }

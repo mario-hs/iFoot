@@ -35,10 +35,9 @@ public class Horario implements Serializable {
 	// letras")
 	// private String espaco;
 
-	@NotNull(message = "O horário que o campo foi reservado deve ser preenchido")
 	// @DateTimeFormat(style = "HH:mm")
 	// @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "HH:mm")
-	// @JsonFormat(pattern = "HH:mm")
+	@NotNull(message = "O horário que o campo foi reservado deve ser preenchido")
 	private String hora;
 
 	@Digits(integer = 1, fraction = 0, message = "Dia da semana nao foi especificado")
