@@ -98,7 +98,6 @@ public class _DBService {
                 Posicao p2 = new Posicao(null, "Atacante", "ATA", "Forte", "Muito Bom");
                 posicaoRepository.saveAll(Arrays.asList(p2));
 
-<<<<<<< HEAD
                 // JOGADOR
                 Jogador jogador = new Jogador(null, "Mario", "03714076050", "mr.prince@hotmail.com",
                                 new Date(97, 7, 21),
@@ -151,48 +150,6 @@ public class _DBService {
                 // RESERVA EM GRUPO
                 ReservaGrupo reservaGrupo1 = new ReservaGrupo(campoHorario1);
                 reservaGrupoRepository.saveAll(Arrays.asList(reservaGrupo1));
-=======
-                // // JOGADOR
-                // Jogador jogador = new Jogador(null, "Mario", "03714076050", "mr.prince@hotmail.com",
-                //                 new Date(97, 7, 21),
-                //                 "123", 0, "Alto Monte Cristo", new Float(35.00), p1);
-                // jogadorRepository.saveAll(Arrays.asList(jogador));
-
-                // Jogador jogador1 = new Jogador(null, "Vicenzo", "03814076050", "vivi.prince@hotmail.com",
-                //                 new Date(99, 3, 11),
-                //                 "123", 0, "Alto Monte Cristo", new Float(35.00), p2);
-                // jogadorRepository.saveAll(Arrays.asList(jogador1));
-
-                // // ESPACO
-                // Espaco espaco = new Espaco(null, "Hangar", "84667172000103", "Linha Vermelha", "hangar@gmail.com",
-                //                 "123");
-                // espacoRepository.saveAll(Arrays.asList(espaco));
-                // Espaco espaco1 = new Espaco(null, "Bom Gosto", "94767172000103", "Linha Amarela", "bomgosto@gmail.com",
-                //                 "123");
-                // espacoRepository.saveAll(Arrays.asList(espaco1));
-
-                // // PENAIDADE
-                // Penalidade penalidade = new Penalidade(null, 1, 0, new Date(122, 4, 21), jogador);
-                // penalidadeRepository.saveAll(Arrays.asList(penalidade));
-                // Penalidade penalidade1 = new Penalidade(null, 0, 1, new Date(122, 4, 28), jogador1);
-                // penalidadeRepository.saveAll(Arrays.asList(penalidade1));
-
-                // // HORARIO
-                // // Horario horario = new Horario(null, "19:00", DiadaSemana.toEnum(1));
-                // // horarioRepository.saveAll(Arrays.asList(horario));
-
-                // // AVALIACAO
-                // Avaliacao avaliacao = new Avaliacao(null, new Float(7.8), jogador);
-                // avaliacaoRepository.saveAll(Arrays.asList(avaliacao));
-
-                // // ADVERTENCIA
-                // Advertencia advertencia = new Advertencia(null, jogador);
-                // advertenciaRepository.saveAll(Arrays.asList(advertencia));
-
-                // // RESERVA EM GRUPO
-                // ReservaGrupo reservaGrupo1 = new ReservaGrupo(null);
-                // reservaGrupoRepository.saveAll(Arrays.asList(reservaGrupo1));
->>>>>>> 963f8ad4f03edf42c08a561d883def50b46db450
                 // ReservaGrupo reservaGrupo2 = new ReservaGrupo(null);
                 // reservaGrupoRepository.saveAll(Arrays.asList(reservaGrupo2));
 
