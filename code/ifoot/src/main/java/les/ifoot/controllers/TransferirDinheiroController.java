@@ -12,7 +12,7 @@ import les.ifoot.model.TransferirDinheiro;
 import les.ifoot.services.TransferirDinheiroService;
 
 @RestController
-@RequestMapping(value = "/transferenciasdedinheiro")
+@RequestMapping(value = "transferenciasDeDinheiro")
 public class TransferirDinheiroController {
     @Autowired
     private TransferirDinheiroService service;

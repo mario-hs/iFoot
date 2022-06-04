@@ -147,9 +147,9 @@ public class _DBService {
 
                 CampoHorario campoHorario1 = new CampoHorario(campo1, horario);
 
-                // RESERVA EM GRUPO
+                // RESERVA EM GRUPO - [ ERROR ]
                 ReservaGrupo reservaGrupo1 = new ReservaGrupo(campoHorario1);
-                reservaGrupoRepository.saveAll(Arrays.asList(reservaGrupo1));
+                // reservaGrupoRepository.saveAll(Arrays.asList(reservaGrupo1));
                 // ReservaGrupo reservaGrupo2 = new ReservaGrupo(null);
                 // reservaGrupoRepository.saveAll(Arrays.asList(reservaGrupo2));
 
