@@ -7,6 +7,8 @@ import javax.persistence.*;
 // import javax.swing.plaf.DimensionUIResource;
 import javax.validation.constraints.*;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import lombok.*;
@@ -29,30 +31,32 @@ public class Horario implements Serializable {
 
 	// @Column(length = 4)
 	// @NotBlank(message = "Nome do espaço deve ser preenchido")
-	// @Size(min = 4, max = 4, message = "Nome do espaço deve ter entre 2 e 50 letras")
+	// @Size(min = 4, max = 4, message = "Nome do espaço deve ter entre 2 e 50
+	// letras")
 	// private String espaco;
 
 	@NotNull(message = "O horário que o campo foi reservado deve ser preenchido")
-	@JsonFormat(pattern = "yyyy-MM-dd-hh-mm-ss")
-	private Date hora;
+	// @DateTimeFormat(style = "HH:mm")
+	// @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "HH:mm")
+	// @JsonFormat(pattern = "HH:mm")
+	private String hora;
 
 	@Digits(integer = 1, fraction = 0, message = "Dia da semana nao foi especificado")
 	private Integer diaSemana;
 
-	@Builder 
-	public Horario(Integer id, Date hora, DiadaSemana diaSemana){
-		this.id =id;
+	@Builder
+	public Horario(Integer id, String hora, DiadaSemana diaSemana) {
+		this.id = id;
 		this.diaSemana = diaSemana.getCod();
 		this.hora = hora;
 	}
 
-	public DiadaSemana getdiaSemana(){
+	public DiadaSemana getdiaSemana() {
 		return DiadaSemana.toEnum(diaSemana);
 	}
 
-	public void setdiaSemana(DiadaSemana diaSemana){
+	public void setdiaSemana(DiadaSemana diaSemana) {
 		this.diaSemana = diaSemana.getCod();
 	}
-	
 
 }

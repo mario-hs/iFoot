@@ -29,11 +29,8 @@ public class Pelada implements Serializable {
 	@JsonFormat(pattern = "yyyy-MM-dd")
 	private Date dataPelada;
 
-	// private Collection<Jogador> participacao;
-
-	@NotNull(message = "A reservaGrupo em pelada deve ser preenchida")
-	@ManyToOne
-	@JoinColumn(name = "reservaGrupo_id")
-	private ReservaGrupo reservaGrupo;
-
+	// @NotNull(message = "A reservaGrupo em pelada deve ser preenchida")
+	// @ManyToOne
+	// @JoinColumn(name = "reservaGrupo_id")
+	// private ReservaGrupo reservaGrupo;
 }

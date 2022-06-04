@@ -8,7 +8,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.*;
 
-
 @Entity
 @Data
 @AllArgsConstructor
@@ -25,19 +24,19 @@ public class ReservaGrupo implements Serializable {
 	private ReservaGrupoPK id = new ReservaGrupoPK();
 
 	@Builder
-	public ReservaGrupo(CampoHorario campoHorario){
+	public ReservaGrupo(CampoHorario campoHorario) {
 		this.id.setCampoHorario(campoHorario);
 	}
 
-	public Integer getHorarioId(){
+	public Integer getHorarioId() {
 		return id.getCampoHorario().getHorario().getId();
 	}
-	
+
 	public Integer getCampoId() {
 		return id.getCampoHorario().getCampo().getId();
 	}
 
-	public void setHorarioId(Integer id){
+	public void setHorarioId(Integer id) {
 		Horario horario = new Horario();
 		horario.setId(id);
 		this.id.getCampoHorario().setHorario(horario);
@@ -48,5 +47,4 @@ public class ReservaGrupo implements Serializable {
 		campo.setId(id);
 		this.id.getCampoHorario().setCampo(campo);
 	}
-
 }

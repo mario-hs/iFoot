@@ -6,11 +6,9 @@ import javax.persistence.*;
 
 import lombok.*;
 
+@Embeddable
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
 @EqualsAndHashCode(of = { "pelada", "jogador" })
-@Entity
 
 public class ParticipacaoPK implements Serializable {
 	private static final long serialVersionUID = 1L;

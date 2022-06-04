@@ -6,20 +6,18 @@ import javax.persistence.*;
 
 import lombok.*;
 
+@Embeddable
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
 @EqualsAndHashCode(of = { "horario", "campo" })
-@Entity
 
 public class CampoHorarioPK implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@ManyToOne
-	@JoinColumn(name = "horario-id")
+	@JoinColumn(name = "horario_id")
 	private Horario horario;
 
 	@ManyToOne
-	@JoinColumn(name = "campo-id")
+	@JoinColumn(name = "campo_id")
 	private Campo campo;
 }
