@@ -2,11 +2,8 @@ package les.ifoot.controllers;
 
 import java.util.Collection;
 
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,7 +12,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import les.ifoot.model.Posicao;
 import les.ifoot.services.PosicaoService;
-import les.ifoot.services.exceptions.ConstraintException;
 
 @RestController
 @RequestMapping(value = "/posicoes")
@@ -36,17 +32,13 @@ public class PosicaoController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<Posicao> insert(@Valid @RequestBody Posicao obj, BindingResult br) {
-        if (br.hasErrors())
-            throw new ConstraintException(br.getAllErrors().get(0).getDefaultMessage());
+    public ResponseEntity<Posicao> insert(@RequestBody Posicao obj) {
         obj = service.insert(obj);
         return ResponseEntity.ok().body(obj);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<Posicao> update(@Valid @RequestBody Posicao obj, BindingResult br) {
-        if (br.hasErrors())
-            throw new ConstraintException(br.getAllErrors().get(0).getDefaultMessage());
+    public ResponseEntity<Posicao> update(@RequestBody Posicao obj) {
         obj = service.update(obj);
         return ResponseEntity.ok().body(obj);
     }
@@ -56,5 +48,4 @@ public class PosicaoController {
         service.delete(id);
         return ResponseEntity.noContent().build();
     }
-
 }

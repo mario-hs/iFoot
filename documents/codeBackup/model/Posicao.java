@@ -13,6 +13,7 @@ import lombok.*;
 @NoArgsConstructor
 @EqualsAndHashCode(of = { "id" })
 @Entity
+
 public class Posicao implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -32,7 +33,7 @@ public class Posicao implements Serializable {
 
 	@Column(length = 30)
 	@NotBlank(message = "A caracteristica da posição deve ser preenchida")
-	@Size(min = 4, max = 30, message = "A caracteristica da posição deve ter entre 4 e 30 letras")
+	@Size(min = 5, max = 30, message = "A caracteristica da posição deve ter entre 5 e 30 letras")
 	private String caracteristica;
 
 	@Column(length = 50)

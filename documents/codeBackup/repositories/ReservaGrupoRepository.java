@@ -5,6 +5,10 @@ import org.springframework.stereotype.Repository;
 import les.ifoot.model.ReservaGrupo;
 import les.ifoot.model.ReservaGrupoPK;
 
+// @Repository
+// public interface ReservaGrupoRepository extends JpaRepository<ReservaGrupo, Integer> {
+
+// }
 @Repository
 public interface ReservaGrupoRepository extends JpaRepository<ReservaGrupo, ReservaGrupoPK> {
 

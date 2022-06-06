@@ -20,6 +20,7 @@ import les.ifoot.model.enums.DiadaSemana;
 @NoArgsConstructor
 @EqualsAndHashCode(of = { "id" })
 @Entity
+
 public class Horario implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -27,6 +28,12 @@ public class Horario implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+
+	// @Column(length = 4)
+	// @NotBlank(message = "Nome do espaço deve ser preenchido")
+	// @Size(min = 4, max = 4, message = "Nome do espaço deve ter entre 2 e 50
+	// letras")
+	// private String espaco;
 
 	// @DateTimeFormat(style = "HH:mm")
 	// @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "HH:mm")
@@ -50,8 +57,5 @@ public class Horario implements Serializable {
 	public void setdiaSemana(DiadaSemana diaSemana) {
 		this.diaSemana = diaSemana.getCod();
 	}
-
-	// status
-	// Description
 
 }

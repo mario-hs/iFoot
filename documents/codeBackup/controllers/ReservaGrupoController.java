@@ -17,6 +17,43 @@ import les.ifoot.model.ReservaGrupo;
 import les.ifoot.services.ReservaGrupoService;
 import les.ifoot.services.exceptions.ConstraintException;
 
+// @RestController
+// @RequestMapping(value = "/reservasEmGrupo")
+// public class ReservaGrupoController {
+//     @Autowired
+//     private ReservaGrupoService service;
+
+//     @RequestMapping(method = RequestMethod.GET)
+//     public ResponseEntity<Collection<ReservaGrupo>> findAll() {
+//         Collection<ReservaGrupo> Collection = service.findAll();
+//         return ResponseEntity.ok().body(Collection);
+//     }
+
+//     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+//     public ResponseEntity<ReservaGrupo> find(@PathVariable Integer id) {
+//         ReservaGrupo obj = service.findById(id);
+//         return ResponseEntity.ok().body(obj);
+//     }
+
+//     @RequestMapping(method = RequestMethod.POST)
+//     public ResponseEntity<ReservaGrupo> insert(@RequestBody ReservaGrupo obj) {
+//         obj = service.insert(obj);
+//         return ResponseEntity.ok().body(obj);
+//     }
+
+//     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+//     public ResponseEntity<ReservaGrupo> update(@RequestBody ReservaGrupo obj) {
+//         obj = service.update(obj);
+//         return ResponseEntity.ok().body(obj);
+//     }
+
+//     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+//     public ResponseEntity<Void> delete(@PathVariable Integer id) {
+//         service.delete(id);
+//         return ResponseEntity.noContent().build();
+//     }
+// }
+
 @RestController
 @RequestMapping(value = "/reservasEmGrupo")
 public class ReservaGrupoController {
@@ -30,14 +67,15 @@ public class ReservaGrupoController {
     }
 
     @RequestMapping(value = "/{campoId}/{horarioId}", method = RequestMethod.GET)
-    public ResponseEntity<ReservaGrupo> find(@PathVariable Integer campoId, @PathVariable Integer horarioId ) {
+    public ResponseEntity<ReservaGrupo> find(@PathVariable Integer campoId,
+            @PathVariable Integer horarioId) {
         ReservaGrupo obj = service.findById(campoId, horarioId);
         return ResponseEntity.ok().body(obj);
     }
 
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<ReservaGrupo> insert(@Valid @RequestBody ReservaGrupo obj, BindingResult br) {
-        if(br.hasErrors())
+        if (br.hasErrors())
             throw new ConstraintException(br.getAllErrors().get(0).getDefaultMessage());
         obj = service.insert(obj);
         return ResponseEntity.ok().body(obj);
@@ -52,7 +90,8 @@ public class ReservaGrupoController {
     }
 
     @RequestMapping(value = "/{campoId}/{horarioId}", method = RequestMethod.DELETE)
-    public ResponseEntity<Void> delete(@PathVariable Integer campoId, @PathVariable Integer horarioId) {
+    public ResponseEntity<Void> delete(@PathVariable Integer campoId,
+            @PathVariable Integer horarioId) {
         service.delete(campoId, horarioId);
         return ResponseEntity.noContent().build();
     }
