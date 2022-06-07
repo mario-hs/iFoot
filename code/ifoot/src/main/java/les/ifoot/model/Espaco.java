@@ -8,11 +8,12 @@ import javax.validation.constraints.*;
 
 import lombok.*;
 
+@Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(of = { "id" })
-@Entity
+
 
 public class Espaco implements Serializable {
 	private static final long serialVersionUID = 1L;

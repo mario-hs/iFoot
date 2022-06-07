@@ -8,3 +8,4 @@ import les.ifoot.model.Espaco;
 public interface EspacoRepository extends JpaRepository<Espaco, Integer> {
 
 }
+ 
