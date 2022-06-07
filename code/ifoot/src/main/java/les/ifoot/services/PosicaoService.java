@@ -12,7 +12,7 @@ import les.ifoot.model.Posicao;
 import les.ifoot.repositories.PosicaoRepository;
 import les.ifoot.services.exceptions.DataIntegrityException;
 import les.ifoot.services.exceptions.ObjectNotFoundException;
-
+ 
 @Service
 public class PosicaoService {
     @Autowired
