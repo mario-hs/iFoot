@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import les.ifoot.model.Campo;
-import les.ifoot.model.CampoHorario;
+// import les.ifoot.model.CampoHorario;
 import les.ifoot.model.Espaco;
 import les.ifoot.model.Jogador;
 import les.ifoot.model.Horario;
@@ -18,7 +18,7 @@ import les.ifoot.model.Posicao;
 import les.ifoot.repositories.EspacoRepository;
 import les.ifoot.repositories.HorarioRepository;
 import les.ifoot.repositories.JogadorRepository;
-import les.ifoot.repositories.CampoHorarioRepository;
+// import les.ifoot.repositories.CampoHorarioRepository;
 import les.ifoot.repositories.CampoRepository;
 import les.ifoot.repositories.PosicaoRepository;
 
@@ -39,11 +39,11 @@ public class _DBService {
         @Autowired
         private PosicaoRepository posicaoRepository;
 
-        @Autowired
-        private CampoHorarioRepository campoHorarioRepository;
+        // @Autowired
+        // private CampoHorarioRepository campoHorarioRepository;
 
         public void handleDataBaseTest() throws ParseException, IOException {
-                SimpleDateFormat dateHora = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+                // SimpleDateFormat dateHora = new SimpleDateFormat("dd/MM/yyyy HH:mm");
                 SimpleDateFormat date = new SimpleDateFormat("dd/MM/yyyy");
 
                 // POSIÇÃO
@@ -63,8 +63,8 @@ public class _DBService {
                                 "1234567");
 
                 // HORARIO
-                Horario horario_1 = new Horario(null, "19:00", 1);
-                Horario horario_2 = new Horario(null, "20:00", 1);
+                Horario horario_1 = new Horario(null, "19:00", 1, true, null);
+                Horario horario_2 = new Horario(null, "20:00", 1, false, null);
 
                 // CAMPO
                 Campo campo_1 = new Campo(null, "Bom Gosto Society 1", 80.00, 280.00, 1500.00, espaco_1);

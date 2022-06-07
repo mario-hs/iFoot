@@ -1,15 +1,9 @@
 package les.ifoot.model;
 
 import java.io.Serializable;
-import java.sql.Date;
 
 import javax.persistence.*;
-// import javax.swing.plaf.DimensionUIResource;
 import javax.validation.constraints.*;
-
-import org.springframework.format.annotation.DateTimeFormat;
-
-import com.fasterxml.jackson.annotation.JsonFormat;
 
 import lombok.*;
 
@@ -28,12 +22,12 @@ public class Horario implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
-	// @DateTimeFormat(style = "HH:mm")
-	// @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "HH:mm")
 	@NotNull(message = "O horário que o campo foi reservado deve ser preenchido")
 	private String hora;
 
 	@Digits(integer = 1, fraction = 0, message = "Dia da semana nao foi especificado")
+	@NotNull(message = "Dia da semana nao foi especificado")
+	// @Size(min = 0, max = 6, message = "Escolha um dia da semana existente")
 	private Integer diaSemana;
 
 	@Builder
@@ -51,7 +45,9 @@ public class Horario implements Serializable {
 		this.diaSemana = diaSemana.getCod();
 	}
 
-	// status
-	// Description
+	@NotNull(message = "O atributo 'disponivel' da Fita deve ser preenchido")
+	@NotNull(message = "O Filme da Fita deve ser preenchido")
+	private Boolean status;
 
+	private String descricao;
 }

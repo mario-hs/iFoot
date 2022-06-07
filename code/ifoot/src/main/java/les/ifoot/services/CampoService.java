@@ -13,31 +13,6 @@ import les.ifoot.services.exceptions.DataIntegrityException;
 
 @Service
 public class CampoService {
-    // @Autowired
-    // private CampoRepository repository;
-
-    // public Campo findById(Integer id) {
-    //     return repository.findById(id).get();
-    // }
-
-    // public List<Campo> findAll() {
-    //     return repository.findAll();
-    // }
-
-    // public Campo insert(Campo obj) {
-    //     return repository.save(obj);
-    // }
-
-    // public Campo update(Campo obj) {
-    //     findById(obj.getId());
-    //     return repository.save(obj);
-    // }
-
-    // public void delete(Integer id) {
-    //     findById(id);
-    //     repository.deleteById(id);
-    // }
-
     @Autowired
     private CampoRepository repository;
 
@@ -46,7 +21,8 @@ public class CampoService {
             Campo obj = repository.findById(id).get();
             return obj;
         } catch (NoSuchElementException e) {
-            throw new les.ifoot.services.exceptions.ObjectNotFoundException("Objeto não encontrado! Id: " + id + ", Tipo: " + Campo.class.getName());
+            throw new les.ifoot.services.exceptions.ObjectNotFoundException(
+                    "Objeto não encontrado! Id: " + id + ", Tipo: " + Campo.class.getName());
         }
     }
 

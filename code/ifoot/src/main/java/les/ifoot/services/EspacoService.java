@@ -1,6 +1,5 @@
 package les.ifoot.services;
 
-import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Collection;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +10,7 @@ import les.ifoot.repositories.EspacoRepository;
 import les.ifoot.services.exceptions.DataIntegrityException;
 import les.ifoot.services.exceptions.ObjectNotFoundException;
 
-@Service  
+@Service
 public class EspacoService {
     @Autowired
     private EspacoRepository repository;
@@ -56,5 +55,5 @@ public class EspacoService {
             throw new DataIntegrityException(
                     "Não é possível excluir esse espaço por conta de uma de alguma associação!");
         }
-    } // teste
+    }
 }

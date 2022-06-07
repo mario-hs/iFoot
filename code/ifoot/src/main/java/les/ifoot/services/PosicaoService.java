@@ -1,6 +1,5 @@
 package les.ifoot.services;
 
-import java.util.List;
 import java.util.Collection;
 import java.util.NoSuchElementException;
 
@@ -12,7 +11,7 @@ import les.ifoot.model.Posicao;
 import les.ifoot.repositories.PosicaoRepository;
 import les.ifoot.services.exceptions.DataIntegrityException;
 import les.ifoot.services.exceptions.ObjectNotFoundException;
- 
+
 @Service
 public class PosicaoService {
     @Autowired
@@ -42,8 +41,8 @@ public class PosicaoService {
     }
 
     public Posicao update(final Posicao obj) {
-        findById(obj.getId());
         try {
+            findById(obj.getId());
             return repository.save(obj);
         } catch (DataIntegrityViolationException e) {
             throw new DataIntegrityException("Campo(s) obrigatório(s) do Posicao não foi(foram) preenchido(s)");
@@ -51,8 +50,8 @@ public class PosicaoService {
     }
 
     public void delete(final Integer id) {
-        findById(id);
         try {
+            findById(id);
             repository.deleteById(id);
         } catch (final DataIntegrityViolationException e) {
             throw new DataIntegrityException(

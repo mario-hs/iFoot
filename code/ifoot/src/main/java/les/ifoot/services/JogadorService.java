@@ -3,7 +3,6 @@ package les.ifoot.services;
 import java.util.Collection;
 import java.util.NoSuchElementException;
 
-import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
@@ -14,31 +13,6 @@ import les.ifoot.services.exceptions.ObjectNotFoundException;
 
 @Service
 public class JogadorService {
-    // @Autowired
-    // private JogadorRepository repository;
-
-    // public Jogador findById(Integer id) {
-    // return repository.findById(id).get();
-    // }
-
-    // public List<Jogador> findAll() {
-    // return repository.findAll();
-    // }
-
-    // public Jogador insert(Jogador obj) {
-    // return repository.save(obj);
-    // }
-
-    // public Jogador update(Jogador obj) {
-    // findById(obj.getId());
-    // return repository.save(obj);
-    // }
-
-    // public void delete(Integer id) {
-    // findById(id);
-    // repository.deleteById(id);
-    // }
-
     @Autowired
     private JogadorRepository repository;
 
@@ -55,11 +29,6 @@ public class JogadorService {
     public Collection<Jogador> findAll() {
         return repository.findAll();
     }
-
-    // public Collection<Jogador> findByDanificadaAndDisponivel(Boolean danificada,
-    // Boolean disponivel) {
-    // return repository.findByDanificadaAndDisponivel(danificada, disponivel);
-    // }
 
     public Jogador insert(Jogador obj) {
         obj.setId(null);
@@ -88,7 +57,4 @@ public class JogadorService {
         }
     }
 
-    // public Collection<Jogador> findByFilme(Filme obj) {
-    // return repository.findByFilme(obj);
-    // }
 }
