@@ -56,5 +56,5 @@ public class EspacoService {
             throw new DataIntegrityException(
                     "Não é possível excluir esse espaço por conta de uma de alguma associação!");
         }
-    }
+    } // teste
 }
