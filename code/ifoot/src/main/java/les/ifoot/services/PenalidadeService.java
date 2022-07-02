@@ -1,7 +1,7 @@
 package les.ifoot.services;
 
+// import java.util.List;
 import java.util.Collection;
-import java.util.List;
 import java.util.NoSuchElementException;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,14 +15,15 @@ import les.ifoot.services.exceptions.ObjectNotFoundException;
 @Service
 public class PenalidadeService {
     @Autowired
-    private PenalidadeService repository;
+    private PenalidadeRepository repository;
 
     public Penalidade findById(Integer id) {
         try {
             Penalidade obj = repository.findById(id).get();
             return obj;
         } catch (NoSuchElementException e) {
-            throw new ObjectNotFoundException("Objeto não encontrado! Id: " + id + ", Tipo: " + Penalidade.class.getName());
+            throw new ObjectNotFoundException(
+                    "Objeto não encontrado! Id: " + id + ", Tipo: " + Penalidade.class.getName());
         }
     }
 

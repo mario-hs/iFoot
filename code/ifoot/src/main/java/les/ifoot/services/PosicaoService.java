@@ -22,8 +22,7 @@ public class PosicaoService {
             Posicao obj = repository.findById(id).get();
             return obj;
         } catch (NoSuchElementException e) {
-            throw new ObjectNotFoundException(
-                    "Objeto não encontrado! Id: " + id + ", Tipo: " + Posicao.class.getName());
+            throw new ObjectNotFoundException("Objeto não encontrado! Id: " + id + ", Tipo: " + Posicao.class.getName());
         }
     }
 
