@@ -25,9 +25,11 @@ public class Horario implements Serializable {
 	@NotNull(message = "O horário que o campo foi reservado deve ser preenchido")
 	private String hora;
 
-	@Digits(integer = 1, fraction = 0, message = "Dia da semana nao foi especificado")
-	@NotNull(message = "Dia da semana nao foi especificado")
-	// @Size(min = 0, max = 6, message = "Escolha um dia da semana existente")
+	// @Digits(integer = 1, fraction = 0, message = "Dia da semana nao foi
+	// especificado")
+	// @NotNull(message = "Dia da semana nao foi especificado")
+	@Min(value = 0, message = "Escolha um dia da semana existente")
+	@Max(value = 6, message = "Escolha um dia da semana existente")
 	private Integer diaSemana;
 
 	@Builder

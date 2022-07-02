@@ -4,18 +4,16 @@ import java.io.Serializable;
 
 import javax.persistence.*;
 
-// import com.fasterxml.jackson.annotation.JsonIgnore;
-
-// import org.springframework.boot.autoconfigure.domain.EntityScan;
-
 import lombok.*;
+
+// import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(of = { "id" })
 @Entity
-public class CampoHorario implements Serializable {
+public class Participacao implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -23,11 +21,10 @@ public class CampoHorario implements Serializable {
 	private Integer id;
 
 	@ManyToOne
-	@JoinColumn(name = "campo_id")
-	private Campo campo;
+	@JoinColumn(name = "pelada_id")
+	private Pelada pelada;
 
 	@ManyToOne
-	@JoinColumn(name = "horario_id")
-	private Horario horario;
-
+	@JoinColumn(name = "jogador_id")
+	private Jogador jogador;
 }

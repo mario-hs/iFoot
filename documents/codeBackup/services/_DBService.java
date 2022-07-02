@@ -1,4 +1,4 @@
-package les.ifoot.services;
+package code.ifoot.src.java.les.ifoot.services;
 
 import java.io.IOException;
 import java.text.DateFormat;
