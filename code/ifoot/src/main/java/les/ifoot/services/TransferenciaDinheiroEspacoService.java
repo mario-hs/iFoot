@@ -8,29 +8,53 @@ import les.ifoot.repositories.TransferenciaDinheiroEspacoRepository;
 
 @Service
 public class TransferenciaDinheiroEspacoService {
+
     @Autowired
     private TransferenciaDinheiroEspacoRepository repository;
 
     public TransferenciaDinheiroEspaco findById(Integer id) {
-        return repository.findById(id).get();
+        try {
+            TransferenciaDinheiroEspaco obj = repository.findById(id).get();
+            return obj;
+        } catch (NoSuchElementException e) {
+            throw new ObjectNotFoundException(
+                    "Objeto não encontrado! Id: " + id + ", Tipo: " + TransferenciaDinheiroEspaco.class.getName());
+        }
     }
 
-    public List<TransferenciaDinheiroEspaco> findAll() {
+    public Collection<TransferenciaDinheiroEspaco> findAll() {
         return repository.findAll();
     }
 
     public TransferenciaDinheiroEspaco insert(TransferenciaDinheiroEspaco obj) {
-        return repository.save(obj);
+        obj.setId(null);
+        try {
+            return repository.save(obj);
+        } catch (DataIntegrityViolationException e) {
+            throw new DataIntegrityException(
+                    "Campo(s) obrigatório(s) da TransferenciaDinheiroEspaco não foi(foram) preenchido(s)");
+        }
     }
 
     public TransferenciaDinheiroEspaco update(TransferenciaDinheiroEspaco obj) {
         findById(obj.getId());
-        return repository.save(obj);
+        try {
+            return repository.save(obj);
+        } catch (DataIntegrityViolationException e) {
+            throw new DataIntegrityException(
+                    "Campo(s) obrigatório(s) da TransferenciaDinheiroEspaco não foi(foram) preenchido(s)");
+        }
     }
 
     public void delete(Integer id) {
         findById(id);
-        repository.deleteById(id);
+        try {
+            repository.deleteById(id);
+        } catch (DataIntegrityViolationException e) {
+            throw new DataIntegrityException(
+                    "Não é possível excluir uma TransferenciaDinheiroEspaco vinculada a Itens de Empréstimos!");
+        }
     }
+
 }
 

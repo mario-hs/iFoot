@@ -12,25 +12,48 @@ public class TransferirDinheiroService {
     private TransferirDinheiroRepository repository;
 
     public TransferirDinheiro findById(Integer id) {
-        return repository.findById(id).get();
+        try {
+            TransferirDinheiro obj = repository.findById(id).get();
+            return obj;
+        } catch (NoSuchElementException e) {
+            throw new ObjectNotFoundException(
+                    "Objeto não encontrado! Id: " + id + ", Tipo: " + TransferirDinheiro.class.getName());
+        }
     }
 
-    public List<TransferirDinheiro> findAll() {
+    public Collection<TransferirDinheiro> findAll() {
         return repository.findAll();
     }
 
     public TransferirDinheiro insert(TransferirDinheiro obj) {
-        return repository.save(obj);
+        obj.setId(null);
+        try {
+            return repository.save(obj);
+        } catch (DataIntegrityViolationException e) {
+            throw new DataIntegrityException(
+                    "Campo(s) obrigatório(s) da TransferirDinheiro não foi(foram) preenchido(s)");
+        }
     }
 
     public TransferirDinheiro update(TransferirDinheiro obj) {
         findById(obj.getId());
-        return repository.save(obj);
+        try {
+            return repository.save(obj);
+        } catch (DataIntegrityViolationException e) {
+            throw new DataIntegrityException(
+                    "Campo(s) obrigatório(s) da TransferirDinheiro não foi(foram) preenchido(s)");
+        }
     }
 
     public void delete(Integer id) {
         findById(id);
-        repository.deleteById(id);
+        try {
+            repository.deleteById(id);
+        } catch (DataIntegrityViolationException e) {
+            throw new DataIntegrityException(
+                    "Não é possível excluir uma TransferirDinheiro vinculada a Itens de Empréstimos!");
+        }
     }
+
 }
 

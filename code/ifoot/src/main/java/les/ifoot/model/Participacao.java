@@ -20,10 +20,12 @@ public class Participacao implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
+	@NotNull(message = "A pelada em participação deve ser preenchida")
 	@ManyToOne
 	@JoinColumn(name = "pelada_id")
 	private Pelada pelada;
 
+	@NotNull(message = "O jogador em participação deve ser preenchido")
 	@ManyToOne
 	@JoinColumn(name = "jogador_id")
 	private Jogador jogador;

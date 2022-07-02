@@ -12,24 +12,44 @@ public class PeladaService {
     private PeladaRepository repository;
 
     public Pelada findById(Integer id) {
-        return repository.findById(id).get();
+        try {
+            Pelada obj = repository.findById(id).get();
+            return obj;
+        } catch (NoSuchElementException e) {
+            throw new ObjectNotFoundException(
+                    "Objeto não encontrado! Id: " + id + ", Tipo: " + Pelada.class.getName());
+        }
     }
 
-    public List<Pelada> findAll() {
+    public Collection<Pelada> findAll() {
         return repository.findAll();
     }
 
     public Pelada insert(Pelada obj) {
-        return repository.save(obj);
+        obj.setId(null);
+        try {
+            return repository.save(obj);
+        } catch (DataIntegrityViolationException e) {
+            throw new DataIntegrityException("Campo(s) obrigatório(s) da Pelada não foi(foram) preenchido(s)");
+        }
     }
 
     public Pelada update(Pelada obj) {
         findById(obj.getId());
-        return repository.save(obj);
+        try {
+            return repository.save(obj);
+        } catch (DataIntegrityViolationException e) {
+            throw new DataIntegrityException("Campo(s) obrigatório(s) da Pelada não foi(foram) preenchido(s)");
+        }
     }
 
     public void delete(Integer id) {
         findById(id);
-        repository.deleteById(id);
+        try {
+            repository.deleteById(id);
+        } catch (DataIntegrityViolationException e) {
+            throw new DataIntegrityException(
+                    "Não é possível excluir uma Pelada vinculada a Itens de Empréstimos!");
+        }
     }
 }

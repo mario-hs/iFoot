@@ -8,28 +8,51 @@ import les.ifoot.repositories.AvaliacaoRepository;
 
 @Service
 public class AvaliacaoService {
+
     @Autowired
     private AvaliacaoRepository repository;
 
-    public Avaliacao findById(Integer id) {
-        return repository.findById(id).get();
+    public Avaliacao findById(final Integer id) {
+        try {
+            Avaliacao obj = repository.findById(id).get();
+            return obj;
+        } catch (NoSuchElementException e) {
+            throw new les.ifoot.services.exceptions.ObjectNotFoundException(
+                    "Objeto não encontrado! Id: " + id + ", Tipo: " + Avaliacao.class.getName());
+        }
     }
 
-    public List<Avaliacao> findAll() {
+    public Collection<Avaliacao> findAll() {
         return repository.findAll();
     }
 
-    public Avaliacao insert(Avaliacao obj) {
-        return repository.save(obj);
+    public Avaliacao insert(final Avaliacao obj) {
+        obj.setId(null);
+        try {
+            return repository.save(obj);
+        } catch (DataIntegrityViolationException e) {
+            throw new DataIntegrityException("Campo(s) obrigatório(s) do Avaliacao não foi(foram) preenchido(s)");
+        }
     }
 
-    public Avaliacao update(Avaliacao obj) {
+    public Avaliacao update(final Avaliacao obj) {
         findById(obj.getId());
-        return repository.save(obj);
+        try {
+            return repository.save(obj);
+        } catch (DataIntegrityViolationException e) {
+            throw new DataIntegrityException("Campo(s) obrigatório(s) de Avaliacao não foi(foram) preenchido(s)");
+        }
     }
 
-    public void delete(Integer id) {
+    public void delete(final Integer id) {
         findById(id);
-        repository.deleteById(id);
+        try {
+            repository.deleteById(id);
+        } catch (final DataIntegrityViolationException e) {
+            throw new DataIntegrityException(
+                    "Não é possível excluir esta Avaliacao pois ele está cadastrado em algum outro campo");
+        }
     }
+
+    
 }

@@ -12,24 +12,43 @@ public class ParticipacaoService {
     private ParticipacaoRepository repository;
 
     public Participacao findById(Integer id) {
-        return repository.findById(id).get();
+        try {
+            Participacao obj = repository.findById(id).get();
+            return obj;
+        } catch (NoSuchElementException e) {
+            throw new ObjectNotFoundException(
+                    "Objeto não encontrado! Id: " + id + ", Tipo: " + Participacao.class.getName());
+        }
     }
 
-    public List<Participacao> findAll() {
+    public Collection<Participacao> findAll() {
         return repository.findAll();
     }
 
     public Participacao insert(Participacao obj) {
-        return repository.save(obj);
+        obj.setId(null);
+        try {
+            return repository.save(obj);
+        } catch (DataIntegrityViolationException e) {
+            throw new DataIntegrityException("Campo(s) obrigatório(s) da Participacao não foi(foram) preenchido(s)");
+        }
     }
 
     public Participacao update(Participacao obj) {
         findById(obj.getId());
-        return repository.save(obj);
+        try {
+            return repository.save(obj);
+        } catch (DataIntegrityViolationException e) {
+            throw new DataIntegrityException("Campo(s) obrigatório(s) da Participacao não foi(foram) preenchido(s)");
+        }
     }
 
     public void delete(Integer id) {
         findById(id);
-        repository.deleteById(id);
+        try {
+            repository.deleteById(id);
+        } catch (DataIntegrityViolationException e) {
+            throw new DataIntegrityException("Não é possível excluir uma Participacao vinculada a Itens de Empréstimos!");
+        }
     }
 }

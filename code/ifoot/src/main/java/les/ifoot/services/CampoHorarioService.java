@@ -8,28 +8,50 @@ import les.ifoot.repositories.CampoHorarioRepository;
 
 @Service
 public class CampoHorarioService {
+
     @Autowired
     private CampoHorarioRepository repository;
 
-    public CampoHorario findById(Integer id) {
-        return repository.findById(id).get();
+    public CampoHorario findById(final Integer id) {
+        try {
+            CampoHorario obj = repository.findById(id).get();
+            return obj;
+        } catch (NoSuchElementException e) {
+            throw new les.ifoot.services.exceptions.ObjectNotFoundException(
+                    "Objeto não encontrado! Id: " + id + ", Tipo: " + CampoHorario.class.getName());
+        }
     }
 
-    public List<CampoHorario> findAll() {
+    public Collection<CampoHorario> findAll() {
         return repository.findAll();
     }
 
-    public CampoHorario insert(CampoHorario obj) {
-        return repository.save(obj);
+    public CampoHorario insert(final CampoHorario obj) {
+        obj.setId(null);
+        try {
+            return repository.save(obj);
+        } catch (DataIntegrityViolationException e) {
+            throw new DataIntegrityException("Campo(s) obrigatório(s) do CampoHorario não foi(foram) preenchido(s)");
+        }
     }
 
-    public CampoHorario update(CampoHorario obj) {
+    public CampoHorario update(final CampoHorario obj) {
         findById(obj.getId());
-        return repository.save(obj);
+        try {
+            return repository.save(obj);
+        } catch (DataIntegrityViolationException e) {
+            throw new DataIntegrityException("Campo(s) obrigatório(s) de CampoHorario não foi(foram) preenchido(s)");
+        }
     }
 
-    public void delete(Integer id) {
+    public void delete(final Integer id) {
         findById(id);
-        repository.deleteById(id);
+        try {
+            repository.deleteById(id);
+        } catch (final DataIntegrityViolationException e) {
+            throw new DataIntegrityException(
+                    "Não é possível excluir esta CampoHorario pois ele está cadastrado em algum outro campo");
+        }
     }
+
 }

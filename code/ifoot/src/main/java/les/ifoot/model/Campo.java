@@ -45,6 +45,5 @@ public class Campo implements Serializable {
 	@JoinColumn(name = "espaco_id")
 	private Espaco espaco;
 
-	// private Collection<Horario> campoHorario;
 
 }

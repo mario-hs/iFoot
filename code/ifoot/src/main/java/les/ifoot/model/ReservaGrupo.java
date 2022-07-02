@@ -22,7 +22,7 @@ public class ReservaGrupo implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
-	@NotNull(message = "A reserva deve ser preenchida")
+	@NotNull(message = "O Campo_Horario deve ser preenchida")
 	@ManyToOne
 	@JoinColumn(name = "campo_horario_id")
 	private CampoHorario campoHorario;

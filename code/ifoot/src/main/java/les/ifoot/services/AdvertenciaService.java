@@ -13,33 +13,47 @@ import les.ifoot.repositories.AdvertenciaRepository;
 
 @Service
 public class AdvertenciaService {
-    @Autowired
+@Autowired
     private AdvertenciaRepository repository;
-
-    public Advertencia findById(Integer id) {
+public Advertencia findById(final Integer id) {
         try {
             Advertencia obj = repository.findById(id).get();
             return obj;
         } catch (NoSuchElementException e) {
-            throw new ObjectNotFoundException("Objeto não encontrado" + id, ", tipo: " + Advertencia.class);
+            throw new les.ifoot.services.exceptions.ObjectNotFoundException(
+                    "Objeto não encontrado! Id: " + id + ", Tipo: " + Advertencia.class.getName());
         }
     }
 
-    public List<Advertencia> findAll() {
+public Collection<Advertencia> findAll() {
         return repository.findAll();
     }
 
-    public Advertencia insert(Advertencia obj) {
-        return repository.save(obj);
+public Advertencia insert(final Advertencia obj) {
+        obj.setId(null);
+        try {
+            return repository.save(obj);
+        } catch (DataIntegrityViolationException e) {
+            throw new DataIntegrityException("Campo(s) obrigatório(s) do Advertência não foi(foram) preenchido(s)");
+        }
     }
 
-    public Advertencia update(Advertencia obj) {
+public Advertencia update(final Advertencia obj) {
         findById(obj.getId());
-        return repository.save(obj);
+        try {
+            return repository.save(obj);
+        } catch (DataIntegrityViolationException e) {
+            throw new DataIntegrityException("Campo(s) obrigatório(s) de Advertência não foi(foram) preenchido(s)");
+        }
     }
 
-    public void delete(Integer id) {
+public void delete(final Integer id) {
         findById(id);
-        repository.deleteById(id);
+        try {
+            repository.deleteById(id);
+        } catch (final DataIntegrityViolationException e) {
+            throw new DataIntegrityException(
+                    "Não é possível excluir esta Advertência pois ele está cadastrado em algum outro campo");
+        }
     }
 }

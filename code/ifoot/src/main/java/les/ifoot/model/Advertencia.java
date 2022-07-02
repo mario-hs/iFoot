@@ -25,6 +25,7 @@ public class Advertencia implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
+	@NotNull(message = "A participação em advertencia deve ser preenchida")
 	@ManyToOne
 	@JoinColumn(name = "participacao_id")
 	private Participacao participacao;

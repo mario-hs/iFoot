@@ -32,16 +32,9 @@ public class Avaliacao implements Serializable {
 	@JoinColumn(name = "jogador_id")
 	private Jogador jogador;
 
+	@NotNull(message = "A participação em avaliação deve ser preenchida")
 	@ManyToOne
 	@JoinColumn(name = "participacao_id")
 	private Participacao participacao;
-
-	// VER COM OS MENINOS SOBRE
-	// @OneToOne
-	// @JoinColumns({
-	// @JoinColumn(name = "PARTICIPAO_ID", referencedColumnName = "PARTICIPAO_ID"),
-	// @JoinColumn(name = "JOGADOR_ID", referencedColumnName = "JOGADOR_ID")
-	// })
-	// private Avaliacao avaliacao = new Avaliacao();
 
 }

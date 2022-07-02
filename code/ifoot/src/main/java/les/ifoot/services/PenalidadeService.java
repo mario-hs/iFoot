@@ -9,27 +9,47 @@ import les.ifoot.repositories.PenalidadeRepository;
 @Service
 public class PenalidadeService {
     @Autowired
-    private PenalidadeRepository repository;
+    private PenalidadeService repository;
 
     public Penalidade findById(Integer id) {
-        return repository.findById(id).get();
+        try {
+            Penalidade obj = repository.findById(id).get();
+            return obj;
+        } catch (NoSuchElementException e) {
+            throw new ObjectNotFoundException(
+                    "Objeto não encontrado! Id: " + id + ", Tipo: " + Penalidade.class.getName());
+        }
     }
 
-    public List<Penalidade> findAll() {
+    public Collection<Penalidade> findAll() {
         return repository.findAll();
     }
 
     public Penalidade insert(Penalidade obj) {
-        return repository.save(obj);
+        obj.setId(null);
+        try {
+            return repository.save(obj);
+        } catch (DataIntegrityViolationException e) {
+            throw new DataIntegrityException("Campo(s) obrigatório(s) da Penalidade não foi(foram) preenchido(s)");
+        }
     }
 
     public Penalidade update(Penalidade obj) {
         findById(obj.getId());
-        return repository.save(obj);
+        try {
+            return repository.save(obj);
+        } catch (DataIntegrityViolationException e) {
+            throw new DataIntegrityException("Campo(s) obrigatório(s) da Penalidade não foi(foram) preenchido(s)");
+        }
     }
 
     public void delete(Integer id) {
         findById(id);
-        repository.deleteById(id);
+        try {
+            repository.deleteById(id);
+        } catch (DataIntegrityViolationException e) {
+            throw new DataIntegrityException(
+                    "Não é possível excluir uma Penalidade vinculada a Itens de Empréstimos!");
+        }
     }
 }

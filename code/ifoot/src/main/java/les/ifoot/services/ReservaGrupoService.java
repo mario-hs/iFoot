@@ -24,26 +24,48 @@ public class ReservaGrupoService {
     private ReservaGrupoRepository repository;
 
     public ReservaGrupo findById(Integer id) {
-        return repository.findById(id).get();
+        try {
+            ReservaGrupo obj = repository.findById(id).get();
+            return obj;
+        } catch (NoSuchElementException e) {
+            throw new ObjectNotFoundException(
+                    "Objeto não encontrado! Id: " + id + ", Tipo: " + ReservaGrupo.class.getName());
+        }
     }
 
-    public List<ReservaGrupo> findAll() {
+    public Collection<ReservaGrupo> findAll() {
         return repository.findAll();
     }
 
     public ReservaGrupo insert(ReservaGrupo obj) {
-        return repository.save(obj);
+        obj.setId(null);
+        try {
+            return repository.save(obj);
+        } catch (DataIntegrityViolationException e) {
+            throw new DataIntegrityException("Campo(s) obrigatório(s) da ReservaGrupo não foi(foram) preenchido(s)");
+        }
     }
 
     public ReservaGrupo update(ReservaGrupo obj) {
         findById(obj.getId());
-        return repository.save(obj);
+        try {
+            return repository.save(obj);
+        } catch (DataIntegrityViolationException e) {
+            throw new DataIntegrityException("Campo(s) obrigatório(s) da ReservaGrupo não foi(foram) preenchido(s)");
+        }
     }
 
     public void delete(Integer id) {
         findById(id);
-
+        try {
+            repository.deleteById(id);
+        } catch (DataIntegrityViolationException e) {
+            throw new DataIntegrityException(
+                    "Não é possível excluir uma ReservaGrupo vinculada a Itens de Empréstimos!");
+        }
     }
+
+
 }
 
 // @Service
