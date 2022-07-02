@@ -1,10 +1,16 @@
 package les.ifoot.services;
 
-import java.util.List;
+// import java.util.List;
+import java.util.Collection;
+import java.util.NoSuchElementException;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import les.ifoot.model.TransferenciaDinheiroEspaco;
 import les.ifoot.repositories.TransferenciaDinheiroEspacoRepository;
+import les.ifoot.services.exceptions.DataIntegrityException;
+import les.ifoot.services.exceptions.ObjectNotFoundException;
 
 @Service
 public class TransferenciaDinheiroEspacoService {
@@ -17,8 +23,7 @@ public class TransferenciaDinheiroEspacoService {
             TransferenciaDinheiroEspaco obj = repository.findById(id).get();
             return obj;
         } catch (NoSuchElementException e) {
-            throw new ObjectNotFoundException(
-                    "Objeto não encontrado! Id: " + id + ", Tipo: " + TransferenciaDinheiroEspaco.class.getName());
+            throw new ObjectNotFoundException("Objeto não encontrado! Id: " + id + ", Tipo: " + TransferenciaDinheiroEspaco.class.getName());
         }
     }
 
@@ -31,8 +36,7 @@ public class TransferenciaDinheiroEspacoService {
         try {
             return repository.save(obj);
         } catch (DataIntegrityViolationException e) {
-            throw new DataIntegrityException(
-                    "Campo(s) obrigatório(s) da TransferenciaDinheiroEspaco não foi(foram) preenchido(s)");
+            throw new DataIntegrityException("Campo(s) obrigatório(s) da TransferenciaDinheiroEspaco não foi(foram) preenchido(s)");
         }
     }
 
@@ -51,8 +55,7 @@ public class TransferenciaDinheiroEspacoService {
         try {
             repository.deleteById(id);
         } catch (DataIntegrityViolationException e) {
-            throw new DataIntegrityException(
-                    "Não é possível excluir uma TransferenciaDinheiroEspaco vinculada a Itens de Empréstimos!");
+            throw new DataIntegrityException("Não é possível excluir uma TransferenciaDinheiroEspaco vinculada a Itens de Empréstimos!");
         }
     }
 

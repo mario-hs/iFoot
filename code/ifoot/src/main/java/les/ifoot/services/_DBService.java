@@ -62,13 +62,18 @@ public class _DBService {
                 Posicao posicao_2 = new Posicao(null, "Atacante", "ATA", "Forte", "Muito Bom");
 
                 // JOGADOR
-                Jogador jogador_1 = new Jogador(null, "Mario", "03714076050", "mr.prince@hotmail.com", date.parse("21/07/1997"), "1234567", 0, "Alto Monte Cristo", 35.00, posicao_1);
-                Jogador jogador_2 = new Jogador(null, "Vicenzo", "23814076050", "vivi@hotmail.com", date.parse("11/03/1998"), "1234567", 0, "Maria Ortiz", 35.00, posicao_2);
-                Jogador jogador_3 = new Jogador(null, "Tony", "13814076070", "chopper@hotmail.com", date.parse("18/11/1996"), "1234567", 0, "Serrano", 55.00, posicao_2);
+                Jogador jogador_1 = new Jogador(null, "Mario", "03714076050", "mr.prince@hotmail.com",
+                                date.parse("21/07/1997"), "1234567", 0, "Alto Monte Cristo", 35.00, posicao_1);
+                Jogador jogador_2 = new Jogador(null, "Vicenzo", "23814076050", "vivi@hotmail.com",
+                                date.parse("11/03/1998"), "1234567", 0, "Maria Ortiz", 35.00, posicao_2);
+                Jogador jogador_3 = new Jogador(null, "Tony", "13814076070", "chopper@hotmail.com",
+                                date.parse("18/11/1996"), "1234567", 0, "Serrano", 55.00, posicao_2);
 
                 // ESPACO
-                Espaco espaco_1 = new Espaco(null, "Hangar", "84667172000103", "Linha Vermelha", "hangar@gmail.com", "1234567");
-                Espaco espaco_2 = new Espaco(null, "Bom Gosto", "94767172000103", "Linha Amarela", "bomgosto@gmail.com", "1234567");
+                Espaco espaco_1 = new Espaco(null, "Hangar", "84667172000103", "Linha Vermelha", "hangar@gmail.com",
+                                "1234567");
+                Espaco espaco_2 = new Espaco(null, "Bom Gosto", "94767172000103", "Linha Amarela", "bomgosto@gmail.com",
+                                "1234567");
 
                 // HORARIO
                 Horario horario_1 = new Horario(null, "19:00", 1, true, null);
@@ -84,16 +89,19 @@ public class _DBService {
                 CampoHorario campoHorario_1 = new CampoHorario(null, campo_1, horario_1);
 
                 // TRANSFERENCIA DE DINHEIRO ENTRE JOGADORES
-                TransferirDinheiro transferencia_jogador_1 = new TransferirDinheiro(null, date.parse("22/06/2022"), 30.00, jogador_1, jogador_2);
-                TransferirDinheiro transferencia_jogador_2 = new TransferirDinheiro(null, date.parse("22/06/2022"), 20.00, jogador_2, jogador_1);
-                TransferirDinheiro transferencia_jogador_3 = new TransferirDinheiro(null, date.parse("24/06/2022"), 20.00, jogador_2, jogador_1);
+                TransferirDinheiro transferencia_jogador_1 = new TransferirDinheiro(null, date.parse("22/06/2022"),
+                                30.00, jogador_1, jogador_2);
+                TransferirDinheiro transferencia_jogador_2 = new TransferirDinheiro(null, date.parse("22/06/2022"),
+                                20.00, jogador_2, jogador_1);
+                TransferirDinheiro transferencia_jogador_3 = new TransferirDinheiro(null, date.parse("24/06/2022"),
+                                20.00, jogador_2, jogador_1);
 
                 // RESERVA EM GRUPO
                 ReservaGrupo reservaGrupo_1 = new ReservaGrupo(null, campoHorario_1, jogador_3);
 
                 // PELADA COM ROUPA
-                Pelada pelada_1 = new Pelada(null, date.parse("21/06/2022"));
-                Pelada pelada_2 = new Pelada(null, date.parse("24/06/2022"));
+                Pelada pelada_1 = new Pelada(null, date.parse("21/06/2022"), reservaGrupo_1);
+                Pelada pelada_2 = new Pelada(null, date.parse("24/06/2022"), reservaGrupo_1);
 
                 // PARTICIPACAO DO JOGADOR
                 Participacao participacao_1 = new Participacao(null, pelada_1, jogador_2);
@@ -123,10 +131,11 @@ public class _DBService {
 
                 campoHorarioRepository.saveAll(Arrays.asList(campoHorario_1));
 
-                transferirDinheiroRepository.saveAll(Arrays.asList(transferencia_jogador_1, transferencia_jogador_2, transferencia_jogador_3));
+                transferirDinheiroRepository.saveAll(Arrays.asList(transferencia_jogador_1, transferencia_jogador_2,
+                                transferencia_jogador_3));
 
                 reservaGrupoRepository.saveAll(Arrays.asList(reservaGrupo_1));
-               
+
                 penalidadeRepository.saveAll(Arrays.asList(penalidade_1, penalidade_2));
 
                 peladaRepository.saveAll(Arrays.asList(pelada_1, pelada_2));

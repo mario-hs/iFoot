@@ -1,10 +1,15 @@
 package les.ifoot.services;
 
-import java.util.List;
+// import java.util.List;
+import java.util.Collection;
+import java.util.NoSuchElementException;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import les.ifoot.model.Avaliacao;
 import les.ifoot.repositories.AvaliacaoRepository;
+import les.ifoot.services.exceptions.DataIntegrityException;
 
 @Service
 public class AvaliacaoService {

@@ -1,11 +1,14 @@
 package les.ifoot.services;
 
-import java.util.List;
+// import java.util.List;
+import java.util.Collection;
 // import java.util.NoSuchElementException;
+import java.util.NoSuchElementException;
 
 // import org.hibernate.ObjectNotFoundException;
 // import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 // import les.ifoot.model.Campo;
@@ -17,6 +20,8 @@ import les.ifoot.model.ReservaGrupo;
 // import les.ifoot.repositories.HorarioRepository;
 // import les.ifoot.services.exceptions.DataIntegrityException;
 import les.ifoot.repositories.ReservaGrupoRepository;
+import les.ifoot.services.exceptions.DataIntegrityException;
+import les.ifoot.services.exceptions.ObjectNotFoundException;
 
 @Service
 public class ReservaGrupoService {
@@ -28,8 +33,7 @@ public class ReservaGrupoService {
             ReservaGrupo obj = repository.findById(id).get();
             return obj;
         } catch (NoSuchElementException e) {
-            throw new ObjectNotFoundException(
-                    "Objeto não encontrado! Id: " + id + ", Tipo: " + ReservaGrupo.class.getName());
+            throw new ObjectNotFoundException("Objeto não encontrado! Id: " + id + ", Tipo: " + ReservaGrupo.class.getName());
         }
     }
 
@@ -60,8 +64,7 @@ public class ReservaGrupoService {
         try {
             repository.deleteById(id);
         } catch (DataIntegrityViolationException e) {
-            throw new DataIntegrityException(
-                    "Não é possível excluir uma ReservaGrupo vinculada a Itens de Empréstimos!");
+            throw new DataIntegrityException("Não é possível excluir uma ReservaGrupo vinculada a Itens de Empréstimos!");
         }
     }
 

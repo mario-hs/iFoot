@@ -1,10 +1,16 @@
 package les.ifoot.services;
 
-import java.util.List;
+// import java.util.List;
+import java.util.Collection;
+import java.util.NoSuchElementException;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import les.ifoot.model.TransferirDinheiro;
 import les.ifoot.repositories.TransferirDinheiroRepository;
+import les.ifoot.services.exceptions.DataIntegrityException;
+import les.ifoot.services.exceptions.ObjectNotFoundException;
 
 @Service
 public class TransferirDinheiroService {
@@ -16,8 +22,7 @@ public class TransferirDinheiroService {
             TransferirDinheiro obj = repository.findById(id).get();
             return obj;
         } catch (NoSuchElementException e) {
-            throw new ObjectNotFoundException(
-                    "Objeto não encontrado! Id: " + id + ", Tipo: " + TransferirDinheiro.class.getName());
+            throw new ObjectNotFoundException("Objeto não encontrado! Id: " + id + ", Tipo: " + TransferirDinheiro.class.getName());
         }
     }
 
@@ -30,8 +35,7 @@ public class TransferirDinheiroService {
         try {
             return repository.save(obj);
         } catch (DataIntegrityViolationException e) {
-            throw new DataIntegrityException(
-                    "Campo(s) obrigatório(s) da TransferirDinheiro não foi(foram) preenchido(s)");
+            throw new DataIntegrityException("Campo(s) obrigatório(s) da TransferirDinheiro não foi(foram) preenchido(s)");
         }
     }
 
@@ -40,8 +44,7 @@ public class TransferirDinheiroService {
         try {
             return repository.save(obj);
         } catch (DataIntegrityViolationException e) {
-            throw new DataIntegrityException(
-                    "Campo(s) obrigatório(s) da TransferirDinheiro não foi(foram) preenchido(s)");
+            throw new DataIntegrityException("Campo(s) obrigatório(s) da TransferirDinheiro não foi(foram) preenchido(s)");
         }
     }
 
@@ -50,8 +53,7 @@ public class TransferirDinheiroService {
         try {
             repository.deleteById(id);
         } catch (DataIntegrityViolationException e) {
-            throw new DataIntegrityException(
-                    "Não é possível excluir uma TransferirDinheiro vinculada a Itens de Empréstimos!");
+            throw new DataIntegrityException("Não é possível excluir uma TransferirDinheiro vinculada a Itens de Empréstimos!");
         }
     }
 

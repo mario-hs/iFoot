@@ -1,15 +1,18 @@
 package les.ifoot.services;
 
-import java.util.List;
+// import java.util.List;
+import java.util.Collection;
 import java.util.NoSuchElementException;
 
-import org.hibernate.ObjectNotFoundException;
+// import org.hibernate.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 
 import les.ifoot.model.Advertencia;
 import les.ifoot.repositories.AdvertenciaRepository;
+import les.ifoot.services.exceptions.DataIntegrityException;
 
 @Service
 public class AdvertenciaService {

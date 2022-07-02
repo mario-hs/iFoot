@@ -1,10 +1,16 @@
 package les.ifoot.services;
 
-import java.util.List;
+// import java.util.List;
+import java.util.Collection;
+import java.util.NoSuchElementException;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import les.ifoot.model.Pelada;
 import les.ifoot.repositories.PeladaRepository;
+import les.ifoot.services.exceptions.DataIntegrityException;
+import les.ifoot.services.exceptions.ObjectNotFoundException;
 
 @Service
 public class PeladaService {
@@ -16,8 +22,7 @@ public class PeladaService {
             Pelada obj = repository.findById(id).get();
             return obj;
         } catch (NoSuchElementException e) {
-            throw new ObjectNotFoundException(
-                    "Objeto não encontrado! Id: " + id + ", Tipo: " + Pelada.class.getName());
+            throw new ObjectNotFoundException("Objeto não encontrado! Id: " + id + ", Tipo: " + Pelada.class.getName());
         }
     }
 
