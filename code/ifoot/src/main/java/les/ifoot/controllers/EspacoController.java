@@ -37,15 +37,15 @@ public class EspacoController {
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<Espaco> insert(@Valid @RequestBody Espaco obj, BindingResult br) {
         if (br.hasErrors())
-        	throw new ConstraintException(br.getAllErrors().get(0).getDefaultMessage());
+            throw new ConstraintException(br.getAllErrors().get(0).getDefaultMessage());
         obj = service.insert(obj);
         return ResponseEntity.ok().body(obj);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
     public ResponseEntity<Espaco> update(@Valid @RequestBody Espaco obj, BindingResult br) {
-    	if (br.hasErrors())
-        	throw new ConstraintException(br.getAllErrors().get(0).getDefaultMessage());
+        if (br.hasErrors())
+            throw new ConstraintException(br.getAllErrors().get(0).getDefaultMessage());
         obj = service.update(obj);
         return ResponseEntity.ok().body(obj);
     }

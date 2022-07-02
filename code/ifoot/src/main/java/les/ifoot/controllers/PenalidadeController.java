@@ -1,8 +1,12 @@
 package les.ifoot.controllers;
 
 import java.util.Collection;
+
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import les.ifoot.model.Penalidade;
 import les.ifoot.services.PenalidadeService;
+import les.ifoot.services.exceptions.ConstraintException;
 
 @RestController
 @RequestMapping(value = "/penalidades")
@@ -30,13 +35,17 @@ public class PenalidadeController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<Penalidade> insert(@RequestBody Penalidade obj) {
+    public ResponseEntity<Penalidade> insert(@Valid @RequestBody Penalidade obj, BindingResult br) {
+        if (br.hasErrors())
+            throw new ConstraintException(br.getAllErrors().get(0).getDefaultMessage());
         obj = service.insert(obj);
         return ResponseEntity.ok().body(obj);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<Penalidade> update(@RequestBody Penalidade obj) {
+    public ResponseEntity<Penalidade> update(@Valid @RequestBody Penalidade obj, BindingResult br) {
+        if (br.hasErrors())
+            throw new ConstraintException(br.getAllErrors().get(0).getDefaultMessage());
         obj = service.update(obj);
         return ResponseEntity.ok().body(obj);
     }
