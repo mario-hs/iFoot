@@ -9,6 +9,7 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import les.ifoot.model.Avaliacao;
 import les.ifoot.repositories.AvaliacaoRepository;
+import les.ifoot.services.exceptions.BusinessRuleException;
 import les.ifoot.services.exceptions.DataIntegrityException;
 
 @Service
@@ -32,9 +33,11 @@ public class AvaliacaoService {
     }
 
     public Avaliacao insert(final Avaliacao obj) {
-        obj.setId(null);
         try {
-            return repository.save(obj);
+            if (handleAvaliacao(obj) == true) {
+                return repository.save(obj);
+            }
+            throw new BusinessRuleException("Transferência não pode ser efetuada");
         } catch (DataIntegrityViolationException e) {
             throw new DataIntegrityException("Campo(s) obrigatório(s) do Avaliacao não foi(foram) preenchido(s)");
         }
@@ -59,5 +62,31 @@ public class AvaliacaoService {
         }
     }
 
-    
+    public boolean handleAvaliacao(Avaliacao obj) {
+
+        Integer id_jogador = obj.getJogador_avaliador().getId();
+        boolean valorSql = repository.findByAdvertenciaJogador(id_jogador);
+        System.out.println(valorSql);
+
+        // if (valorSql == 50) {
+        // throw new BusinessRuleException("Você ja atingiu o limite de dinheiro para
+        // transferir");
+        // }
+
+        // if (valorTotal > 50) {
+        // throw new BusinessRuleException(
+        // "Ao fazer esta transferencia voce supera o limtie diario. Você ainda pode
+        // transferir "
+        // + valorTransferir + " reias hoje");
+        // }
+
+        // if (repository.findByTransferenciaJogador(dataAtual[0], idJogador) == false)
+        // { // < 3 ou NULL
+        // throw new BusinessRuleException("Jogador já excedeu o limite de
+        // transferências no dia de hoje");
+        // }
+
+        return true;
+    }
+
 }

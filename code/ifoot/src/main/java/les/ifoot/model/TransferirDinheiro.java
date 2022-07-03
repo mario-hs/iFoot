@@ -10,8 +10,6 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 import lombok.*;
 
-import java.util.*;
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -27,7 +25,7 @@ public class TransferirDinheiro implements Serializable {
 
 	@NotNull(message = "A data em que a transferencia do jogador foi aplicada deve ser preenchida")
 	@JsonFormat(pattern = "yyyy-MM-dd")
-	private String dataTransferencia;
+	private String data_transferencia;
 
 	@Min(value = 1, message = "Valor da transferencia do jogador deve ser maior que zero")
 	@NotNull(message = "Valor da transferencia do jogador deve ser preenchido")
@@ -36,12 +34,12 @@ public class TransferirDinheiro implements Serializable {
 
 	@NotNull(message = "O jogador remetente em transferencia de dinheiro deve ser preenchido")
 	@ManyToOne
-	@JoinColumn(name = "jogadorRemetente_id")
-	private Jogador jogadorRemetente;
+	@JoinColumn(name = "jogador_remetente_id")
+	private Jogador jogador_remetente;
 
 	@NotNull(message = "O jogador destinatário em transferencia de dinheiro deve ser preenchido")
 	@ManyToOne
-	@JoinColumn(name = "jogadorDestinatario_id")
-	private Jogador jogadorDestinatario;
+	@JoinColumn(name = "jogador_destinatario_id")
+	private Jogador jogador_destinatario;
 
 }

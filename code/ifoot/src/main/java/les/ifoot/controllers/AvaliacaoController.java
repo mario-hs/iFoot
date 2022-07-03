@@ -28,6 +28,12 @@ public class AvaliacaoController {
         return ResponseEntity.ok().body(Collection);
     }
 
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    public ResponseEntity<Avaliacao> find(@PathVariable Integer id) {
+        Avaliacao obj = service.findById(id);
+        return ResponseEntity.ok().body(obj);
+    }
+
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<Avaliacao> insert(@Valid @RequestBody Avaliacao obj, BindingResult br) {
         if (br.hasErrors())

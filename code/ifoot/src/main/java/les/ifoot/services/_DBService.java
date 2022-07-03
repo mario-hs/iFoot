@@ -120,8 +120,8 @@ public class _DBService {
                 Penalidade penalidade_2 = new Penalidade(null, 0, 1, date.parse("26/06/2022"), jogador_2);
 
                 // AVALIACAO DO JOGADOR
-                Avaliacao avaliacao_1 = new Avaliacao(null, 7.8, jogador_1, participacao_1);
-                Avaliacao avaliacao_2 = new Avaliacao(null, 6.8, jogador_2, participacao_2);
+                Avaliacao avaliacao_1 = new Avaliacao(null, 7.8, jogador_1, jogador_2, participacao_1);
+                Avaliacao avaliacao_2 = new Avaliacao(null, 6.8, jogador_2, jogador_3, participacao_2);
 
                 // ADVERTENCIA DO JOGADOR
                 Advertencia advertencia_1 = new Advertencia(null, participacao_1, jogador_3);

@@ -41,10 +41,10 @@ public class TransferirDinheiroService {
     @Transactional(propagation = Propagation.REQUIRES_NEW)
     public TransferirDinheiro insert(TransferirDinheiro obj) {
 
-        Integer idJogador = obj.getJogadorRemetente().getId();
+        Integer id_jogador = obj.getJogador_remetente().getId();
 
         try {
-            if (validaTransacao(idJogador, obj) == true) {
+            if (validaTransacao(id_jogador, obj) == true) {
                 return repository.save(obj);
             }
             throw new BusinessRuleException(

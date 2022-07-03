@@ -29,12 +29,16 @@ public class Avaliacao implements Serializable {
 
 	@NotNull(message = "O jogador em avaliação deve ser preenchido")
 	@ManyToOne
-	@JoinColumn(name = "jogador_id")
-	private Jogador jogador;
+	@JoinColumn(name = "id_jogador_avaliador")
+	private Jogador jogador_avaliador;
+
+	@NotNull(message = "O jogador em avaliação deve ser preenchido")
+	@ManyToOne
+	@JoinColumn(name = "id_jogador_avaliado")
+	private Jogador jogador_avaliado;
 
 	@NotNull(message = "A participação em avaliação deve ser preenchida")
 	@ManyToOne
 	@JoinColumn(name = "participacao_id")
 	private Participacao participacao;
-
 }
