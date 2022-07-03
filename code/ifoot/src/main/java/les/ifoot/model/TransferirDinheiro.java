@@ -27,7 +27,7 @@ public class TransferirDinheiro implements Serializable {
 
 	@NotNull(message = "A data em que a transferencia do jogador foi aplicada deve ser preenchida")
 	@JsonFormat(pattern = "yyyy-MM-dd")
-	private Date dataTransferencia;
+	private String dataTransferencia;
 
 	@Min(value = 1, message = "Valor da transferencia do jogador deve ser maior que zero")
 	@NotNull(message = "Valor da transferencia do jogador deve ser preenchido")
