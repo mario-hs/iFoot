@@ -44,12 +44,6 @@ public class AvaliacaoController {
         return ResponseEntity.ok().body(obj);
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<Avaliacao> update(@RequestBody Avaliacao obj) {
-        obj = service.update(obj);
-        return ResponseEntity.ok().body(obj);
-    }
-
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<Void> delete(@PathVariable Integer id) {
         service.delete(id);

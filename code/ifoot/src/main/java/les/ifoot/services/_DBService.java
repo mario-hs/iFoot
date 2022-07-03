@@ -91,7 +91,7 @@ public class _DBService {
                 // TRANSFERENCIA DE DINHEIRO ENTRE JOGADORES
                 TransferirDinheiro transferencia_jogador_1 = new TransferirDinheiro(null, date.parse("22/06/2022"),
                                 30.00, jogador_1, jogador_2);
-                TransferirDinheiro transferencia_jogador_2 = new TransferirDinheiro(null, date.parse("22/06/2022"),
+                TransferirDinheiro transferencia_jogador_2 = new TransferirDinheiro(null, date.parse("24/06/2022"),
                                 20.00, jogador_2, jogador_1);
                 TransferirDinheiro transferencia_jogador_3 = new TransferirDinheiro(null, date.parse("24/06/2022"),
                                 20.00, jogador_2, jogador_1);

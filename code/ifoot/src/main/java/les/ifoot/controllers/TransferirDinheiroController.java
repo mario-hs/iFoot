@@ -1,5 +1,6 @@
 package les.ifoot.controllers;
 
+import java.text.ParseException;
 import java.util.Collection;
 
 import javax.validation.Valid;
@@ -39,7 +40,12 @@ public class TransferirDinheiroController {
             BindingResult br) {
         if (br.hasErrors())
             throw new ConstraintException(br.getAllErrors().get(0).getDefaultMessage());
-        obj = service.insert(obj);
+        try {
+            obj = service.insert(obj);
+        } catch (ParseException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
         return ResponseEntity.ok().body(obj);
     }
 
