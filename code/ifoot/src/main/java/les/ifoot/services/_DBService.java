@@ -89,11 +89,19 @@ public class _DBService {
                 CampoHorario campoHorario_1 = new CampoHorario(null, campo_1, horario_1);
 
                 // TRANSFERENCIA DE DINHEIRO ENTRE JOGADORES
-                TransferirDinheiro transferencia_jogador_1 = new TransferirDinheiro(null, date.parse("22/06/2022"),
+                TransferirDinheiro transferencia_jogador_1 = new TransferirDinheiro(null, ("22/06/2022"),
                                 30.00, jogador_1, jogador_2);
-                TransferirDinheiro transferencia_jogador_2 = new TransferirDinheiro(null, date.parse("24/06/2022"),
+                // TransferirDinheiro transferencia_jogador_2 = new TransferirDinheiro(null,
+                // date.parse("24/06/2022"),
+                TransferirDinheiro transferencia_jogador_2 = new TransferirDinheiro(null, ("22/06/2022"),
                                 20.00, jogador_2, jogador_1);
-                TransferirDinheiro transferencia_jogador_3 = new TransferirDinheiro(null, date.parse("24/06/2022"),
+                TransferirDinheiro transferencia_jogador_3 = new TransferirDinheiro(null, ("24/06/2022"),
+                                20.00, jogador_2, jogador_1);
+                TransferirDinheiro transferencia_jogador_4 = new TransferirDinheiro(null, ("03/07/2022"),
+                                20.00, jogador_2, jogador_1);
+                TransferirDinheiro transferencia_jogador_5 = new TransferirDinheiro(null, ("02/07/2022"),
+                                20.00, jogador_2, jogador_1);
+                TransferirDinheiro transferencia_jogador_6 = new TransferirDinheiro(null, ("02/07/2022"),
                                 20.00, jogador_2, jogador_1);
 
                 // RESERVA EM GRUPO
@@ -132,7 +140,12 @@ public class _DBService {
                 campoHorarioRepository.saveAll(Arrays.asList(campoHorario_1));
 
                 transferirDinheiroRepository.saveAll(Arrays.asList(transferencia_jogador_1, transferencia_jogador_2,
-                                transferencia_jogador_3));
+                                transferencia_jogador_3, transferencia_jogador_4, transferencia_jogador_5,
+                                transferencia_jogador_6));
+
+                // transferirDinheiroRepository.saveAll(Arrays.asList(transferencia_jogador_1,
+                // transferencia_jogador_2,
+                // transferencia_jogador_3));
 
                 reservaGrupoRepository.saveAll(Arrays.asList(reservaGrupo_1));
 

@@ -1,10 +1,8 @@
 package les.ifoot.services;
 
-// import java.util.List;
+import java.util.Calendar;
 import java.util.Collection;
-import java.util.Date;
 import java.util.NoSuchElementException;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
 import org.springframework.transaction.annotation.Propagation;
@@ -41,17 +39,20 @@ public class TransferirDinheiroService {
     }
 
     @Transactional(propagation = Propagation.REQUIRES_NEW)
-    public TransferirDinheiro insert(TransferirDinheiro obj) throws ParseException {
+    public TransferirDinheiro insert(TransferirDinheiro obj) {
+
+        Integer idJogador = obj.getJogadorRemetente().getId();
+
         try {
-            if (handleValorLimite(obj)) {
-                obj.setId(null);
+            if (validaTransacao(idJogador, obj) == true) {
                 return repository.save(obj);
             }
+            throw new BusinessRuleException(
+                    "Transferência não pode ser efetuada");
         } catch (DataIntegrityViolationException e) {
             throw new DataIntegrityException(
                     "Campo(s) obrigatório(s) da TransferirDinheiro não foi(foram) preenchido(s)");
         }
-        return null;
     }
 
     public TransferirDinheiro update(TransferirDinheiro obj) {
@@ -74,19 +75,37 @@ public class TransferirDinheiroService {
         }
     }
 
-    public boolean handleValorLimite(TransferirDinheiro obj) throws ParseException {
-        // Float qtdValor = repository.findByDataTransferencia(date.parse("24/06/2022"),
-        // 2);
-        TransferirDinheiro qtdValor = repository.findByDataTransferencia(date.parse("24/06/2022"), 2);
-        if (qtdValor != null) {
-            throw new BusinessRuleException("Jogador excede o valor diário de transferência!");
+    public boolean validaTransacao(Integer idJogador, TransferirDinheiro obj) {
+        String timeStamp = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(Calendar.getInstance().getTime());
+        String dataAtual[] = new String[1];
+        dataAtual = timeStamp.split(" ");
+
+        double valorDigitado = obj.getValor();
+        double valorSql = repository.findByTransferenciaValorJogador(dataAtual[0], idJogador);
+        // System.err.println(valorDigitado);
+
+        double valorTotal = valorDigitado + valorSql;
+        double valorTransferir = 50 - valorSql;
+        // System.err.println(aux[0]);
+        // System.out.println(repository.findByTransferenciaJogador(aux[0], idJogador));
+        // System.out.println(repository.findByTransferenciaValorJogador(aux[0],
+        // idJogador));
+
+        if (valorSql == 50) {
+            throw new BusinessRuleException("Você ja atingiu o limite de dinheiro para transferir");
+        }
+
+        if (valorTotal > 50) {
+            throw new BusinessRuleException(
+                    "Ao fazer esta transferencia voce supera o limtie diario. Você ainda pode transferir "
+                            + valorTransferir + " reias hoje");
+        }
+
+        if (repository.findByTransferenciaJogador(dataAtual[0], idJogador) == false) { // < 3 ou NULL
+            throw new BusinessRuleException("Jogador já excedeu o limite de transferências no dia de hoje");
         }
 
         return true;
-    }
-
-    public TransferirDinheiro findByDataTransferencia(Date data, Integer id_jogador) {
-        return repository.findByDataTransferencia(data, id_jogador);
     }
 
 }
