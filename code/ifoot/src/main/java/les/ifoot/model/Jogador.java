@@ -68,4 +68,7 @@ public class Jogador implements Serializable {
     @JoinColumn(name = "posicao_id")
     private Posicao posicao;
 
+    // @ManyToOne
+    // @JoinColumn(name = "avaliacao_id")
+    // private Avaliacao score;
 }

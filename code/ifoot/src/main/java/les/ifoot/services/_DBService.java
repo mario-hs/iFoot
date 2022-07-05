@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -37,6 +38,9 @@ public class _DBService {
 
         @Autowired
         private ReservaGrupoRepository reservaGrupoRepository;
+
+        @Autowired
+        private ReservaIndividualRepository reservaIndividualRepository;
 
         @Autowired
         private PeladaRepository peladaRepository;
@@ -105,11 +109,14 @@ public class _DBService {
                                 20.00, jogador_2, jogador_1);
 
                 // RESERVA EM GRUPO
-                ReservaGrupo reservaGrupo_1 = new ReservaGrupo(null, campoHorario_1, jogador_3);
+                ReservaGrupo reservaGrupo_1 = new ReservaGrupo(null, campoHorario_1,
+                                Arrays.asList(jogador_2, jogador_3));
 
                 // PELADA COM ROUPA
                 Pelada pelada_1 = new Pelada(null, date.parse("21/06/2022"), reservaGrupo_1);
                 Pelada pelada_2 = new Pelada(null, date.parse("24/06/2022"), reservaGrupo_1);
+
+                ReservaIndividual reservaIndividual_1 = new ReservaIndividual(null, pelada_1, jogador_1);
 
                 // PARTICIPACAO DO JOGADOR
                 Participacao participacao_1 = new Participacao(null, pelada_1, jogador_2);
@@ -143,15 +150,13 @@ public class _DBService {
                                 transferencia_jogador_3, transferencia_jogador_4, transferencia_jogador_5,
                                 transferencia_jogador_6));
 
-                // transferirDinheiroRepository.saveAll(Arrays.asList(transferencia_jogador_1,
-                // transferencia_jogador_2,
-                // transferencia_jogador_3));
-
                 reservaGrupoRepository.saveAll(Arrays.asList(reservaGrupo_1));
 
                 penalidadeRepository.saveAll(Arrays.asList(penalidade_1, penalidade_2));
 
                 peladaRepository.saveAll(Arrays.asList(pelada_1, pelada_2));
+
+                reservaIndividualRepository.saveAll(Arrays.asList(reservaIndividual_1));
 
                 participacaoRepository.saveAll(Arrays.asList(participacao_1, participacao_2));
 

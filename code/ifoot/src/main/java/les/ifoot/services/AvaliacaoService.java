@@ -37,7 +37,7 @@ public class AvaliacaoService {
             if (handleAvaliacao(obj) == true) {
                 return repository.save(obj);
             }
-            throw new BusinessRuleException("Transferência não pode ser efetuada");
+            throw new BusinessRuleException("Avaliação não pode ser efetuada");
         } catch (DataIntegrityViolationException e) {
             throw new DataIntegrityException("Campo(s) obrigatório(s) do Avaliacao não foi(foram) preenchido(s)");
         }
