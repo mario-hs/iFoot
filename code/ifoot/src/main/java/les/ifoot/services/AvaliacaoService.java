@@ -65,26 +65,13 @@ public class AvaliacaoService {
     public boolean handleAvaliacao(Avaliacao obj) {
 
         Integer id_jogador = obj.getJogador_avaliador().getId();
-        boolean valorSql = repository.findByAdvertenciaJogador(id_jogador);
-        System.out.println(valorSql);
+        Integer qtd_amarelo = repository.findByAdvertenciaJogador(id_jogador);
+        System.out.println(qtd_amarelo);
 
-        // if (valorSql == 50) {
-        // throw new BusinessRuleException("Você ja atingiu o limite de dinheiro para
-        // transferir");
-        // }
-
-        // if (valorTotal > 50) {
-        // throw new BusinessRuleException(
-        // "Ao fazer esta transferencia voce supera o limtie diario. Você ainda pode
-        // transferir "
-        // + valorTransferir + " reias hoje");
-        // }
-
-        // if (repository.findByTransferenciaJogador(dataAtual[0], idJogador) == false)
-        // { // < 3 ou NULL
-        // throw new BusinessRuleException("Jogador já excedeu o limite de
-        // transferências no dia de hoje");
-        // }
+        if (qtd_amarelo > 0) {
+            throw new BusinessRuleException(
+                    "Você está amarelado, então não pode realizar avaliação de outros jogadores");
+        }
 
         return true;
     }
