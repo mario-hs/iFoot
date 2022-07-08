@@ -1,29 +1,14 @@
 package les.ifoot.services;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-// import java.util.List;
 import java.util.Collection;
-import java.util.Date;
-// import java.util.NoSuchElementException;
 import java.util.NoSuchElementException;
 
-// import org.hibernate.ObjectNotFoundException;
-// import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import les.ifoot.model.Jogador;
-// import les.ifoot.model.Pelada;
-// import les.ifoot.model.Campo;
-// import les.ifoot.model.CampoHorario;
-// import les.ifoot.model.Horario;
 import les.ifoot.model.ReservaGrupo;
-// import les.ifoot.repositories.CampoHorarioRepository;
-// import les.ifoot.repositories.CampoRepository;
-// import les.ifoot.repositories.HorarioRepository;
-// import les.ifoot.services.exceptions.DataIntegrityException;
 import les.ifoot.repositories.ReservaGrupoRepository;
 import les.ifoot.services.exceptions.BusinessRuleException;
 import les.ifoot.services.exceptions.DataIntegrityException;
