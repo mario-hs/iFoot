@@ -119,12 +119,14 @@ public class _DBService {
                 // PELADA COM ROUPA
                 Pelada pelada_1 = new Pelada(null, "06/07/2022", reservaGrupo_1);
                 Pelada pelada_2 = new Pelada(null, "07/07/2022", reservaGrupo_2);
+                Pelada pelada_3 = new Pelada(null, data_atual[0], reservaGrupo_2);
 
                 ReservaIndividual reservaIndividual_1 = new ReservaIndividual(null, pelada_1, jogador_4);
 
                 // PARTICIPACAO DO JOGADOR
                 Participacao participacao_1 = new Participacao(null, pelada_1, jogador_2);
                 Participacao participacao_2 = new Participacao(null, pelada_2, jogador_1);
+                Participacao participacao_3 = new Participacao(null, pelada_3, jogador_2);
 
                 // PENALIDADE DO JOGADOR
                 Penalidade penalidade_1 = new Penalidade(null, 1, 0, date.parse("21/06/2022"), jogador_1);
@@ -159,11 +161,11 @@ public class _DBService {
 
                 reservaGrupoRepository.saveAll(Arrays.asList(reservaGrupo_1, reservaGrupo_2));
 
-                peladaRepository.saveAll(Arrays.asList(pelada_1, pelada_2));
+                peladaRepository.saveAll(Arrays.asList(pelada_1, pelada_2, pelada_3));
 
                 reservaIndividualRepository.saveAll(Arrays.asList(reservaIndividual_1));
 
-                participacaoRepository.saveAll(Arrays.asList(participacao_1, participacao_2));
+                participacaoRepository.saveAll(Arrays.asList(participacao_1, participacao_2, participacao_3));
 
                 avaliacaoRepository.saveAll(Arrays.asList(avaliacao_1, avaliacao_2, avaliacao_3, avaliacao_4));
 

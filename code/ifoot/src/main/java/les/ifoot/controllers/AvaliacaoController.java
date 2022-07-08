@@ -17,7 +17,7 @@ import les.ifoot.services.AvaliacaoService;
 import les.ifoot.services.exceptions.ConstraintException;
 
 @RestController
-@RequestMapping(value = "/avaliacaos")
+@RequestMapping(value = "/avaliacoes")
 public class AvaliacaoController {
     @Autowired
     private AvaliacaoService service;

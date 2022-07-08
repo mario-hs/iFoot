@@ -13,7 +13,7 @@ import les.ifoot.model.Avaliacao;
 @Repository
 public interface AvaliacaoRepository extends JpaRepository<Avaliacao, Integer> {
     @Transactional(readOnly = true)
-    @Query(value = "SELECT SUM(pn.qtd_amarelo) FROM penalidade pn, jogador j WHERE pn.jogador_id = j.id AND j.id = ?1", nativeQuery = true)
+    @Query(value = "SELECT COUNT(pn.qtd_amarelo) FROM penalidade pn, jogador j WHERE pn.jogador_id = j.id AND j.id = ?1", nativeQuery = true)
     public Integer findByAdvertenciaJogador(Integer id_jogador);
 
     @Transactional(readOnly = true)
@@ -22,5 +22,5 @@ public interface AvaliacaoRepository extends JpaRepository<Avaliacao, Integer> {
 
     @Transactional(readOnly = true)
     @Query(value = "SELECT pl.data_pelada FROM participacao pp INNER JOIN jogador j ON pp.jogador_id = j.id INNER JOIN pelada pl ON pp.pelada_id = pl.id INNER JOIN reserva_grupo rg ON pl.reserva_grupo_id = rg.id INNER JOIN campo_horario ch ON rg.campo_horario_id = ch.id INNER JOIN horario h ON ch.horario_id = h.id WHERE pp.id = ?1", nativeQuery = true)
-    public Date findByParticipacaoPelada(Integer id_pelada);
+    public String findByParticipacaoPelada(Integer id_pelada);
 }
