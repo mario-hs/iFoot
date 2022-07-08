@@ -17,7 +17,7 @@ import les.ifoot.services.ReservaIndividualService;
 import les.ifoot.services.exceptions.ConstraintException;
 
 @RestController
-@RequestMapping(value = "/reservasIndividuais")
+@RequestMapping(value = "/reservas_individuais")
 public class ReservaIndividualController {
     @Autowired
     private ReservaIndividualService service;

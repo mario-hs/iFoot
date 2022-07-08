@@ -12,10 +12,10 @@ public interface TransferirDinheiroRepository extends JpaRepository<TransferirDi
 
     @Transactional(readOnly = true)
     @Query(value = "SELECT COUNT(*) < 3 FROM transferir_dinheiro td, jogador j WHERE td.jogador_remetente_id = j.id AND td.data_transferencia = ?1 AND j.id = ?2 ", nativeQuery = true)
-    public boolean findByTransferenciaJogador(String data, Integer idJogador);
+    public boolean findByDataLimiteDiarioQuantidade(String data, Integer idJogador);
 
     @Transactional(readOnly = true)
-    @Query(value = "SELECT SUM(td.valor) FROM transferir_dinheiro td, jogador j WHERE td.jogador_remetente_id= j.id AND td.data_transferencia = ?1 AND j.id= ?2 HAVING SUM(td.valor) <= 50  ", nativeQuery = true)
-    public double findByTransferenciaValorJogador(String data, Integer idJogador);
+    @Query(value = "SELECT SUM(td.valor) FROM transferir_dinheiro td, jogador j WHERE td.jogador_remetente_id= j.id AND td.data_transferencia = ?1 AND j.id= ?2 HAVING SUM(td.valor) <= 50", nativeQuery = true)
+    public double findByDataLimiteDiarioValor(String data, Integer idJogador);
 
 }

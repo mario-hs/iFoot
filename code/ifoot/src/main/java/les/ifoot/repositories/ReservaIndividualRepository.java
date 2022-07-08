@@ -10,7 +10,14 @@ import les.ifoot.model.ReservaIndividual;
 @Repository
 public interface ReservaIndividualRepository extends JpaRepository<ReservaIndividual, Integer> {
     @Transactional(readOnly = true)
-    @Query(value = "CREATE OR REPLACE FUNCTION porcentagem(IN cod numeric) RETURNS float AS $$ DECLARE valor_campo float; valor_jogador float; porcentagem float; BEGIN select ca.valor_unit from campo ca where ca.id = cod and ca.valor_unit > 0 into valor_campo; select j.carteira from jogador j into valor_jogador; porcentagem = (valor_campo * 10)/100; if (porcentagem < valor_jogador) then return porcentagem; else return porcentagem; end if; END; $$ LANGUAGE plpgsql; SELECT * from porcentagem(?1);", nativeQuery = true)
+    @Query(value = "SELECT AVG(ca.valor_unit * 0.1) FROM campo ca WHERE ca.id = ?1", nativeQuery = true)
     public Float findByPorcentoValorCampo(Integer id_campo);
 
+    @Transactional(readOnly = true)
+    @Query(value = "SELECT AVG(av.nota) FROM reserva_grupo_jogador rgj INNER JOIN avaliacao av ON av.id_jogador_avaliado = rgj.jogador_id WHERE rgj.reserva_grupo_id = ?1", nativeQuery = true)
+    public Float findByMediaReservaGrupo(Integer id_reserva_grupo);
+
+    @Transactional(readOnly = true)
+    @Query(value = "SELECT AVG(av.nota) FROM avaliacao av WHERE av.id_jogador_avaliado = ?1", nativeQuery = true)
+    public Float findByMediaJogador(Integer id_jogador);
 }

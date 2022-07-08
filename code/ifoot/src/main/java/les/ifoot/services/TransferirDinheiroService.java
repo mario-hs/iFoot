@@ -40,11 +40,8 @@ public class TransferirDinheiroService {
 
     @Transactional(propagation = Propagation.REQUIRES_NEW)
     public TransferirDinheiro insert(TransferirDinheiro obj) {
-
-        Integer id_jogador = obj.getJogador_remetente().getId();
-
         try {
-            if (validaTransacao(id_jogador, obj) == true) {
+            if (validaTransacao(obj) == true) {
                 return repository.save(obj);
             }
             throw new BusinessRuleException(
@@ -75,34 +72,32 @@ public class TransferirDinheiroService {
         }
     }
 
-    public boolean validaTransacao(Integer idJogador, TransferirDinheiro obj) {
+    public boolean validaTransacao(TransferirDinheiro obj) {
         String timeStamp = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(Calendar.getInstance().getTime());
         String dataAtual[] = new String[1];
         dataAtual = timeStamp.split(" ");
 
+        Integer id_jogador = obj.getJogador_remetente().getId();
+
         double valorDigitado = obj.getValor();
-        double valorSql = repository.findByTransferenciaValorJogador(dataAtual[0], idJogador);
-        // System.err.println(valorDigitado);
+        double valorSql = repository.findByDataLimiteDiarioValor(dataAtual[0], id_jogador);
 
         double valorTotal = valorDigitado + valorSql;
         double valorTransferir = 50 - valorSql;
-        // System.err.println(aux[0]);
-        // System.out.println(repository.findByTransferenciaJogador(aux[0], idJogador));
-        // System.out.println(repository.findByTransferenciaValorJogador(aux[0],
-        // idJogador));
 
         if (valorSql == 50) {
-            throw new BusinessRuleException("Você ja atingiu o limite de dinheiro para transferir");
+            throw new BusinessRuleException(
+                    "Você já atingiu o limite de dinheiro para transferir. Seu limite de transferência é de 50 reais");
         }
 
         if (valorTotal > 50) {
             throw new BusinessRuleException(
-                    "Ao fazer esta transferencia voce supera o limtie diario. Você ainda pode transferir "
+                    "Ao fazer esta transferencia você supera o limite diário. Você ainda pode transferir "
                             + valorTransferir + " reias hoje");
         }
 
-        if (repository.findByTransferenciaJogador(dataAtual[0], idJogador) == false) { // < 3 ou NULL
-            throw new BusinessRuleException("Jogador já excedeu o limite de transferências no dia de hoje");
+        if (repository.findByDataLimiteDiarioQuantidade(dataAtual[0], id_jogador) == false) { // < 3 ou NULL
+            throw new BusinessRuleException("Você já excedeu o limite de 3 transferências diarias!");
         }
 
         return true;

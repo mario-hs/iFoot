@@ -17,7 +17,7 @@ import les.ifoot.services.TransferenciaDinheiroEspacoService;
 import les.ifoot.services.exceptions.ConstraintException;
 
 @RestController
-@RequestMapping(value = "/transferenciasDeDinheiroEspaco")
+@RequestMapping(value = "/transferencias_de_dinheiro_espaco")
 public class TransferenciaDinheiroEspacoController {
     @Autowired
     private TransferenciaDinheiroEspacoService service;
@@ -35,7 +35,8 @@ public class TransferenciaDinheiroEspacoController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<TransferenciaDinheiroEspaco> insert(@Valid @RequestBody TransferenciaDinheiroEspaco obj, BindingResult br) {
+    public ResponseEntity<TransferenciaDinheiroEspaco> insert(@Valid @RequestBody TransferenciaDinheiroEspaco obj,
+            BindingResult br) {
         if (br.hasErrors())
             throw new ConstraintException(br.getAllErrors().get(0).getDefaultMessage());
         obj = service.insert(obj);
@@ -43,7 +44,8 @@ public class TransferenciaDinheiroEspacoController {
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<TransferenciaDinheiroEspaco> update(@Valid @RequestBody TransferenciaDinheiroEspaco obj, BindingResult br) {
+    public ResponseEntity<TransferenciaDinheiroEspaco> update(@Valid @RequestBody TransferenciaDinheiroEspaco obj,
+            BindingResult br) {
         if (br.hasErrors())
             throw new ConstraintException(br.getAllErrors().get(0).getDefaultMessage());
         obj = service.update(obj);

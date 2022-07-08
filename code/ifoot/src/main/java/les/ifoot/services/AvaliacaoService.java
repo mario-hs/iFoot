@@ -2,6 +2,7 @@ package les.ifoot.services;
 
 // import java.util.List;
 import java.util.Collection;
+import java.util.Date;
 import java.util.NoSuchElementException;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -66,11 +67,19 @@ public class AvaliacaoService {
 
         Integer id_jogador = obj.getJogador_avaliador().getId();
         Integer qtd_amarelo = repository.findByAdvertenciaJogador(id_jogador);
-        System.out.println(qtd_amarelo);
 
         if (qtd_amarelo > 0) {
             throw new BusinessRuleException(
                     "Você está amarelado, então não pode realizar avaliação de outros jogadores");
+        }
+
+        Date dia_atual = repository.findByDataAtual();
+        Integer id_Participacao = obj.getParticipacao().getId();
+        Date dia_pelada = repository.findByParticipacaoPelada(id_Participacao);
+
+        if (!(dia_pelada.compareTo(dia_atual) == 0)) {
+            throw new BusinessRuleException(
+                    "Já passou o tempo permitido para ser realizado a avaliação do jogador");
         }
 
         return true;

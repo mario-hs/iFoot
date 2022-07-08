@@ -17,7 +17,7 @@ import les.ifoot.services.TransferirDinheiroService;
 import les.ifoot.services.exceptions.ConstraintException;
 
 @RestController
-@RequestMapping(value = "/transferenciasDeDinheiro")
+@RequestMapping(value = "/transferencias_de_dinheiro_jogadores")
 public class TransferirDinheiroController {
     @Autowired
     private TransferirDinheiroService service;
