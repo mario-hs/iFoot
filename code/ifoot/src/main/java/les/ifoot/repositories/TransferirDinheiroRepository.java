@@ -7,9 +7,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import les.ifoot.model.TransferirDinheiro;
 
+// FEITO POR VICENZO
 @Repository
 public interface TransferirDinheiroRepository extends JpaRepository<TransferirDinheiro, Integer> {
-
     @Transactional(readOnly = true)
     @Query(value = "SELECT COUNT(*) < 3 FROM transferir_dinheiro td, jogador j WHERE td.jogador_remetente_id = j.id AND td.data_transferencia = ?1 AND j.id = ?2 ", nativeQuery = true)
     public boolean findByDataLimiteDiarioQuantidade(String data, Integer idJogador);

@@ -63,19 +63,18 @@ public class AvaliacaoService {
         }
     }
 
+    // FEITO POR MARIO
     public boolean handleAvaliacao(Avaliacao obj) {
-
         Integer id_jogador = obj.getJogador_avaliador().getId();
         Integer qtd_amarelo = repository.findByAdvertenciaJogador(id_jogador);
+        Date dia_atual = repository.findByDataAtual();
+        Integer id_Participacao = obj.getParticipacao().getId();
+        Date dia_pelada = repository.findByParticipacaoPelada(id_Participacao);
 
         if (qtd_amarelo > 0) {
             throw new BusinessRuleException(
                     "Você está amarelado, então não pode realizar avaliação de outros jogadores");
         }
-
-        Date dia_atual = repository.findByDataAtual();
-        Integer id_Participacao = obj.getParticipacao().getId();
-        Date dia_pelada = repository.findByParticipacaoPelada(id_Participacao);
 
         if (!(dia_pelada.compareTo(dia_atual) == 0)) {
             throw new BusinessRuleException(

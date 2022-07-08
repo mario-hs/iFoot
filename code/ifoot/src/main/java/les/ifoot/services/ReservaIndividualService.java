@@ -69,6 +69,7 @@ public class ReservaIndividualService {
         }
     }
 
+    // FEITO POR ANTONIELLY
     public boolean handleReservaIndividual(ReservaIndividual obj) {
         Integer id_campo = obj.getPelada().getReservaGrupo().getCampoHorario().getCampo().getId();
         Double carteira = obj.getJogador().getCarteira();

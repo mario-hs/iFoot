@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import les.ifoot.model.ReservaGrupo;
 
+// FEITO POR PATRICK
 @Repository
 public interface ReservaGrupoRepository extends JpaRepository<ReservaGrupo, Integer> {
     @Transactional(readOnly = true)

@@ -63,6 +63,7 @@ public class ReservaGrupoService {
         }
     }
 
+    // FEITO POR PATRICK
     public boolean handleReservaGrupo(ReservaGrupo obj) {
         String data = "06/07/2022";
         String hora = "19:00"; // pegar o horario do campo
