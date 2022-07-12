@@ -1,6 +1,7 @@
 package les.ifoot.model;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.*;
 
@@ -24,8 +25,8 @@ public class Pelada implements Serializable {
 
 	@NotNull(message = "A data da pelada deve ser preenchida")
 	@JsonFormat(pattern = "yyyy-MM-dd")
-	// private Date dataPelada;
-	private String dataPelada;
+	private Date dataPelada;
+	// private String dataPelada;
 
 	@NotNull(message = "A reservaGrupo em pelada deve ser preenchida")
 	@ManyToOne

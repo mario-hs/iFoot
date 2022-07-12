@@ -14,7 +14,6 @@ import lombok.*;
 @NoArgsConstructor
 @EqualsAndHashCode(of = { "id" })
 
-
 public class Espaco implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -46,5 +45,10 @@ public class Espaco implements Serializable {
 	@NotBlank(message = "A senha do espaço deve ser preenchida")
 	@Size(min = 6, max = 15, message = "A senha do espaço deve ter entre 6 e 15 letras")
 	private String senhaEspaco;
+
+	@Min(value = 1, message = "Valor da carteira do jogador deve ser maior que zero")
+	@NotNull(message = "Valor da carteira do jogador deve ser preenchido")
+	@Digits(integer = 6, fraction = 2, message = "Valor da carteira do jogador deve ser preenchido com dígitos")
+	private Double carteira;
 
 }

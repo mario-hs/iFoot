@@ -50,9 +50,6 @@ public class Jogador implements Serializable {
     @Size(min = 6, max = 15, message = "A senha do jogador deve ter entre 6 e 15 letras")
     private String senhaJogador;
 
-    @Digits(integer = 1, fraction = 0, message = "A advertência do jogador deve ser preenchida com um valor inteiro")
-    private Integer qtdAdvertencia;
-
     @Column(length = 50)
     @NotBlank(message = "Nome do bairro do jogador deve ser preenchido")
     @Size(min = 2, max = 50, message = "Nome do bairro do jogador deve ter entre 2 e 50 letras")
@@ -63,12 +60,15 @@ public class Jogador implements Serializable {
     @Digits(integer = 6, fraction = 2, message = "Valor da carteira do jogador deve ser preenchido com dígitos")
     private Double carteira;
 
+    private Integer qtdAdvertencia;
+
+    private Integer gol;
+
+    private Integer assistencia;
+
     @NotNull(message = "A posição em jogador deve ser preenchida")
     @ManyToOne
     @JoinColumn(name = "posicao_id")
     private Posicao posicao;
 
-    // @ManyToOne
-    // @JoinColumn(name = "avaliacao_id")
-    // private Avaliacao score;
 }

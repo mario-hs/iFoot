@@ -34,7 +34,10 @@ public class _DBService {
         private CampoHorarioRepository campoHorarioRepository;
 
         @Autowired
-        private TransferirDinheiroRepository transferirDinheiroRepository;
+        private TransferenciaJogadorRepository transferenciaJogadorRepository;
+
+        @Autowired
+        private TransferenciaEspacoRepository transferenciaEspacoRepository;
 
         @Autowired
         private ReservaGrupoRepository reservaGrupoRepository;
@@ -70,56 +73,67 @@ public class _DBService {
 
                 // JOGADOR
                 Jogador jogador_1 = new Jogador(null, "Mario", "03714076050", "mr.prince@hotmail.com",
-                                date.parse("21/07/1997"), "1234567", 0, "Alto Monte Cristo", 35.00, posicao_1);
+                                date.parse("21/07/1997"), "1234567", "Alto Monte Cristo", 35.00, 0, 15, 1, posicao_1);
                 Jogador jogador_2 = new Jogador(null, "Vicenzo", "23814076050", "vivi@hotmail.com",
-                                date.parse("11/03/1998"), "1234567", 0, "Maria Ortiz", 35.00, posicao_2);
+                                date.parse("11/03/1998"), "1234567", "Maria Ortiz", 35.00, 0, 27, 5, posicao_2);
                 Jogador jogador_3 = new Jogador(null, "Tony", "13814076070", "chopper@hotmail.com",
-                                date.parse("18/11/1996"), "1234567", 0, "Serrano", 55.00, posicao_2);
+                                date.parse("18/11/1996"), "1234567", "Serrano", 55.00, 0, 9, 4, posicao_2);
                 Jogador jogador_4 = new Jogador(null, "Patrick", "43814076090", "trick007@hotmail.com",
-                                date.parse("02/07/1996"), "1234567", 0, "Principal", 5.00, posicao_1);
+                                date.parse("02/07/1996"), "1234567", "Principal", 5.00, 1, 10, 7, posicao_1);
 
                 // ESPACO
                 Espaco espaco_1 = new Espaco(null, "Hangar", "84667172000103", "Linha Vermelha", "hangar@gmail.com",
-                                "1234567");
+                                "1234567", 300.00);
                 Espaco espaco_2 = new Espaco(null, "Bom Gosto", "94767172000103", "Linha Amarela", "bomgosto@gmail.com",
-                                "1234567");
+                                "1234567", 200.00);
 
                 // HORARIO
                 Horario horario_1 = new Horario(null, "19:00", 1, true, null);
                 Horario horario_2 = new Horario(null, "20:00", 1, false, null);
 
                 // CAMPO
-                Campo campo_1 = new Campo(null, "Society A", 80.00, 280.00, 1500.00, espaco_1);
-                Campo campo_2 = new Campo(null, "Futsal A", 80.00, 280.00, 1500.00, espaco_1);
-                Campo campo_3 = new Campo(null, "Society A", 85.00, 290.00, 1450.00, espaco_2);
-                Campo campo_4 = new Campo(null, "Campo A", 85.00, 290.00, 1450.00, espaco_2);
+                Campo campo_1 = new Campo(null, "A", 80.00, 280.00, 1500.00, 1, espaco_1);
+                Campo campo_2 = new Campo(null, "B", 80.00, 280.00, 1500.00, 2, espaco_1);
+                Campo campo_3 = new Campo(null, "C", 85.00, 290.00, 1450.00, 1, espaco_2);
+                Campo campo_4 = new Campo(null, "D", 85.00, 290.00, 1450.00, 2, espaco_2);
 
                 // CAMPO HORARIO
                 CampoHorario campoHorario_1 = new CampoHorario(null, campo_1, horario_1);
                 CampoHorario campoHorario_2 = new CampoHorario(null, campo_2, horario_2);
 
                 // TRANSFERENCIA DE DINHEIRO ENTRE JOGADORES
-                TransferirDinheiro transferencia_jogador_1 = new TransferirDinheiro(null, data_atual[0],
+                TransferenciaJogador transferencia_jogador_1 = new TransferenciaJogador(null, data_atual[0],
                                 20.00, jogador_1, jogador_2);
-                TransferirDinheiro transferencia_jogador_2 = new TransferirDinheiro(null, data_atual[0],
+                TransferenciaJogador transferencia_jogador_2 = new TransferenciaJogador(null, data_atual[0],
                                 10.00, jogador_1, jogador_2);
-                TransferirDinheiro transferencia_jogador_3 = new TransferirDinheiro(null, data_atual[0],
+                TransferenciaJogador transferencia_jogador_3 = new TransferenciaJogador(null, data_atual[0],
                                 10.00, jogador_1, jogador_2);
-                TransferirDinheiro transferencia_jogador_4 = new TransferirDinheiro(null, data_atual[0], 10.00,
+                TransferenciaJogador transferencia_jogador_4 = new TransferenciaJogador(null, data_atual[0], 10.00,
                                 jogador_3, jogador_4);
-                TransferirDinheiro transferencia_jogador_5 = new TransferirDinheiro(null, data_atual[0], 10.00,
+                TransferenciaJogador transferencia_jogador_5 = new TransferenciaJogador(null, data_atual[0], 10.00,
                                 jogador_2, jogador_1);
+
+                // TRANSFERENCIA DE DINHEIRO ENTRE JOGADOR E ESPACO
+                TransferenciaEspaco transferencia_espaco_1 = new TransferenciaEspaco(null,
+                                date.parse("26/06/2021"), 8.5, jogador_1, espaco_1);
+                TransferenciaEspaco transferencia_espaco_2 = new TransferenciaEspaco(null,
+                                date.parse("06/07/2022"), 8.5, jogador_2, espaco_1);
+                TransferenciaEspaco transferencia_espaco_3 = new TransferenciaEspaco(null,
+                                date.parse("11/07/2022"), 8.5, jogador_3, espaco_2);
 
                 // RESERVA EM GRUPO
                 ReservaGrupo reservaGrupo_1 = new ReservaGrupo(null, campoHorario_1,
-                                Arrays.asList(jogador_1));
+                                Arrays.asList(jogador_1), 2);
                 ReservaGrupo reservaGrupo_2 = new ReservaGrupo(null, campoHorario_2,
-                                Arrays.asList(jogador_3, jogador_4));
+                                Arrays.asList(jogador_3, jogador_4), 1);
 
                 // PELADA COM ROUPA
-                Pelada pelada_1 = new Pelada(null, "06/07/2022", reservaGrupo_1);
-                Pelada pelada_2 = new Pelada(null, "07/07/2022", reservaGrupo_2);
-                Pelada pelada_3 = new Pelada(null, data_atual[0], reservaGrupo_2);
+                // Pelada pelada_1 = new Pelada(null, "26/06/2021", reservaGrupo_1);
+                // Pelada pelada_2 = new Pelada(null, "07/07/2022", reservaGrupo_2);
+                Pelada pelada_1 = new Pelada(null, date.parse("26/06/2021"), reservaGrupo_1);
+                Pelada pelada_2 = new Pelada(null, date.parse("07/07/2022"), reservaGrupo_2);
+                Pelada pelada_3 = new Pelada(null, date.parse("11/07/2022"), reservaGrupo_2);
+                // Pelada pelada_3 = new Pelada(null, data_atual[0], reservaGrupo_2);
 
                 ReservaIndividual reservaIndividual_1 = new ReservaIndividual(null, pelada_1, jogador_4);
 
@@ -154,8 +168,11 @@ public class _DBService {
 
                 campoHorarioRepository.saveAll(Arrays.asList(campoHorario_1, campoHorario_2));
 
-                transferirDinheiroRepository.saveAll(Arrays.asList(transferencia_jogador_1, transferencia_jogador_2,
+                transferenciaJogadorRepository.saveAll(Arrays.asList(transferencia_jogador_1, transferencia_jogador_2,
                                 transferencia_jogador_3, transferencia_jogador_4, transferencia_jogador_5));
+
+                transferenciaEspacoRepository.saveAll(
+                                Arrays.asList(transferencia_espaco_1, transferencia_espaco_2, transferencia_espaco_3));
 
                 penalidadeRepository.saveAll(Arrays.asList(penalidade_1, penalidade_2));
 

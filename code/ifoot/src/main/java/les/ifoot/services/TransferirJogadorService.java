@@ -11,35 +11,35 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
-import les.ifoot.model.TransferirDinheiro;
-import les.ifoot.repositories.TransferirDinheiroRepository;
+import les.ifoot.model.TransferenciaJogador;
+import les.ifoot.repositories.TransferenciaJogadorRepository;
 import les.ifoot.services.exceptions.BusinessRuleException;
 import les.ifoot.services.exceptions.DataIntegrityException;
 import les.ifoot.services.exceptions.ObjectNotFoundException;
 
 @Service
-public class TransferirDinheiroService {
+public class TransferirJogadorService {
     SimpleDateFormat date = new SimpleDateFormat("dd/MM/yyyy");
 
     @Autowired
-    private TransferirDinheiroRepository repository;
+    private TransferenciaJogadorRepository repository;
 
-    public TransferirDinheiro findById(Integer id) {
+    public TransferenciaJogador findById(Integer id) {
         try {
-            TransferirDinheiro obj = repository.findById(id).get();
+            TransferenciaJogador obj = repository.findById(id).get();
             return obj;
         } catch (NoSuchElementException e) {
             throw new ObjectNotFoundException(
-                    "Objeto não encontrado! Id: " + id + ", Tipo: " + TransferirDinheiro.class.getName());
+                    "Objeto não encontrado! Id: " + id + ", Tipo: " + TransferenciaJogador.class.getName());
         }
     }
 
-    public Collection<TransferirDinheiro> findAll() {
+    public Collection<TransferenciaJogador> findAll() {
         return repository.findAll();
     }
 
     @Transactional(propagation = Propagation.REQUIRES_NEW)
-    public TransferirDinheiro insert(TransferirDinheiro obj) {
+    public TransferenciaJogador insert(TransferenciaJogador obj) {
         try {
             if (validaTransacao(obj) == true) {
                 return repository.save(obj);
@@ -48,17 +48,17 @@ public class TransferirDinheiroService {
                     "Transferência não pode ser efetuada");
         } catch (DataIntegrityViolationException e) {
             throw new DataIntegrityException(
-                    "Campo(s) obrigatório(s) da TransferirDinheiro não foi(foram) preenchido(s)");
+                    "Campo(s) obrigatório(s) da TransferenciaJogador não foi(foram) preenchido(s)");
         }
     }
 
-    public TransferirDinheiro update(TransferirDinheiro obj) {
+    public TransferenciaJogador update(TransferenciaJogador obj) {
         findById(obj.getId());
         try {
             return repository.save(obj);
         } catch (DataIntegrityViolationException e) {
             throw new DataIntegrityException(
-                    "Campo(s) obrigatório(s) da TransferirDinheiro não foi(foram) preenchido(s)");
+                    "Campo(s) obrigatório(s) da TransferenciaJogador não foi(foram) preenchido(s)");
         }
     }
 
@@ -68,12 +68,12 @@ public class TransferirDinheiroService {
             repository.deleteById(id);
         } catch (DataIntegrityViolationException e) {
             throw new DataIntegrityException(
-                    "Não é possível excluir uma TransferirDinheiro vinculada a Itens de Empréstimos!");
+                    "Não é possível excluir uma TransferenciaJogador vinculada a Itens de Empréstimos!");
         }
     }
 
     // FEITO POR VICENZO
-    public boolean validaTransacao(TransferirDinheiro obj) {
+    public boolean validaTransacao(TransferenciaJogador obj) {
         String timeStamp = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(Calendar.getInstance().getTime());
         String dataAtual[] = new String[1];
         dataAtual = timeStamp.split(" ");

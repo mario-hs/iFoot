@@ -37,6 +37,12 @@ public class AvaliacaoService {
     public Avaliacao insert(final Avaliacao obj) {
         try {
             if (handleAvaliacao(obj) == true) {
+
+                // Jogador jogador = obj.getJogador_avaliado();
+                // jogador.setScore(score);
+                // repositoryJogador.save(jogador);
+                // Exemplo de como atualizar alguma coisa modificada
+
                 return repository.save(obj);
             }
             throw new BusinessRuleException("Avaliação não pode ser efetuada");

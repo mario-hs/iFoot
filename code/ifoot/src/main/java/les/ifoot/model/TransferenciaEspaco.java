@@ -19,7 +19,7 @@ import java.util.*;
 @EqualsAndHashCode(of = { "id" })
 @Entity
 
-public class TransferenciaDinheiroEspaco implements Serializable {
+public class TransferenciaEspaco implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id

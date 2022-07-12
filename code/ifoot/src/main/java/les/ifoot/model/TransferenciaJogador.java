@@ -16,7 +16,7 @@ import lombok.*;
 @EqualsAndHashCode(of = { "id" })
 @Entity
 
-public class TransferirDinheiro implements Serializable {
+public class TransferenciaJogador implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id

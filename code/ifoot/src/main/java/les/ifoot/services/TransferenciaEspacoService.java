@@ -7,46 +7,48 @@ import java.util.NoSuchElementException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
-import les.ifoot.model.TransferenciaDinheiroEspaco;
-import les.ifoot.repositories.TransferenciaDinheiroEspacoRepository;
+import les.ifoot.model.TransferenciaEspaco;
+import les.ifoot.repositories.TransferenciaEspacoRepository;
 import les.ifoot.services.exceptions.DataIntegrityException;
 import les.ifoot.services.exceptions.ObjectNotFoundException;
 
 @Service
-public class TransferenciaDinheiroEspacoService {
+public class TransferenciaEspacoService {
 
     @Autowired
-    private TransferenciaDinheiroEspacoRepository repository;
+    private TransferenciaEspacoRepository repository;
 
-    public TransferenciaDinheiroEspaco findById(Integer id) {
+    public TransferenciaEspaco findById(Integer id) {
         try {
-            TransferenciaDinheiroEspaco obj = repository.findById(id).get();
+            TransferenciaEspaco obj = repository.findById(id).get();
             return obj;
         } catch (NoSuchElementException e) {
-            throw new ObjectNotFoundException("Objeto não encontrado! Id: " + id + ", Tipo: " + TransferenciaDinheiroEspaco.class.getName());
+            throw new ObjectNotFoundException(
+                    "Objeto não encontrado! Id: " + id + ", Tipo: " + TransferenciaEspaco.class.getName());
         }
     }
 
-    public Collection<TransferenciaDinheiroEspaco> findAll() {
+    public Collection<TransferenciaEspaco> findAll() {
         return repository.findAll();
     }
 
-    public TransferenciaDinheiroEspaco insert(TransferenciaDinheiroEspaco obj) {
+    public TransferenciaEspaco insert(TransferenciaEspaco obj) {
         obj.setId(null);
         try {
             return repository.save(obj);
         } catch (DataIntegrityViolationException e) {
-            throw new DataIntegrityException("Campo(s) obrigatório(s) da TransferenciaDinheiroEspaco não foi(foram) preenchido(s)");
+            throw new DataIntegrityException(
+                    "Campo(s) obrigatório(s) da TransferenciaEspaco não foi(foram) preenchido(s)");
         }
     }
 
-    public TransferenciaDinheiroEspaco update(TransferenciaDinheiroEspaco obj) {
+    public TransferenciaEspaco update(TransferenciaEspaco obj) {
         findById(obj.getId());
         try {
             return repository.save(obj);
         } catch (DataIntegrityViolationException e) {
             throw new DataIntegrityException(
-                    "Campo(s) obrigatório(s) da TransferenciaDinheiroEspaco não foi(foram) preenchido(s)");
+                    "Campo(s) obrigatório(s) da TransferenciaEspaco não foi(foram) preenchido(s)");
         }
     }
 
@@ -55,9 +57,9 @@ public class TransferenciaDinheiroEspacoService {
         try {
             repository.deleteById(id);
         } catch (DataIntegrityViolationException e) {
-            throw new DataIntegrityException("Não é possível excluir uma TransferenciaDinheiroEspaco vinculada a Itens de Empréstimos!");
+            throw new DataIntegrityException(
+                    "Não é possível excluir uma TransferenciaEspaco vinculada a Itens de Empréstimos!");
         }
     }
 
 }
-

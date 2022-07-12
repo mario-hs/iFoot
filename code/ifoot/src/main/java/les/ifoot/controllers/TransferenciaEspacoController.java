@@ -12,30 +12,30 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import les.ifoot.model.TransferenciaDinheiroEspaco;
-import les.ifoot.services.TransferenciaDinheiroEspacoService;
+import les.ifoot.model.TransferenciaEspaco;
+import les.ifoot.services.TransferenciaEspacoService;
 import les.ifoot.services.exceptions.ConstraintException;
 
 @RestController
-@RequestMapping(value = "/transferencias_de_dinheiro_espaco")
-public class TransferenciaDinheiroEspacoController {
+@RequestMapping(value = "/transferencias_espaco")
+public class TransferenciaEspacoController {
     @Autowired
-    private TransferenciaDinheiroEspacoService service;
+    private TransferenciaEspacoService service;
 
     @RequestMapping(method = RequestMethod.GET)
-    public ResponseEntity<Collection<TransferenciaDinheiroEspaco>> findAll() {
-        Collection<TransferenciaDinheiroEspaco> Collection = service.findAll();
+    public ResponseEntity<Collection<TransferenciaEspaco>> findAll() {
+        Collection<TransferenciaEspaco> Collection = service.findAll();
         return ResponseEntity.ok().body(Collection);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public ResponseEntity<TransferenciaDinheiroEspaco> find(@PathVariable Integer id) {
-        TransferenciaDinheiroEspaco obj = service.findById(id);
+    public ResponseEntity<TransferenciaEspaco> find(@PathVariable Integer id) {
+        TransferenciaEspaco obj = service.findById(id);
         return ResponseEntity.ok().body(obj);
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<TransferenciaDinheiroEspaco> insert(@Valid @RequestBody TransferenciaDinheiroEspaco obj,
+    public ResponseEntity<TransferenciaEspaco> insert(@Valid @RequestBody TransferenciaEspaco obj,
             BindingResult br) {
         if (br.hasErrors())
             throw new ConstraintException(br.getAllErrors().get(0).getDefaultMessage());
@@ -44,7 +44,7 @@ public class TransferenciaDinheiroEspacoController {
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<TransferenciaDinheiroEspaco> update(@Valid @RequestBody TransferenciaDinheiroEspaco obj,
+    public ResponseEntity<TransferenciaEspaco> update(@Valid @RequestBody TransferenciaEspaco obj,
             BindingResult br) {
         if (br.hasErrors())
             throw new ConstraintException(br.getAllErrors().get(0).getDefaultMessage());

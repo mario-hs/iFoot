@@ -6,6 +6,7 @@ import javax.persistence.*;
 
 import javax.validation.constraints.*;
 
+import les.ifoot.model.enums.TipoCampo;
 import lombok.*;
 
 @Data
@@ -22,7 +23,7 @@ public class Campo implements Serializable {
 
 	@Column(length = 50)
 	@NotBlank(message = "Nome do campo deve ser preenchido")
-	@Size(min = 2, max = 50, message = "Nome do campo deve ter entre 2 e 50 letras")
+	@Size(min = 1, max = 50, message = "Nome do campo deve ter entre 2 e 50 letras")
 	private String nomeCampo;
 
 	@Min(value = 1, message = "Valor unitário do campo deve ser maior que zero")
@@ -40,10 +41,30 @@ public class Campo implements Serializable {
 	@Digits(integer = 6, fraction = 2, message = "Valor anual do campo deve ser preenchido com dígitos")
 	private Double valorAno;
 
+	@NotNull(message = "O tipo do campo deve ser preenchido!")
+	private Integer tipoCampo;
+
 	@NotNull(message = "O espaço em campo deve ser preenchido")
 	@ManyToOne
 	@JoinColumn(name = "espaco_id")
 	private Espaco espaco;
 
+	@Builder
+	public Campo(Integer id, String nomeCampo, TipoCampo tipoCampo) {
+		this.id = id;
+		this.nomeCampo = nomeCampo;
+		// this.espaco = espaco;
+		// this.valorUnit = valorUnit;
+		// this.valorMes = valorMes;
+		// this.valorAno = valorAno;
+		this.tipoCampo = tipoCampo.getCod();
+	}
 
+	public TipoCampo gettipoCampo() {
+		return TipoCampo.toEnum(tipoCampo);
+	}
+
+	public void settipoCampo(TipoCampo tipoCampo) {
+		this.tipoCampo = tipoCampo.getCod();
+	}
 }

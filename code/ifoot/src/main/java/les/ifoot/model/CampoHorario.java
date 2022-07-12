@@ -23,7 +23,6 @@ public class CampoHorario implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
-
 	@NotNull(message = "O campo em Campo_Horario deve ser preenchido")
 	@ManyToOne
 	@JoinColumn(name = "campo_id")

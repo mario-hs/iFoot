@@ -24,10 +24,6 @@ public class Horario implements Serializable {
 
 	@NotNull(message = "O horário que o campo foi reservado deve ser preenchido")
 	private String hora;
-
-	// @Digits(integer = 1, fraction = 0, message = "Dia da semana nao foi
-	// especificado")
-	// @NotNull(message = "Dia da semana nao foi especificado")
 	@Min(value = 0, message = "Escolha um dia da semana existente")
 	@Max(value = 6, message = "Escolha um dia da semana existente")
 	private Integer diaSemana;
@@ -47,8 +43,8 @@ public class Horario implements Serializable {
 		this.diaSemana = diaSemana.getCod();
 	}
 
-	@NotNull(message = "O atributo 'disponivel' da Fita deve ser preenchido")
-	@NotNull(message = "O Filme da Fita deve ser preenchido")
+	@NotNull(message = "O atributo 'disponivel' do Horário deve ser preenchido")
+	@NotNull(message = "O Horário do Campo deve ser preenchido")
 	private Boolean status;
 
 	private String descricao;
