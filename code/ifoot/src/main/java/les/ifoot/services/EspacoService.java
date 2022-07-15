@@ -56,4 +56,21 @@ public class EspacoService {
                     "Não é possível excluir esse espaço por conta de uma de alguma associação!");
         }
     }
+
+    public Collection<?> findByQTDTipoByAnoAndMes(Integer ano, Integer mes) {
+        return repository.findByQTDTipoByAnoAndMes(ano, mes);
+    }
+
+    public Collection<?> findByTipoPiso(Integer tipo_campo) {
+        return repository.findByTipoPiso(tipo_campo);
+    }
+
+    public Collection<?> findByTipoPisoAll() {
+        return repository.findByTipoPisoAll();
+    }
+
+    public Collection<?> findLucroByMesAno(Integer id_espaco, Integer tipo_campo, Integer mes, Integer ano) {
+        return repository.findLucroByMesAno(id_espaco, tipo_campo, mes, ano);
+    }
+
 }

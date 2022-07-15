@@ -1,10 +1,69 @@
 package les.ifoot.repositories;
 
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Collection;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import les.ifoot.model.Jogador;
 
 @Repository
 public interface JogadorRepository extends JpaRepository<Jogador, Integer> {
+    @Transactional(readOnly = true)
+    @Query(value = "SELECT " +
+
+            "(SELECT COUNT(pelada_jogador_by_mes) AS participacao FROM " +
+            "(SELECT DATE_PART('MONTH', pl.data_pelada) as mes, * FROM participacao_lista_jogador plj " +
+            "INNER JOIN participacao pp  ON plj.participacao_id = pp.id " +
+            "INNER JOIN pelada pl        ON pp.pelada_id = pl.id " +
+            "INNER JOIN reserva_grupo rg  ON pl.reserva_grupo_id = rg.id " +
+            "INNER JOIN reserva_grupo_jogador rgj  ON rgj.reserva_grupo_id = rg.id " +
+            "INNER JOIN jogador j        ON rgj.jogador_id = j.id " +
+            "WHERE plj.jogador_id = j.id " +
+            "AND j.id = ?1 " +
+            "AND pl.reserva_grupo_id = rgj.reserva_grupo_id) as pelada_jogador_by_mes " +
+            "WHERE pelada_jogador_by_mes.mes = ?2), " +
+
+            "(SELECT SUM(pelada_jogador_by_mes.gol) AS qtdGols FROM " +
+            "(SELECT DATE_PART('MONTH', pl.data_pelada) as mes, * FROM pelada pl " +
+            "INNER JOIN reserva_grupo_jogador rgj ON pl.reserva_grupo_id = rgj.reserva_grupo_id " +
+            "INNER JOIN reserva_grupo rg ON rgj.reserva_grupo_id = rg.id " +
+            "INNER JOIN jogador j        ON rgj.jogador_id = j.id " +
+            "WHERE j.id = ?1 " +
+            "AND pl.reserva_grupo_id = rgj.reserva_grupo_id) as pelada_jogador_by_mes " +
+            "WHERE pelada_jogador_by_mes.mes = ?2), " +
+
+            "(SELECT SUM(pelada_jogador_by_mes.assistencia) AS qtdAssistencias FROM " +
+            "(SELECT DATE_PART('MONTH', pl.data_pelada) as mes, * FROM pelada pl " +
+            "INNER JOIN reserva_grupo_jogador rgj ON pl.reserva_grupo_id = rgj.reserva_grupo_id " +
+            "INNER JOIN reserva_grupo rg ON rgj.reserva_grupo_id = rg.id " +
+            "INNER JOIN jogador j        ON rgj.jogador_id = j.id " +
+            "WHERE j.id = ?1 " +
+            "AND pl.reserva_grupo_id = rgj.reserva_grupo_id) as pelada_jogador_by_mes " +
+            "WHERE pelada_jogador_by_mes.mes = ?2), " +
+
+            "(SELECT SUM(pelada_jogador_by_mes.qtd_advertencia) AS qtdAdvertencias FROM " +
+            "(SELECT DATE_PART('MONTH', pl.data_pelada) as mes, * FROM pelada pl " +
+            "INNER JOIN reserva_grupo_jogador rgj ON pl.reserva_grupo_id = rgj.reserva_grupo_id " +
+            "INNER JOIN reserva_grupo rg ON rgj.reserva_grupo_id = rg.id " +
+            "INNER JOIN jogador j        ON rgj.jogador_id = j.id " +
+            "WHERE j.id = ?1 " +
+            "AND pl.reserva_grupo_id = rgj.reserva_grupo_id) as pelada_jogador_by_mes " +
+            "WHERE pelada_jogador_by_mes.mes = ?2)", nativeQuery = true)
+    public Collection<?> findByIntervaloMes(Integer id_jogador, Integer mes);
+
+    @Transactional(readOnly = true)
+    @Query(value = "SELECT (SELECT COUNT(jogador) FROM jogador) as qtd, j.nome, j.assistencia " +
+            "FROM jogador j " +
+            "ORDER BY j.assistencia DESC", nativeQuery = true)
+    public Collection<?> findRankingByAssistencias();
+
+    @Transactional(readOnly = true)
+    @Query(value = "SELECT (SELECT COUNT(jogador) FROM jogador) as qtd, j.nome, j.gol " +
+            "FROM jogador j " +
+            "ORDER BY j.gol DESC", nativeQuery = true)
+    public Collection<?> findRankingByGols();
 
 }

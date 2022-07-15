@@ -21,6 +21,6 @@ public interface AvaliacaoRepository extends JpaRepository<Avaliacao, Integer> {
     public Date findByDataAtual();
 
     @Transactional(readOnly = true)
-    @Query(value = "SELECT pl.data_pelada FROM participacao pp INNER JOIN jogador j ON pp.jogador_id = j.id INNER JOIN pelada pl ON pp.pelada_id = pl.id INNER JOIN reserva_grupo rg ON pl.reserva_grupo_id = rg.id INNER JOIN campo_horario ch ON rg.campo_horario_id = ch.id INNER JOIN horario h ON ch.horario_id = h.id WHERE pp.id = ?1", nativeQuery = true)
-    public String findByParticipacaoPelada(Integer id_pelada);
+    @Query(value = "SELECT pl.data_pelada FROM participacao_lista_jogador plj INNER JOIN participacao pp ON plj.participacao_id = pp.id INNER JOIN jogador j ON plj.jogador_id = j.id INNER JOIN pelada pl ON pp.pelada_id = pl.id INNER JOIN reserva_grupo rg ON pl.reserva_grupo_id = rg.id INNER JOIN campo_horario ch ON rg.campo_horario_id = ch.id INNER JOIN horario h ON ch.horario_id = h.id WHERE pp.id = ?1 AND plj.jogador_id = ?2", nativeQuery = true)
+    public String findByParticipacaoPelada(Integer id_pelada, Integer id_jogador);
 }

@@ -30,6 +30,18 @@ public class JogadorService {
         return repository.findAll();
     }
 
+    public Collection<?> findByIntervaloMes(Integer id_jogador, Integer dia) {
+        return repository.findByIntervaloMes(id_jogador, dia);
+    }
+
+    public Collection<?> findRankingByAssistencias() {
+        return repository.findRankingByAssistencias();
+    }
+
+    public Collection<?> findRankingByGols() {
+        return repository.findRankingByGols();
+    }
+
     public Jogador insert(Jogador obj) {
         obj.setId(null);
         try {

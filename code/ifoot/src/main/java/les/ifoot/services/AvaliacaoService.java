@@ -76,10 +76,11 @@ public class AvaliacaoService {
 
         Integer id_jogador = obj.getJogador_avaliador().getId();
         Integer qtd_amarelo = repository.findByAdvertenciaJogador(id_jogador);
+        System.out.println(qtd_amarelo);
 
         Integer id_Participacao = obj.getParticipacao().getId();
         Date dia_atual = repository.findByDataAtual();
-        String dia_pelada = repository.findByParticipacaoPelada(id_Participacao);
+        String dia_pelada = repository.findByParticipacaoPelada(id_Participacao, id_jogador);
         String dia_atual_formatado = formatter.format(dia_atual);
 
         if (qtd_amarelo > 0) {

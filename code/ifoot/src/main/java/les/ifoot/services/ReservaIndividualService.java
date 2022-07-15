@@ -74,20 +74,12 @@ public class ReservaIndividualService {
         Integer id_campo = obj.getPelada().getReservaGrupo().getCampoHorario().getCampo().getId();
         Double carteira = obj.getJogador().getCarteira();
         Float porcento_valor_unit = repository.findByPorcentoValorCampo(id_campo);
-        System.out.println(porcento_valor_unit);
-        System.out.println(carteira);
-        System.out.println(id_campo);
 
         Integer id_reserva_grupo = obj.getPelada().getReservaGrupo().getId();
         Integer id_jogador = obj.getJogador().getId();
-        System.out.println();
-        System.out.println(id_reserva_grupo);
-        System.out.println(id_jogador);
+
         Float media_nota_reserva_grupo = repository.findByMediaReservaGrupo(id_reserva_grupo);
         Float media_nota_jogador = repository.findByMediaJogador(id_jogador);
-        System.out.println(media_nota_reserva_grupo);
-        System.out.println(media_nota_jogador);
-        System.out.println();
 
         if (carteira < porcento_valor_unit) {
             throw new BusinessRuleException(

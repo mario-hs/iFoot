@@ -1,5 +1,6 @@
 package les.ifoot.services;
 
+import java.sql.Date;
 import java.util.Collection;
 import java.util.NoSuchElementException;
 
@@ -65,12 +66,14 @@ public class ReservaGrupoService {
 
     // FEITO POR PATRICK
     public boolean handleReservaGrupo(ReservaGrupo obj) {
-        String data = "06/07/2022";
+        Date data = new Date(121, 06, 26);
         String hora = "19:00"; // pegar o horario do campo
 
         Collection<Jogador> listJogadores = obj.getJogador();
 
         for (Jogador jogador : listJogadores) {
+            System.out.println(repository.findByJogadorDataPeladaHorario(jogador.getId(), data, hora));
+            System.out.println(data);
             if (repository.findByJogadorDataPeladaHorario(jogador.getId(), data, hora)) {
                 throw new BusinessRuleException("O jogador " + jogador.getNome()
                         + " não pode participar desta pelada, pois ele já se encontra em outra no mesmo horário!");

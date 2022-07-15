@@ -34,6 +34,28 @@ public class JogadorController {
         return ResponseEntity.ok().body(obj);
     }
 
+    @RequestMapping(value = "{id}/dados/{mes}", method = RequestMethod.GET)
+    public ResponseEntity<Collection<?>> findByIntervaloMes(@PathVariable Integer id,
+            @PathVariable Integer mes) {
+        Collection<?> collection = service.findByIntervaloMes(id, mes);
+        System.out.println(collection);
+        return ResponseEntity.ok().body(collection);
+    }
+
+    @RequestMapping(value = "/ranking/assistencias", method = RequestMethod.GET)
+    public ResponseEntity<Collection<?>> findRankingByAssistencias() {
+        Collection<?> collection = service.findRankingByAssistencias();
+        System.out.println(collection);
+        return ResponseEntity.ok().body(collection);
+    }
+
+    @RequestMapping(value = "/ranking/gols", method = RequestMethod.GET)
+    public ResponseEntity<Collection<?>> findRankingByGols() {
+        Collection<?> collection = service.findRankingByGols();
+        System.out.println(collection);
+        return ResponseEntity.ok().body(collection);
+    }
+
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<Jogador> insert(@Valid @RequestBody Jogador obj, BindingResult br) {
         if (br.hasErrors())

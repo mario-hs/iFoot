@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import les.ifoot.model.Espaco; 
+import les.ifoot.model.Espaco;
 import les.ifoot.services.EspacoService;
 import les.ifoot.services.exceptions.ConstraintException;
 
@@ -32,6 +32,36 @@ public class EspacoController {
     public ResponseEntity<Espaco> find(@PathVariable Integer id) {
         Espaco obj = service.findById(id);
         return ResponseEntity.ok().body(obj);
+    }
+
+    @RequestMapping(value = "/{ano}/{mes}", method = RequestMethod.GET)
+    public ResponseEntity<Collection<?>> findByQTDTipoByAnoAndMes(@PathVariable Integer ano,
+            @PathVariable Integer mes) {
+        Collection<?> collection = service.findByQTDTipoByAnoAndMes(ano, mes);
+        System.out.println(collection);
+        return ResponseEntity.ok().body(collection);
+    }
+
+    @RequestMapping(value = "/tipo_campo/{tipo_campo}", method = RequestMethod.GET)
+    public ResponseEntity<Collection<?>> findByTipoPiso(@PathVariable Integer tipo_campo) {
+        Collection<?> collection;
+        if (tipo_campo == 0) {
+            collection = service.findByTipoPisoAll();
+        } else {
+            collection = service.findByTipoPiso(tipo_campo);
+        }
+        System.out.println(collection);
+        return ResponseEntity.ok().body(collection);
+    }
+
+    @RequestMapping(value = "{id_espaco}/lucro/{tipo_campo}/{mes}/{ano}", method = RequestMethod.GET)
+
+    public ResponseEntity<Collection<?>> findLucroByMesAno(@PathVariable Integer id_espaco,
+            @PathVariable Integer tipo_campo, @PathVariable Integer mes,
+            @PathVariable Integer ano) {
+        Collection<?> collection = service.findLucroByMesAno(id_espaco, tipo_campo, mes, ano);
+        System.out.println(collection);
+        return ResponseEntity.ok().body(collection);
     }
 
     @RequestMapping(method = RequestMethod.POST)

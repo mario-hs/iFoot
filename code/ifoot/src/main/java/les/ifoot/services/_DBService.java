@@ -123,24 +123,24 @@ public class _DBService {
 
                 // RESERVA EM GRUPO
                 ReservaGrupo reservaGrupo_1 = new ReservaGrupo(null, campoHorario_1,
-                                Arrays.asList(jogador_1), 2);
+                                Arrays.asList(jogador_1, jogador_2, jogador_3), 2);
                 ReservaGrupo reservaGrupo_2 = new ReservaGrupo(null, campoHorario_2,
                                 Arrays.asList(jogador_3, jogador_4), 1);
 
                 // PELADA COM ROUPA
                 // Pelada pelada_1 = new Pelada(null, "26/06/2021", reservaGrupo_1);
                 // Pelada pelada_2 = new Pelada(null, "07/07/2022", reservaGrupo_2);
-                Pelada pelada_1 = new Pelada(null, date.parse("26/06/2021"), reservaGrupo_1);
-                Pelada pelada_2 = new Pelada(null, date.parse("07/07/2022"), reservaGrupo_2);
+                Pelada pelada_1 = new Pelada(null, date.parse("26/07/2021"), reservaGrupo_1);
+                Pelada pelada_2 = new Pelada(null, date.parse("07/06/2022"), reservaGrupo_1);
                 Pelada pelada_3 = new Pelada(null, date.parse("11/07/2022"), reservaGrupo_2);
                 // Pelada pelada_3 = new Pelada(null, data_atual[0], reservaGrupo_2);
 
                 ReservaIndividual reservaIndividual_1 = new ReservaIndividual(null, pelada_1, jogador_4);
 
                 // PARTICIPACAO DO JOGADOR
-                Participacao participacao_1 = new Participacao(null, pelada_1, jogador_2);
-                Participacao participacao_2 = new Participacao(null, pelada_2, jogador_1);
-                Participacao participacao_3 = new Participacao(null, pelada_3, jogador_2);
+                Participacao participacao_1 = new Participacao(null, pelada_1, Arrays.asList(jogador_1, jogador_2));
+                Participacao participacao_2 = new Participacao(null, pelada_2, Arrays.asList(jogador_2));
+                Participacao participacao_3 = new Participacao(null, pelada_3, Arrays.asList(jogador_2));
 
                 // PENALIDADE DO JOGADOR
                 Penalidade penalidade_1 = new Penalidade(null, 1, 0, date.parse("21/06/2022"), jogador_1);
