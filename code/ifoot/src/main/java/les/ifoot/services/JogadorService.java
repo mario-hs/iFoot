@@ -42,6 +42,11 @@ public class JogadorService {
         return repository.findRankingByGols();
     }
 
+    public Collection<?> findByJogadorInReservaGrupo(Integer id_jogador) {
+
+        return repository.findByJogadorInReservaGrupo(id_jogador);
+    }
+
     public Jogador insert(Jogador obj) {
         obj.setId(null);
         try {

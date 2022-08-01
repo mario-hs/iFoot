@@ -1,5 +1,7 @@
 package les.ifoot.controllers;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 
 import javax.validation.Valid;
@@ -7,6 +9,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,6 +21,7 @@ import les.ifoot.services.exceptions.ConstraintException;
 
 @RestController
 @RequestMapping(value = "/jogadores")
+@CrossOrigin(origins = "http://localhost:3000")
 public class JogadorController {
     @Autowired
     private JogadorService service;
@@ -32,6 +36,12 @@ public class JogadorController {
     public ResponseEntity<Jogador> find(@PathVariable Integer id) {
         Jogador obj = service.findById(id);
         return ResponseEntity.ok().body(obj);
+    }
+
+    @RequestMapping(value = "/{id}/reserva_em_grupo", method = RequestMethod.GET)
+    public ResponseEntity<Collection<?>> findByJogadorInReservaGrupo(@PathVariable Integer id) {
+        Collection<?> collection = service.findByJogadorInReservaGrupo(id);
+        return ResponseEntity.ok().body(collection);
     }
 
     @RequestMapping(value = "{id}/dados/{mes}", method = RequestMethod.GET)

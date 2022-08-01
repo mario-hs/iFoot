@@ -2,11 +2,11 @@ package les.ifoot.model.enums;
 
 public enum DiadaSemana {
 	SEGUNDA(0, "Segunda-feira"),
-	TERCA(1, "Terça-feira"),
+	TERÇA(1, "Terça-feira"),
 	QUARTA(2, "Quarta-feira"),
 	QUINTA(3, "Quinta-feira"),
 	SEXTA(4, "Sexta-feira"),
-	SABADO(5, "Sábado"),
+	SÁBADO(5, "Sábado"),
 	DOMINGO(6, "Domingo");
 
 	private int cod;

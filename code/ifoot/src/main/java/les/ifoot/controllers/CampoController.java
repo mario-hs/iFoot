@@ -7,6 +7,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,6 +19,7 @@ import les.ifoot.services.exceptions.ConstraintException;
 
 @RestController
 @RequestMapping(value = "/campos")
+@CrossOrigin(origins = "http://localhost:3000")
 public class CampoController {
     @Autowired
     private CampoService service;
@@ -49,7 +51,6 @@ public class CampoController {
         obj = service.update(obj);
         return ResponseEntity.ok().body(obj);
     }
-
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<Void> delete(@PathVariable Integer id) {
