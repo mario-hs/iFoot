@@ -42,6 +42,10 @@ public class JogadorService {
         return repository.findRankingByGols();
     }
 
+    public Jogador findLoginJogador(String email, String senha) {
+        return repository.findLoginJogador(email, senha);
+    }
+
     public Collection<?> findByJogadorInReservaGrupo(Integer id_jogador) {
 
         return repository.findByJogadorInReservaGrupo(id_jogador);

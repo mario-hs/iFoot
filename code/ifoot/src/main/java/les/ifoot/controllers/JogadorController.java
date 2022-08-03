@@ -87,4 +87,19 @@ public class JogadorController {
         service.delete(id);
         return ResponseEntity.noContent().build();
     }
+
+    // @RequestMapping(value = "/login", method = RequestMethod.POST)
+    // public ResponseEntity<Collection<Jogador>> login(@Valid @RequestBody String
+    // email, String senha, BindingResult br) {
+    // if (br.hasErrors())
+    // throw new ConstraintException(br.getAllErrors().get(0).getDefaultMessage());
+    // Collection<Jogador> collection = service.findLoginJogador(email, senha);
+    // return ResponseEntity.ok().body(collection);
+    // }
+
+    @RequestMapping(value = "/{email}/{senha}", method = RequestMethod.GET)
+    public ResponseEntity<Jogador> findLoginJogador(@PathVariable String email, @PathVariable String senha) {
+        Jogador obj = service.findLoginJogador(email, senha);
+        return ResponseEntity.ok().body(obj);
+    }
 }

@@ -55,13 +55,13 @@ public interface JogadorRepository extends JpaRepository<Jogador, Integer> {
         public Collection<?> findByIntervaloMes(Integer id_jogador, Integer mes);
 
         @Transactional(readOnly = true)
-        @Query(value = "SELECT (SELECT COUNT(jogador) FROM jogador) as qtd, j.nome, j.assistencia " +
+        @Query(value = "SELECT (SELECT COUNT(jogador) FROM jogador) as qtd, j.nome, j.assistencia, j.id " +
                         "FROM jogador j " +
                         "ORDER BY j.assistencia DESC", nativeQuery = true)
         public Collection<?> findRankingByAssistencias();
 
         @Transactional(readOnly = true)
-        @Query(value = "SELECT (SELECT COUNT(jogador) FROM jogador) as qtd, j.nome, j.gol " +
+        @Query(value = "SELECT (SELECT COUNT(jogador) FROM jogador) as qtd, j.nome, j.gol, j.id " +
                         "FROM jogador j " +
                         "ORDER BY j.gol DESC", nativeQuery = true)
         public Collection<?> findRankingByGols();
@@ -82,5 +82,11 @@ public interface JogadorRepository extends JpaRepository<Jogador, Integer> {
                         "INNER JOIN espaco e ON cp.espaco_id = e.id " +
                         "WHERE j.id = ?1", nativeQuery = true)
         public Collection<?> findByJogadorInReservaGrupo(Integer id_jogador);
+
+        @Transactional(readOnly = true)
+        @Query(value = "SELECT * FROM jogador j " +
+                        "WHERE j.email_jogador = ?1 " +
+                        "AND j.senha_jogador = ?2 ", nativeQuery = true)
+        public Jogador findLoginJogador(String email, String senha);
 
 }
