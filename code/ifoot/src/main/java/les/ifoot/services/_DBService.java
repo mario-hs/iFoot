@@ -99,7 +99,9 @@ public class _DBService {
 
                 // CAMPO HORARIO
                 CampoHorario campoHorario_1 = new CampoHorario(null, campo_1, horario_1);
-                CampoHorario campoHorario_2 = new CampoHorario(null, campo_2, horario_2);
+                CampoHorario campoHorario_2 = new CampoHorario(null, campo_1, horario_2);
+                CampoHorario campoHorario_3 = new CampoHorario(null, campo_3, horario_1);
+                CampoHorario campoHorario_4 = new CampoHorario(null, campo_4, horario_2);
 
                 // TRANSFERENCIA DE DINHEIRO ENTRE JOGADORES
                 TransferenciaJogador transferencia_jogador_1 = new TransferenciaJogador(null, data_atual[0],
@@ -119,7 +121,7 @@ public class _DBService {
                 TransferenciaEspaco transferencia_espaco_2 = new TransferenciaEspaco(null,
                                 date.parse("06/07/2022"), 8.5, jogador_2, espaco_1);
                 TransferenciaEspaco transferencia_espaco_3 = new TransferenciaEspaco(null,
-                                date.parse("11/07/2022"), 8.5, jogador_3, espaco_2);
+                                date.parse("11/07/2022"), 8.5, jogador_3, espaco_1);
 
                 // RESERVA EM GRUPO
                 ReservaGrupo reservaGrupo_1 = new ReservaGrupo(null, campoHorario_1,
@@ -166,7 +168,8 @@ public class _DBService {
 
                 campoRepository.saveAll(Arrays.asList(campo_1, campo_2, campo_3, campo_4));
 
-                campoHorarioRepository.saveAll(Arrays.asList(campoHorario_1, campoHorario_2));
+                campoHorarioRepository
+                                .saveAll(Arrays.asList(campoHorario_1, campoHorario_2, campoHorario_3, campoHorario_4));
 
                 transferenciaJogadorRepository.saveAll(Arrays.asList(transferencia_jogador_1, transferencia_jogador_2,
                                 transferencia_jogador_3, transferencia_jogador_4, transferencia_jogador_5));

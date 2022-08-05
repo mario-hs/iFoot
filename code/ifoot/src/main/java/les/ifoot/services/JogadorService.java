@@ -6,8 +6,13 @@ import java.util.NoSuchElementException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
+
+import les.ifoot.model.Avaliacao;
 import les.ifoot.model.Jogador;
+import les.ifoot.model.ReservaIndividual;
+import les.ifoot.repositories.AvaliacaoRepository;
 import les.ifoot.repositories.JogadorRepository;
+import les.ifoot.repositories.ReservaIndividualRepository;
 import les.ifoot.services.exceptions.DataIntegrityException;
 import les.ifoot.services.exceptions.ObjectNotFoundException;
 
@@ -15,6 +20,10 @@ import les.ifoot.services.exceptions.ObjectNotFoundException;
 public class JogadorService {
     @Autowired
     private JogadorRepository repository;
+    @Autowired
+    private ReservaIndividualRepository reservaIndividualRepository;
+    @Autowired
+    private AvaliacaoRepository avaliacaoRepository;
 
     public Jogador findById(Integer id) {
         try {
@@ -47,8 +56,15 @@ public class JogadorService {
     }
 
     public Collection<?> findByJogadorInReservaGrupo(Integer id_jogador) {
-
         return repository.findByJogadorInReservaGrupo(id_jogador);
+    }
+
+    public Float findByMediaJogador(Integer id_jogador) {
+        return reservaIndividualRepository.findByMediaJogador(id_jogador);
+    }
+
+    public Integer findByAdvertenciaJogador(Integer id_jogador) {
+        return avaliacaoRepository.findByAdvertenciaJogador(id_jogador);
     }
 
     public Jogador insert(Jogador obj) {
@@ -74,7 +90,7 @@ public class JogadorService {
         try {
             repository.deleteById(id);
         } catch (DataIntegrityViolationException e) {
-            throw new DataIntegrityException("Não é possível excluir uma Jogador vinculada a Itens de Empréstimos!");
+            throw new DataIntegrityException("Não é possível excluir uma Jogador vinculada a uma pelada!");
         }
     }
 

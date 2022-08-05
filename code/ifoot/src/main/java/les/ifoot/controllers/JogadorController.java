@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import les.ifoot.model.Jogador;
 import les.ifoot.services.JogadorService;
 import les.ifoot.services.exceptions.ConstraintException;
+import net.bytebuddy.agent.VirtualMachine.ForHotSpot.Connection.Response;
 
 @RestController
 @RequestMapping(value = "/jogadores")
@@ -88,14 +89,17 @@ public class JogadorController {
         return ResponseEntity.noContent().build();
     }
 
-    // @RequestMapping(value = "/login", method = RequestMethod.POST)
-    // public ResponseEntity<Collection<Jogador>> login(@Valid @RequestBody String
-    // email, String senha, BindingResult br) {
-    // if (br.hasErrors())
-    // throw new ConstraintException(br.getAllErrors().get(0).getDefaultMessage());
-    // Collection<Jogador> collection = service.findLoginJogador(email, senha);
-    // return ResponseEntity.ok().body(collection);
-    // }
+    @RequestMapping(value = "/{id}/score", method = RequestMethod.GET)
+    public ResponseEntity<Float> findByMediaJogador(@PathVariable Integer id) {
+        Float obj = service.findByMediaJogador(id);
+        return ResponseEntity.ok().body(obj);
+    }
+
+    @RequestMapping(value = "/{id}/amarelo", method = RequestMethod.GET)
+    public ResponseEntity<Integer> findByAdvertenciaJogador(@PathVariable Integer id) {
+        Integer obj = service.findByAdvertenciaJogador(id);
+        return ResponseEntity.ok().body(obj);
+    }
 
     @RequestMapping(value = "/{email}/{senha}", method = RequestMethod.GET)
     public ResponseEntity<Jogador> findLoginJogador(@PathVariable String email, @PathVariable String senha) {

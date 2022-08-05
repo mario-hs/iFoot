@@ -31,6 +31,10 @@ public class CampoHorarioService {
         return repository.findAll();
     }
 
+    public Collection<CampoHorario> findAllDataEspaco(Integer id_espaco) {
+        return repository.findAllDataEspaco(id_espaco);
+    }
+
     public CampoHorario insert(final CampoHorario obj) {
         obj.setId(null);
         try {

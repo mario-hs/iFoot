@@ -57,4 +57,12 @@ public class CampoHorarioController {
         service.delete(id);
         return ResponseEntity.noContent().build();
     }
+
+    @RequestMapping(value = "/espaco/{id_espaco}", method = RequestMethod.GET)
+    public ResponseEntity<Collection<CampoHorario>> findAllDataEspaco(@PathVariable Integer id_espaco) {
+        Collection<CampoHorario> collection = service.findAllDataEspaco(id_espaco);
+        System.out.println(collection);
+        return ResponseEntity.ok().body(collection);
+    }
+
 }

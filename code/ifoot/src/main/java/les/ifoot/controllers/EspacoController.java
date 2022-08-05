@@ -56,12 +56,10 @@ public class EspacoController {
         return ResponseEntity.ok().body(collection);
     }
 
-    @RequestMapping(value = "{id_espaco}/lucro/{tipo_campo}/{mes}/{ano}", method = RequestMethod.GET)
-
+    @RequestMapping(value = "/{id_espaco}/lucro/{tipo_campo}/{ano}", method = RequestMethod.GET)
     public ResponseEntity<Collection<?>> findLucroByMesAno(@PathVariable Integer id_espaco,
-            @PathVariable Integer tipo_campo, @PathVariable Integer mes,
-            @PathVariable Integer ano) {
-        Collection<?> collection = service.findLucroByMesAno(id_espaco, tipo_campo, mes, ano);
+            @PathVariable Integer tipo_campo, @PathVariable Integer ano) {
+        Collection<?> collection = service.findLucroByMesAno(id_espaco, tipo_campo, ano);
         System.out.println(collection);
         return ResponseEntity.ok().body(collection);
     }
@@ -86,5 +84,11 @@ public class EspacoController {
     public ResponseEntity<Void> delete(@PathVariable Integer id) {
         service.delete(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @RequestMapping(value = "/login/{email}/{senha}", method = RequestMethod.GET)
+    public ResponseEntity<Espaco> findLoginEspaco(@PathVariable String email, @PathVariable String senha) {
+        Espaco obj = service.findLoginEspaco(email, senha);
+        return ResponseEntity.ok().body(obj);
     }
 }

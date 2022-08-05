@@ -7,6 +7,7 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import les.ifoot.model.Espaco;
 import les.ifoot.repositories.EspacoRepository;
+import les.ifoot.repositories.CampoHorarioRepository;
 import les.ifoot.services.exceptions.DataIntegrityException;
 import les.ifoot.services.exceptions.ObjectNotFoundException;
 
@@ -14,6 +15,9 @@ import les.ifoot.services.exceptions.ObjectNotFoundException;
 public class EspacoService {
     @Autowired
     private EspacoRepository repository;
+
+    @Autowired
+    private CampoHorarioRepository campoHorarioRepository;
 
     public Espaco findById(final Integer id) {
         try {
@@ -61,6 +65,14 @@ public class EspacoService {
         return repository.findByQTDTipoByAnoAndMes(ano, mes);
     }
 
+    public Collection<?> findAllDataEspaco(Integer id_espaco) {
+        return campoHorarioRepository.findAllDataEspaco(id_espaco);
+    }
+
+    // public Collection<?> findAllDataEspaco(Integer id_espaco) {
+    // return repository.findAllDataEspaco(id_espaco);
+    // }
+
     public Collection<?> findByTipoPiso(Integer tipo_campo) {
         return repository.findByTipoPiso(tipo_campo);
     }
@@ -69,8 +81,11 @@ public class EspacoService {
         return repository.findByTipoPisoAll();
     }
 
-    public Collection<?> findLucroByMesAno(Integer id_espaco, Integer tipo_campo, Integer mes, Integer ano) {
-        return repository.findLucroByMesAno(id_espaco, tipo_campo, mes, ano);
+    public Collection<?> findLucroByMesAno(Integer id_espaco, Integer tipo_campo, Integer ano) {
+        return repository.findLucroByMesAno(id_espaco, tipo_campo, ano);
     }
 
+    public Espaco findLoginEspaco(String email, String senha) {
+        return repository.findLoginEspaco(email, senha);
+    }
 }

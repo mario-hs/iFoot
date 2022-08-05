@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-IfootApplication<ifoot>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "les.ifoot.IfootApplication",
+            "projectName": "ifoot",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}

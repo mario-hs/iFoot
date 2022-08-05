@@ -1,9 +1,9 @@
 package les.ifoot.model.enums;
 
 public enum TipoCampo {
-	FUTSAL(0, "Futsal"),
-	SOCIETY(1, "Society"),
-	CAMPO(2, "Campo");
+	CAMPO(1, "Campo"),
+	FUTSAL(2, "Futsal"),
+	SOCIETY(3, "Society");
 
 	private int cod;
 	private String descricao;
