@@ -1,7 +1,5 @@
 package les.ifoot.controllers;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
 
 import javax.validation.Valid;
@@ -18,7 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 import les.ifoot.model.Jogador;
 import les.ifoot.services.JogadorService;
 import les.ifoot.services.exceptions.ConstraintException;
-import net.bytebuddy.agent.VirtualMachine.ForHotSpot.Connection.Response;
 
 @RestController
 @RequestMapping(value = "/jogadores")
