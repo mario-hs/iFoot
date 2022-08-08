@@ -1,5 +1,7 @@
 package les.ifoot.model;
 
+import java.util.Collection;
+import java.util.ArrayList;
 import java.io.Serializable;
 
 import javax.persistence.*;
@@ -32,5 +34,11 @@ public class CampoHorario implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "horario_id")
 	private Horario horario;
+
+	// @NotNull(message = "O horário em Campo_Horario deve ser preenchido")
+	// @ManyToMany
+	// @JoinTable(name = "CAMPOHORARIO_HORARIOS", joinColumns = @JoinColumn(name =
+	// "campo_id"), inverseJoinColumns = @JoinColumn(name = "horario_id"))
+	// private Collection<Horario> horario = new ArrayList<>();
 
 }

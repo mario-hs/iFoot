@@ -88,20 +88,30 @@ public class _DBService {
                                 "1234567", 200.00);
 
                 // HORARIO
+                Horario horario_0 = new Horario(null, "19:00", 1, true, null);
                 Horario horario_1 = new Horario(null, "19:00", 1, true, null);
-                Horario horario_2 = new Horario(null, "20:00", 1, false, null);
+                Horario horario_2 = new Horario(null, "20:00", 1, true, null);
+                Horario horario_3 = new Horario(null, "21:00", 1, true, null);
+                Horario horario_4 = new Horario(null, "22:00", 1, true, null);
+                Horario horario_5 = new Horario(null, "19:00", 0, true, null);
+                Horario horario_6 = new Horario(null, "19:00", 0, true, null);
+                Horario horario_7 = new Horario(null, "20:00", 0, true, null);
+                Horario horario_8 = new Horario(null, "21:00", 0, true, null);
+                Horario horario_9 = new Horario(null, "22:00", 0, true, null);
 
                 // CAMPO
                 Campo campo_1 = new Campo(null, "A", 80.00, 280.00, 1500.00, 1, espaco_1);
                 Campo campo_2 = new Campo(null, "B", 80.00, 280.00, 1500.00, 2, espaco_1);
-                Campo campo_3 = new Campo(null, "C", 85.00, 290.00, 1450.00, 1, espaco_2);
+                Campo campo_3 = new Campo(null, "C", 85.00, 290.00, 1450.00, 1, espaco_1);
                 Campo campo_4 = new Campo(null, "D", 85.00, 290.00, 1450.00, 2, espaco_2);
 
                 // CAMPO HORARIO
                 CampoHorario campoHorario_1 = new CampoHorario(null, campo_1, horario_1);
-                CampoHorario campoHorario_2 = new CampoHorario(null, campo_1, horario_2);
-                CampoHorario campoHorario_3 = new CampoHorario(null, campo_3, horario_1);
-                CampoHorario campoHorario_4 = new CampoHorario(null, campo_4, horario_2);
+                CampoHorario campoHorario_2 = new CampoHorario(null, campo_2, horario_2); // deve mostrar
+                CampoHorario campoHorario_3 = new CampoHorario(null, campo_1, horario_9);
+                CampoHorario campoHorario_4 = new CampoHorario(null, campo_3, horario_2);
+                CampoHorario campoHorario_5 = new CampoHorario(null, campo_1, horario_2); // se não mostrar tudo bem
+                                                                                          // porque o 4 é igual
 
                 // TRANSFERENCIA DE DINHEIRO ENTRE JOGADORES
                 TransferenciaJogador transferencia_jogador_1 = new TransferenciaJogador(null, data_atual[0],
@@ -164,12 +174,14 @@ public class _DBService {
 
                 espacoRepository.saveAll(Arrays.asList(espaco_1, espaco_2));
 
-                horarioRepository.saveAll(Arrays.asList(horario_1, horario_2));
+                horarioRepository.saveAll(Arrays.asList(horario_0, horario_1, horario_2, horario_3, horario_4,
+                                horario_5, horario_6, horario_7, horario_8, horario_9));
 
                 campoRepository.saveAll(Arrays.asList(campo_1, campo_2, campo_3, campo_4));
 
                 campoHorarioRepository
-                                .saveAll(Arrays.asList(campoHorario_1, campoHorario_2, campoHorario_3, campoHorario_4));
+                                .saveAll(Arrays.asList(campoHorario_1, campoHorario_2, campoHorario_3, campoHorario_4,
+                                                campoHorario_5));
 
                 transferenciaJogadorRepository.saveAll(Arrays.asList(transferencia_jogador_1, transferencia_jogador_2,
                                 transferencia_jogador_3, transferencia_jogador_4, transferencia_jogador_5));

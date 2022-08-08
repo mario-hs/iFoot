@@ -57,4 +57,11 @@ public class CampoService {
                     "Não é possível excluir este Campo pois ele está cadastrado em algum espaço!");
         }
     }
+    //
+    //
+    //
+
+    // public Collection<Campo> findAllDataEspaco(Integer id_espaco) {
+    // return repository.findAllDataEspaco(id_espaco);
+    // }
 }
