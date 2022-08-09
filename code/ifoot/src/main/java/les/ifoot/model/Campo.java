@@ -56,10 +56,10 @@ public class Campo implements Serializable {
 	public Campo(Integer id, String nomeCampo, TipoCampo tipoCampo) {
 		this.id = id;
 		this.nomeCampo = nomeCampo;
-		// this.espaco = espaco;
-		// this.valorUnit = valorUnit;
-		// this.valorMes = valorMes;
-		// this.valorAno = valorAno;
+		this.espaco = espaco;
+		this.valorUnit = valorUnit;
+		this.valorMes = valorMes;
+		this.valorAno = valorAno;
 		this.tipoCampo = tipoCampo.getCod();
 	}
 

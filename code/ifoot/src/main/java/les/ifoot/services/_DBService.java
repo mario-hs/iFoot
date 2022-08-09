@@ -109,7 +109,7 @@ public class _DBService {
                 CampoHorario campoHorario_1 = new CampoHorario(null, campo_1, horario_1);
                 CampoHorario campoHorario_2 = new CampoHorario(null, campo_2, horario_2); // deve mostrar
                 CampoHorario campoHorario_3 = new CampoHorario(null, campo_1, horario_9);
-                CampoHorario campoHorario_4 = new CampoHorario(null, campo_3, horario_2);
+                CampoHorario campoHorario_4 = new CampoHorario(null, campo_1, horario_2);
                 CampoHorario campoHorario_5 = new CampoHorario(null, campo_1, horario_2); // se não mostrar tudo bem
                                                                                           // porque o 4 é igual
 

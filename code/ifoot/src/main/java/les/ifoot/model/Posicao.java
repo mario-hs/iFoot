@@ -35,9 +35,8 @@ public class Posicao implements Serializable {
 	@Size(min = 4, max = 30, message = "A caracteristica da posição deve ter entre 4 e 30 letras")
 	private String caracteristica;
 
-	@Column(length = 50)
-	@NotBlank(message = "A descricao da posição deve ser preenchida")
-	@Size(min = 5, max = 50, message = "A descricao da posição deve ter entre 5 e 50 letras")
+	@Column(length = 150)
+	@Size(min = 0, max = 150, message = "A descricao da posição deve ter entre 0 e 150 letras")
 	private String descricao;
 
 }
