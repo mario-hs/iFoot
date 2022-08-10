@@ -69,10 +69,6 @@ public class EspacoService {
         return campoHorarioRepository.findAllDataEspaco(id_espaco);
     }
 
-    // public Collection<?> findAllDataEspaco(Integer id_espaco) {
-    // return repository.findAllDataEspaco(id_espaco);
-    // }
-
     public Collection<?> findByTipoPiso(Integer tipo_campo) {
         return repository.findByTipoPiso(tipo_campo);
     }

@@ -57,7 +57,7 @@ public class HorarioService {
             repository.deleteById(id);
 
         } catch (DataIntegrityViolationException e) {
-            throw new DataIntegrityException("Não é possível excluir um Horario!");
+            throw new DataIntegrityException("Não é possível excluir este horario!");
         }
     }
 

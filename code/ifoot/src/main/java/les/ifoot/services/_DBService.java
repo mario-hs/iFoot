@@ -103,7 +103,7 @@ public class _DBService {
                 Campo campo_1 = new Campo(null, "A", 80.00, 280.00, 1500.00, 1, espaco_1);
                 Campo campo_2 = new Campo(null, "B", 80.00, 280.00, 1500.00, 2, espaco_1);
                 Campo campo_3 = new Campo(null, "C", 85.00, 290.00, 1450.00, 1, espaco_1);
-                Campo campo_4 = new Campo(null, "D", 85.00, 290.00, 1450.00, 2, espaco_2);
+                Campo campo_4 = new Campo(null, "D", 85.00, 290.00, 1450.00, 3, espaco_2);
 
                 // CAMPO HORARIO
                 CampoHorario campoHorario_1 = new CampoHorario(null, campo_1, horario_1);

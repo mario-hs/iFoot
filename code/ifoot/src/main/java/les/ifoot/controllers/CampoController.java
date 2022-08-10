@@ -58,14 +58,22 @@ public class CampoController {
         return ResponseEntity.noContent().build();
     }
 
-    //
-    //
-    //
-    // @RequestMapping(value = "/espaco/{id_espaco}", method = RequestMethod.GET)
-    // public ResponseEntity<Collection<Campo>> findAllDataEspaco(@PathVariable
-    // Integer id_espaco) {
-    // Collection<Campo> collection = service.findAllDataEspaco(id_espaco);
-    // System.out.println(collection);
-    // return ResponseEntity.ok().body(collection);
-    // }
+    @RequestMapping(value = "/tipo_campo/{tipo_campo}", method = RequestMethod.GET)
+    public ResponseEntity<Collection<Campo>> findByTipoPiso(@PathVariable Integer tipo_campo) {
+        Collection<Campo> collection;
+        if (tipo_campo == 0) {
+            collection = service.findByTipoPisoAll();
+        } else {
+            collection = service.findByTipoPiso(tipo_campo);
+        }
+        System.out.println(collection);
+        return ResponseEntity.ok().body(collection);
+    }
+
+    @RequestMapping(value = "/espaco/{id_espaco}", method = RequestMethod.GET)
+    public ResponseEntity<Collection<Campo>> findAllCampoEspaco(@PathVariable Integer id_espaco) {
+        Collection<Campo> collection = service.findAllCampoEspaco(id_espaco);
+        System.out.println(collection);
+        return ResponseEntity.ok().body(collection);
+    }
 }

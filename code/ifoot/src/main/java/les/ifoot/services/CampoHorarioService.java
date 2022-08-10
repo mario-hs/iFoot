@@ -59,7 +59,7 @@ public class CampoHorarioService {
             repository.deleteById(id);
         } catch (final DataIntegrityViolationException e) {
             throw new DataIntegrityException(
-                    "Não é possível excluir esta CampoHorario pois ele está cadastrado em algum outro campo");
+                    "Não é possível excluir este horário do campo pois ele têm alguma pendência!");
         }
     }
 

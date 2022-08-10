@@ -54,14 +54,19 @@ public class CampoService {
             repository.deleteById(id);
         } catch (final DataIntegrityViolationException e) {
             throw new DataIntegrityException(
-                    "Não é possível excluir este Campo pois ele está cadastrado em algum espaço!");
+                    "Não é possível excluir este campo pois ele tem horário(s) cadastrado(s)!");
         }
     }
-    //
-    //
-    //
 
-    // public Collection<Campo> findAllDataEspaco(Integer id_espaco) {
-    // return repository.findAllDataEspaco(id_espaco);
-    // }
+    public Collection<Campo> findAllCampoEspaco(Integer id_espaco) {
+        return repository.findAllCampoEspaco(id_espaco);
+    }
+
+    public Collection<Campo> findByTipoPiso(Integer tipo_campo) {
+        return repository.findByTipoPiso(tipo_campo);
+    }
+
+    public Collection<Campo> findByTipoPisoAll() {
+        return repository.findByTipoPisoAll();
+    }
 }
